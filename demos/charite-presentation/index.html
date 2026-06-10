@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bayes Platform × Charité — Wearables analytics</title>
+<link rel="icon" href="../../assets/logos/bi-colors.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../lib/bayes.css" />
+
+<!-- Bespoke components for this deck only (the Charité data-pipeline diagram + the wearables
+     analytics demo with live charts). Built on the shared tokens; never edits the shared CSS. -->
+<style>
+  /* ── Charité data-pipeline: bordered "theirs to build" infra (bottom) + Bayes layer on top ── */
+  .harch{display:flex; flex-direction:column; margin-top:20px;}
+  .harch-layer{border-radius:16px; padding:18px 22px;}
+  .harch-layer.bayes{background:var(--ink); color:#fff; border:1px solid var(--ink); box-shadow:0 0 0 2px rgba(255,132,0,.14), var(--shadow);}
+  .harch-layer.charite{background:var(--card); border:1.5px dashed var(--border-soft); box-shadow:var(--shadow);}
+  .hl-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:14px;}
+  .hl-tag{font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-orange); background:rgba(255,132,0,.14); padding:5px 11px; border-radius:999px; white-space:nowrap;}
+  .hl-tag.own{color:var(--muted); background:var(--cream); border:1px solid var(--border-soft);}
+  .harch-layer.bayes h3{font-size:16.5px; font-weight:700; margin:0; letter-spacing:-.01em; color:#fff;}
+  .hl-sub{font-size:13px; color:var(--muted);}
+  .hl-apps{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+  .happ{background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:12px 13px; font-size:13px; font-weight:600; color:#fff; line-height:1.3;}
+  .happ .ha-k{display:block; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:4px;}
+  .happ.ehr{border-style:dashed; color:rgba(255,255,255,.8); font-weight:500;}
+  .harch-seam{display:flex; justify-content:center; align-items:center; position:relative; padding:12px 0;}
+  .harch-seam::before{content:''; position:absolute; top:0; bottom:0; left:50%; width:2px; background:linear-gradient(var(--accent-orange), var(--border-soft)); opacity:.45;}
+  .seam-pill{position:relative; background:var(--cream); border:1px solid var(--border-soft); border-radius:999px; padding:7px 16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.03em; color:var(--ink-soft); display:inline-flex; align-items:center; gap:8px; box-shadow:var(--shadow); text-align:center;}
+  .seam-pill::before{content:'⇅'; color:var(--accent-orange); font-weight:800; font-size:13px;}
+  .hpipe{display:flex; align-items:stretch; gap:0; flex-wrap:nowrap;}
+  .hstage{flex:1 1 0; background:var(--cream); border:1px solid var(--border-soft); border-radius:10px; padding:12px 13px; font-size:12.5px; font-weight:600; color:var(--ink-soft); display:flex; flex-direction:column; justify-content:center; line-height:1.35;}
+  .hstage .hs-k{font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .hstage.devices{background:#fff;}
+  .hstage.db{border-color:var(--accent-blue); box-shadow:0 0 0 2px rgba(16,103,254,.1);}
+  .hstage b{color:var(--ink); font-weight:700;}
+  .harrow{display:flex; align-items:center; padding:0 9px; color:var(--border-soft); font-size:17px; flex:0 0 auto;}
+
+  /* ── wearables analytics demo (interactive, inline-SVG charts) ── */
+  .wd-banner{display:flex; align-items:center; gap:9px; background:var(--cream); border:1px solid var(--border-soft); border-radius:10px; padding:9px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-top:12px; line-height:1.5;}
+  .wd-banner .dot-ok{width:8px; height:8px; border-radius:50%; background:var(--ok); flex:0 0 auto;}
+  .wd-banner b{color:var(--ink);}
+  .wd-tabs{display:flex; gap:8px; margin-top:14px;}
+  .wd-tab{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; padding:7px 15px; border-radius:999px; border:1px solid var(--border-soft); background:var(--card); color:var(--muted); cursor:pointer; transition:all .15s;}
+  .wd-tab.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .wd-grid{display:grid; grid-template-columns:286px 1fr; gap:18px; align-items:start; margin-top:16px;}
+  .wd-ask{display:flex; flex-direction:column; gap:8px;}
+  .wd-qbtn{text-align:left; font-family:inherit; font-size:12.5px; line-height:1.35; padding:10px 12px; border-radius:10px; border:1px solid var(--border-soft); background:var(--card); color:var(--ink-soft); cursor:pointer; transition:all .15s; box-shadow:var(--shadow);}
+  .wd-qbtn:hover{border-color:var(--ink); transform:translateY(-1px);}
+  .wd-qbtn.active{border-color:var(--accent-orange); box-shadow:0 0 0 2px rgba(255,132,0,.1), var(--shadow); color:var(--ink);}
+  .wd-resp{background:var(--card); border:1px solid var(--border-soft); border-radius:14px; box-shadow:var(--shadow); padding:14px 16px; min-height:300px;}
+  .wd-step{margin-bottom:8px;}
+  .wd-chart svg{display:block; width:100%; max-width:430px; height:auto; margin:0 auto;}
+  .wd-step:last-child{margin-bottom:0;}
+  .wd-q{font-size:15px; font-weight:700; color:var(--ink); display:flex; gap:8px; align-items:flex-start;}
+  .wd-q::before{content:'›'; color:var(--accent-orange); font-weight:800;}
+  .wd-k{font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-orange); margin-bottom:5px;}
+  .wd-flux{font-family:'JetBrains Mono',monospace; font-size:10.5px; background:#0d1117; color:#79c0ff; border-radius:8px; padding:9px 12px; line-height:1.6; white-space:pre; overflow-x:auto;}
+  .wd-exec{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ok); font-weight:700;}
+  .wd-chart{padding:2px 0;}
+  .wd-summary{font-size:13.5px; color:var(--ink-soft); line-height:1.5; background:var(--cream); border-left:3px solid var(--accent-orange); border-radius:0 8px 8px 0; padding:10px 13px;}
+  .wd-summary b{color:var(--ink); font-weight:700;}
+  .wd-reason-toggle{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent-blue); cursor:pointer; font-weight:700; user-select:none;}
+  .wd-reason-body{display:none; font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:7px; padding-left:12px; border-left:2px solid var(--border-soft);}
+  .wd-reason-body.open{display:block;}
+  .wd-metric .lab{font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
+  .wd-metric .v{font-size:36px; font-weight:800; letter-spacing:-.02em; color:var(--ink);}
+  .wd-metric .u{font-size:14px; color:var(--muted); font-weight:600;}
+  .wd-metric .note{font-size:12px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .wd-table{width:100%; border-collapse:collapse; font-size:12px;}
+  .wd-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--border-soft); padding:5px 8px;}
+  .wd-table td{padding:6px 8px; border-bottom:1px solid var(--border); color:var(--ink-soft); font-family:'JetBrains Mono',monospace;}
+  .wd-table tr.flag td{background:rgba(154,74,4,.06);}
+  .wd-table tr:last-child td{border-bottom:none;}
+  .wd-legend{display:flex; gap:16px; font-size:11px; color:var(--muted); margin-top:6px; font-family:'JetBrains Mono',monospace;}
+  .wd-legend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+  .wd-resp.anim .wd-step{opacity:0; transform:translateY(8px); animation:wdIn .42s ease forwards;}
+  .wd-resp.anim .wd-step:nth-child(1){animation-delay:.04s} .wd-resp.anim .wd-step:nth-child(2){animation-delay:.34s}
+  .wd-resp.anim .wd-step:nth-child(3){animation-delay:.6s} .wd-resp.anim .wd-step:nth-child(4){animation-delay:.82s}
+  .wd-resp.anim .wd-step:nth-child(5){animation-delay:1.04s} .wd-resp.anim .wd-step:nth-child(6){animation-delay:1.22s}
+  @keyframes wdIn{to{opacity:1; transform:none;}}
+
+  /* keep the chart-heavy demo slide to one screen / one PDF page */
+  #demo-wearables{padding-top:56px; padding-bottom:48px;}
+  #demo-wearables .demo-head h2{font-size:25px;}
+  #demo-wearables .wd-banner{margin-top:10px;} #demo-wearables .wd-tabs{margin-top:10px;} #demo-wearables .wd-grid{margin-top:12px;}
+
+  .feat{border-color:var(--accent-orange) !important; box-shadow:0 0 0 2px rgba(255,132,0,.1), var(--shadow) !important;}
+  .feat .kicker{color:var(--accent-orange);}
+  .contact{margin-top:28px; display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; font-size:14.5px; color:var(--ink-soft); border-top:1px solid var(--border-soft); padding-top:18px;}
+  .contact b{color:var(--ink);}
+  .contact a{color:var(--accent-blue); text-decoration:none; font-weight:600;}
+
+  @media (max-width:1100px){
+    .hl-apps{grid-template-columns:1fr 1fr;}
+    .hpipe{flex-direction:column;} .harrow{transform:rotate(90deg); padding:6px 0; justify-content:center;}
+    .hl-tag{white-space:normal;}
+    .wd-grid{grid-template-columns:1fr;}
+  }
+  @media print{
+    .hpipe{flex-direction:row !important;} .harrow{transform:none !important;} .hl-apps{grid-template-columns:repeat(4,1fr) !important;}
+    .wd-grid{grid-template-columns:286px 1fr !important;} .wd-resp.anim .wd-step{opacity:1 !important; animation:none !important;}
+  }
+</style>
+</head>
+<body
+  data-assets="../../assets/"
+  data-logo="../../assets/logos/bi-colors.svg"
+  data-logo-dark="../../assets/logos/bi-white.svg"
+  data-label-fr="BAYES × CHARITÉ"
+  data-label-en="BAYES × CHARITÉ">
+
+<!-- Bayes mark — used by the nav logo fallback. Keep it. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bi-mark" viewBox="0 0 415 409">
+    <path d="M309.59,246.07H373a41.67,41.67,0,0,0,0-83.34H309.44l92.73-91.11a41.66,41.66,0,0,0-58.4-59.44l-94.51,92.87V42.23a41.67,41.67,0,1,0-83.34,0v63l-94.86-93A41.66,41.66,0,1,0,12.72,71.65l92.88,91.08H41.89a41.67,41.67,0,0,0,0,83.34h63.56l-92.7,90.72A41.67,41.67,0,1,0,71,396.35l94.89-92.87v63.09a41.67,41.67,0,1,0,83.34,0v-63l94.54,92.71a41.66,41.66,0,0,0,58.34-59.5Z"/>
+    <circle cx="207.59" cy="41.49" r="41.34"/><circle cx="207.59" cy="367.01" r="41.34"/><circle cx="41.37" cy="204.4" r="41.34"/><circle cx="373.76" cy="204.4" r="41.34"/><circle cx="373.52" cy="366.86" r="41.34"/><circle cx="41.34" cy="366.86" r="41.34"/><circle cx="41.34" cy="41.34" r="41.34"/><circle cx="373.52" cy="41.34" r="41.34"/><circle cx="207.57" cy="204.25" r="41.34"/>
+  </symbol>
+</svg>
+
+<div class="progress"><div class="progress-fill" id="pfill"></div></div>
+<div class="dots" id="dots"></div>
+<div class="counter" id="counter">01 / 01</div>
+<div class="hint">← → · space · click</div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 · COVER -->
+  <section class="slide dark cover" id="cover" data-dark>
+    <div class="slide-inner">
+      <div class="cover-mark reveal"><img class="bilogo" src="../../assets/logos/bi-white.svg" alt="Bayes Impact"/></div>
+      <p class="eyebrow reveal"><span data-lang="fr">Bayes Platform × Charité · Impulse Healthcare · 2026</span><span data-lang="en">Bayes Platform × Charité · Impulse Healthcare · 2026</span></p>
+      <h1 class="reveal"><span data-lang="fr">Une couche d'analyse<br>pour vos <em class="hl">capteurs de santé</em></span><span data-lang="en">A conversational layer<br>for your <em class="hl">wearables data</em></span></h1>
+      <p class="sub reveal"><span data-lang="fr">Industrialiser la plateforme de capteurs de Charité — interroger des données multimodales en langage clair, sur une couche que vos équipes possèdent.</span><span data-lang="en">Productionizing the Charité wearables platform — querying multimodal health data in plain language, on a layer your teams own.</span></p>
+      <div class="chips reveal" style="margin-top:30px">
+        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Souveraine &amp; open-source</span><span data-lang="en">Sovereign &amp; open-source</span></div>
+        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Sur votre infrastructure · certifié HDS</span><span data-lang="en">On your infrastructure · HDS-certified</span></div>
+        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Vous la possédez</span><span data-lang="en">You own it</span></div>
+      </div>
+    </div>
+    <div class="cover-foot"><span data-lang="fr">Charité — Universitätsmedizin Berlin</span><span data-lang="en">Charité — Universitätsmedizin Berlin</span><span class="cf-r">Bayes Impact — 2026</span></div>
+  </section>
+
+  <!-- 2 · CONTEXT — project framing slide (Charité-specific, before the generic Bayes intro) -->
+  <section class="slide" id="context">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Contexte · Charité × Bayes Impact</span><span data-lang="en">Context · Charité × Bayes Impact</span></p>
+      <h2 class="title reveal" style="max-width:28ch"><span data-lang="fr">Un projet concret : industrialiser votre <em class="hl">plateforme de capteurs</em>.</span><span data-lang="en">A live project: productionizing your <em class="hl">wearables platform</em>.</span></h2>
+      <div class="cards reveal" style="margin-top:28px; grid-template-columns:repeat(3,1fr);">
+        <div class="card">
+          <p class="kicker"><span data-lang="fr">Situation actuelle</span><span data-lang="en">Where things stand</span></p>
+          <p><span data-lang="fr">Charité diffuse déjà des données de capteurs (FC, VFC, pas, sommeil, énergie) dans InfluxDB via Pub/Sub et HL7 FHIR. L'infrastructure est en place. La donnée existe. Elle n'est pas encore accessible aux cliniciens et chercheurs sans expertise SQL.</span><span data-lang="en">Charité already streams wearables data (HR, HRV, steps, sleep, energy) into InfluxDB via Pub/Sub and HL7 FHIR normalisation. The infrastructure exists. The data is there. It's not yet accessible to clinicians and researchers without SQL expertise.</span></p>
+        </div>
+        <div class="card feat">
+          <p class="kicker"><span data-lang="fr">Le projet</span><span data-lang="en">The engagement</span></p>
+          <p><span data-lang="fr">Poser la Bayes Platform par-dessus votre infrastructure : une couche de langage naturel qui traduit les questions cliniques en requêtes Flux, les exécute, et répond — possédée par Charité, hébergée sur votre infra, open-source.</span><span data-lang="en">Layer the Bayes Platform on top of your existing infrastructure: a natural-language layer that translates clinical questions into Flux queries, runs them, and returns answers — owned by Charité, hosted on your infra, open-source.</span></p>
+        </div>
+        <div class="card">
+          <p class="kicker"><span data-lang="fr">Aujourd'hui</span><span data-lang="en">Today's session</span></p>
+          <ul style="margin:0; padding-left:18px; display:flex; flex-direction:column; gap:7px;">
+            <li><span data-lang="fr">Architecture technique &amp; frontières d'ownership</span><span data-lang="en">Technical architecture &amp; ownership boundaries</span></li>
+            <li><span data-lang="fr">Démo live sur des données capteurs</span><span data-lang="en">Live demo on wearables data</span></li>
+            <li><span data-lang="fr">Organisation du projet &amp; gouvernance</span><span data-lang="en">Project organisation &amp; governance</span></li>
+            <li><span data-lang="fr">Prochaines étapes · sprint de 3–4 mois</span><span data-lang="en">Next steps · 3–4 month sprint</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footnote reveal" style="margin-top:20px"><span data-lang="fr"><b>Engagement pro bono</b> · Impulse Healthcare · l'objectif est la mise en production à l'automne 2026.</span><span data-lang="en"><b>Pro bono engagement</b> · Impulse Healthcare · target: production deployment autumn 2026.</span></p>
+    </div>
+  </section>
+
+  <!-- 3 · EARTH — the vision hero (shared · quick intro, skim) -->
+  <div data-shared="earth">
+    <script type="application/json">
+    { "lead": { "fr": "L'IA pour aider celles et ceux qui en ont besoin — et celles et ceux qui les soignent.",
+                "en": "AI to empower people in need — and those who care for them." },
+      "believe": { "fr": ["chaque patient reçoit des soins fondés sur les meilleures données.","cliniciens et chercheurs interrogent leurs données en langage clair.","les équipes médicales possèdent l'IA qui les sert.","la technologie sert d'abord le soin."],
+                   "en": ["every patient receives care grounded in the best evidence.","clinicians and researchers query their data in plain language.","medical teams own the AI that serves them.","technology serves care first."] } }
+    </script>
+  </div>
+
+  <!-- 3 · WHO WE ARE (shared · quick intro, skim) -->
+  <div data-shared="about"></div>
+
+  <!-- 4 · ARCHITECTURE — the Charité data pipeline (their infra + Bayes layer) -->
+  <section class="slide" id="architecture">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Le projet · capteurs Charité</span><span data-lang="en">The project · Charité wearables</span></p>
+      <h2 class="title reveal" style="max-width:26ch"><span data-lang="fr">Une couche logicielle, posée <em class="hl">sur votre infrastructure</em>.</span><span data-lang="en">A software layer, sitting <em class="hl">on top of your infrastructure</em>.</span></h2>
+      <p class="lead reveal" style="margin-top:4px"><span data-lang="fr">Vous diffusez déjà les capteurs dans InfluxDB. Ensemble, nous ajoutons par-dessus une couche d'analyse en langage clair — possédée par Charité, sur votre propre infrastructure.</span><span data-lang="en">You already stream wearables into InfluxDB. Together we add a plain-language analytics layer on top — owned by Charité, running on your own infrastructure.</span></p>
+      <div class="harch reveal">
+
+        <!-- TOP: the Bayes layer -->
+        <div class="harch-layer bayes">
+          <div class="hl-head">
+            <span class="hl-tag"><span data-lang="fr">Couche au-dessus · Bayes Platform</span><span data-lang="en">Layer on top · Bayes Platform</span></span>
+            <h3><span data-lang="fr">Génère les applications côté utilisateur — en bac à sable, sans ingénierie.</span><span data-lang="en">Generates the user-facing applications — sandboxed, with no engineering.</span></h3>
+          </div>
+          <div class="hl-apps">
+            <div class="happ"><span class="ha-k">app</span><span data-lang="fr">Copilote clinicien</span><span data-lang="en">Clinician copilot</span></div>
+            <div class="happ"><span class="ha-k">app</span><span data-lang="fr">Analytique chercheur</span><span data-lang="en">Researcher analytics</span></div>
+            <div class="happ"><span class="ha-k">app</span><span data-lang="fr">Assistant patient</span><span data-lang="en">Patient assistant</span></div>
+            <div class="happ ehr"><span class="ha-k">OpenAPI</span><span data-lang="fr">↔ DPI &amp; études cliniques</span><span data-lang="en">↔ EHR &amp; clinical studies</span></div>
+          </div>
+        </div>
+
+        <!-- SEAM: the sandboxed connection -->
+        <div class="harch-seam">
+          <span class="seam-pill"><span data-lang="fr">Accès en lecture, en bac à sable · requête Flux via API (MCP) · explicite · journalisé · révocable</span><span data-lang="en">Sandboxed read access · Flux query via API (MCP) · explicit · logged · revocable</span></span>
+        </div>
+
+        <!-- BOTTOM: Charité's infrastructure, boxed together -->
+        <div class="harch-layer charite">
+          <div class="hl-head">
+            <span class="hl-tag own"><span data-lang="fr">Construit &amp; possédé par Charité · votre infrastructure</span><span data-lang="en">Built &amp; owned by Charité · your infrastructure</span></span>
+            <span class="hl-sub"><span data-lang="fr">Du monde extérieur (les capteurs) jusqu'à votre base de données clinique.</span><span data-lang="en">From the outside world (the wearables) to your clinical database.</span></span>
+          </div>
+          <div class="hpipe">
+            <div class="hstage devices"><span class="hs-k"><span data-lang="fr">capteurs</span><span data-lang="en">wearables</span></span><span>Pixel Watch · Corsano · Apple Watch</span></div>
+            <span class="harrow">→</span>
+            <div class="hstage"><span class="hs-k"><span data-lang="fr">ingestion</span><span data-lang="en">ingestion</span></span><span><b>Pub/Sub</b> · <span data-lang="fr">API constructeur · app compagnon</span><span data-lang="en">vendor API · companion app</span></span></div>
+            <span class="harrow">→</span>
+            <div class="hstage"><span class="hs-k"><span data-lang="fr">prétraitement · modèle commun</span><span data-lang="en">preprocessing · common model</span></span><span><span data-lang="fr">Normalisation <b>HL7 FHIR</b></span><span data-lang="en"><b>HL7 FHIR</b> normalisation</span></span></div>
+            <span class="harrow">→</span>
+            <div class="hstage db"><span class="hs-k"><span data-lang="fr">base de données</span><span data-lang="en">database</span></span><span><b>InfluxDB</b> · <span data-lang="fr">FC · VFC · pas · sommeil · énergie</span><span data-lang="en">HR · HRV · steps · sleep · energy</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dpi-row reveal" style="margin-top:18px">
+        <span class="dpi" style="border-style:dashed; color:var(--muted)"><span data-lang="fr">Stack open-source</span><span data-lang="en">Open-source stack</span></span>
+        <span class="dpi">InfluxDB</span><span class="dpi">Kafka</span><span class="dpi">HL7 FHIR</span><span class="dpi">Kubernetes</span><span class="dpi">Grafana</span><span class="dpi">OpenAPI</span>
+      </div>
+      <p class="footnote reveal" style="margin-top:14px"><span data-lang="fr">Open-source · hébergé UE, certifié HDS · RGPD &amp; AI Act (risque limité) · <b>vos données ne quittent jamais Charité</b>.</span><span data-lang="en">Open-source · EU-hosted, HDS-certified · GDPR &amp; EU AI Act (low-risk) · <b>your data never leaves Charité</b>.</span></p>
+    </div>
+  </section>
+
+  <!-- 5 · LIVE DEMO — wearables conversational analytics (charts on the real cohort) -->
+  <section class="slide" id="demo-wearables">
+    <div class="slide-inner">
+      <div class="demo-head reveal"><h2><span data-lang="fr">Analytique conversationnelle — sur vos capteurs</span><span data-lang="en">Conversational analytics — on your wearables</span></h2><span class="dh-sub"><span data-lang="fr">Tout clinicien ou chercheur interroge des données multimodales en langage clair — sans SQL.</span><span data-lang="en">Any clinician or researcher queries multimodal health data in plain language — no SQL.</span></span></div>
+      <div class="wd-banner reveal"><span class="dot-ok"></span><span><span data-lang="fr">Source : <b>cohorte capteurs Charité</b> · InfluxDB · 7 derniers jours (16–22 fév.) · FC · VFC · fréq. resp. · pas · énergie · sommeil · <b>données illustratives</b></span><span data-lang="en">Source: <b>Charité wearables cohort</b> · InfluxDB · last 7 days (16–22 Feb) · HR · HRV · resp. rate · steps · energy · sleep · <b>illustrative data</b></span></span></div>
+      <div class="wd-tabs reveal">
+        <button class="wd-tab active" data-tab="patient">👤 <span data-lang="fr">Vue patient</span><span data-lang="en">Patient view</span></button>
+        <button class="wd-tab" data-tab="cohort">👥 <span data-lang="fr">Vue cohorte</span><span data-lang="en">Cohort view</span></button>
+      </div>
+      <div class="wd-grid reveal">
+        <div class="wd-ask" id="wd-ask"></div>
+        <div class="wd-resp" id="wd-resp"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · PROJECT ORGANISATION — how we work together -->
+  <section class="slide" id="project">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Organisation · Charité × Bayes Impact</span><span data-lang="en">Project organisation · Charité × Bayes Impact</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Comment nous <em class="hl">travaillons ensemble</em>.</span><span data-lang="en">How we <em class="hl">work together</em>.</span></h2>
+      <div class="cards c3 reveal">
+        <div class="card feat"><div class="kicker"><span data-lang="fr">Budget — entièrement pro bono</span><span data-lang="en">Budget — fully pro bono</span></div><h3><span data-lang="fr">Open-source, gratuit à vie</span><span data-lang="en">Open-source, free forever</span></h3><p><span data-lang="fr">Bayes Impact est à but non lucratif, financé par des partenaires philanthropiques. Plateforme et solution sont mises à disposition gratuitement et durablement — aucune dépendance, aucun verrou.</span><span data-lang="en">Bayes Impact is a nonprofit funded by philanthropic partners. Both the platform and the solution are made available free and permanently — no dependency, no lock-in.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Équipe</span><span data-lang="en">Team</span></div><h3><span data-lang="fr">Pluridisciplinaire</span><span data-lang="en">Multidisciplinary</span></h3><p><span data-lang="fr">Ingénieurs IA, développeurs, chefs de projet et référents méthode. Basés en France, disponibles pour des sessions à Berlin.</span><span data-lang="en">AI engineers, developers, project and methodological leads. France-based, available for in-person sessions in Berlin.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Calendrier</span><span data-lang="en">Timeline</span></div><h3><span data-lang="fr">Pilote de 2–3 mois</span><span data-lang="en">2–3 month pilot</span></h3><p><span data-lang="fr">Démarrage <b>été 2026</b>. Point d'étape début septembre, revue conjointe début octobre.</span><span data-lang="en">Start <b>summer 2026</b>. Mid-point check-in early September, joint review early October.</span></p></div>
+      </div>
+      <div class="cards c2 reveal" style="margin-top:18px">
+        <div class="card"><div class="kicker"><span data-lang="fr">Cadre juridique</span><span data-lang="en">Legal framework</span></div><h3><span data-lang="fr">Sur la base Charité × AP-HP</span><span data-lang="en">Built on the Charité × AP-HP basis</span></h3><p><span data-lang="fr">Un accord de partenariat dédié peut être rédigé ; le cadre Charité × AP-HP déjà établi en France sert de base à la collaboration allemande.</span><span data-lang="en">A dedicated partnership agreement can be drafted; the existing Charité × AP-HP framework set up in France serves as the basis for the German collaboration.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Gouvernance</span><span data-lang="en">Governance</span></div><h3><span data-lang="fr">Comité de pilotage léger</span><span data-lang="en">Lean steering committee</span></h3><p><span data-lang="fr">Comité conjoint Charité × Bayes Impact, volontairement resserré pour rester agile. Membres définis ensemble.</span><span data-lang="en">Joint Charité × Bayes Impact committee, intentionally lean to stay agile. Members defined jointly.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · NEXT STEPS — the wearables sprint + contact -->
+  <section class="slide" id="next">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Les prochaines étapes</span><span data-lang="en">Next steps</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Du prototype à la production, <em class="hl">ensemble</em>.</span><span data-lang="en">From prototype to production, <em class="hl">together</em>.</span></h2>
+      <p class="lead reveal"><span data-lang="fr">Un sprint dédié de <b>3–4 mois</b> avec l'équipe Bayes Impact, directement sur votre InfluxDB.</span><span data-lang="en">A dedicated <b>3–4 month</b> sprint with the Bayes Impact team, directly on your InfluxDB.</span></p>
+      <div class="cards c3 reveal">
+        <div class="card feat"><div class="kicker"><span data-lang="fr">Phase 1</span><span data-lang="en">Phase 1</span></div><h3><span data-lang="fr">Schéma &amp; vocabulaire contrôlé</span><span data-lang="en">Schema &amp; controlled vocabulary</span></h3><p><span data-lang="fr">Cartographier le schéma des données capteurs et définir le vocabulaire métier que l'agent peut interroger en toute sûreté.</span><span data-lang="en">Map the wearables data schema and define the controlled vocabulary the agent can safely query.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Phase 2</span><span data-lang="en">Phase 2</span></div><h3><span data-lang="fr">Couche langage → Flux</span><span data-lang="en">NL → Flux query layer</span></h3><p><span data-lang="fr">Traduire le langage naturel en requêtes Flux, avec trace de raisonnement et mise en forme automatique (texte, table, graphique).</span><span data-lang="en">Translate natural language into Flux, with a reasoning trace and automatic formatting (text, table, chart).</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Phase 3</span><span data-lang="en">Phase 3</span></div><h3><span data-lang="fr">Agent en production</span><span data-lang="en">Production agent</span></h3><p><span data-lang="fr">Déployer pour cliniciens et chercheurs, intégrer au DPI / aux études (OpenAPI), sur votre infrastructure.</span><span data-lang="en">Deploy for clinicians and researchers, integrate with the EHR / studies (OpenAPI), on your infrastructure.</span></p></div>
+      </div>
+      <div class="contact reveal">
+        <span><b>Carine Sit</b> — <span data-lang="fr">Directrice de programme, Bayes Impact</span><span data-lang="en">Program Director, Bayes Impact</span></span>
+        <a href="mailto:carine.sit@bayesimpact.org">carine.sit@bayesimpact.org</a>
+        <a href="https://www.impulse.healthcare/en" target="_blank" rel="noopener">impulse.healthcare</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · THANK YOU (shared) -->
+  <div data-shared="closing">
+    <script type="application/json">
+    { "tagline": { "fr": "Construisons-le ensemble.", "en": "Let's build it together." } }
+    </script>
+  </div>
+
+</main>
+
+<script src="../../lib/bayes-slides.js"></script>
+<script src="../../lib/bayes.js"></script>
+
+<!-- Wearables analytics demo — bespoke, dependency-free (inline SVG charts + NL→Flux trace) -->
+<script>
+(function () {
+  "use strict";
+  var resp = document.getElementById("wd-resp"), ask = document.getElementById("wd-ask");
+  if (!resp || !ask) return;
+
+  var C = { o: "var(--accent-orange)", b: "var(--accent-blue)", soft: "var(--border-soft)", muted: "var(--muted)", ink: "var(--ink)" };
+  function lang() { return document.documentElement.getAttribute("data-lang") || "en"; }
+  function L(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[lang()] != null ? o[lang()] : o.en; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function f(n) { return (Math.round(n * 10) / 10).toString(); }
+  var T = {
+    flux: { fr: "Requête exécutable (Flux / InfluxDB)", en: "Executable query (Flux / InfluxDB)" },
+    exec: { fr: "Requête exécutée sur l'InfluxDB de Charité · < 200 ms", en: "Query run on Charité InfluxDB · < 200 ms" },
+    result: { fr: "Réponse mise en forme", en: "Formatted response" },
+    reason: { fr: "Comment l'agent a répondu", en: "How the agent answered" }
+  };
+
+  /* ---- inline SVG charts ---- */
+  function svgLine(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 16, pb = 28, v = d.values, n = v.length, iw = W - pl - pr, ih = H - pt - pb;
+    var X = function (i) { return pl + iw * (n <= 1 ? .5 : i / (n - 1)); }, Y = function (val) { return pt + ih * (1 - (val - d.yMin) / (d.yMax - d.yMin)); };
+    var mean = v.reduce(function (a, x) { return a + x; }, 0) / n;
+    var line = v.map(function (val, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(val).toFixed(1); }).join(" ");
+    var area = "M" + X(0).toFixed(1) + " " + (pt + ih) + " " + v.map(function (val, i) { return "L" + X(i).toFixed(1) + " " + Y(val).toFixed(1); }).join(" ") + " L" + X(n - 1).toFixed(1) + " " + (pt + ih) + " Z";
+    var pts = v.map(function (val, i) { return '<circle cx="' + X(i).toFixed(1) + '" cy="' + Y(val).toFixed(1) + '" r="' + (i === n - 1 ? 4 : 2.6) + '" style="fill:' + C.o + '"/>'; }).join("");
+    var xl = d.labels.map(function (l, i) { return '<text x="' + X(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + l + "</text>"; }).join("");
+    var gy = [d.yMin, mean, d.yMax].map(function (val) { var y = Y(val).toFixed(1), dash = val === mean ? ' stroke-dasharray="3 3"' : ""; return '<line x1="' + pl + '" y1="' + y + '" x2="' + (W - pr) + '" y2="' + y + '"' + dash + ' style="stroke:' + C.soft + ';stroke-width:1"/><text x="' + (pl - 6) + '" y="' + (+y + 3) + '" text-anchor="end" style="font:600 9px JetBrains Mono,monospace;fill:' + C.muted + '">' + f(val) + "</text>"; }).join("");
+    return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet" role="img">' + gy + '<path d="' + area + '" style="fill:' + C.o + ';opacity:.09"/><path d="' + line + '" fill="none" style="stroke:' + C.o + ';stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round"/>' + pts + xl + '<text x="' + (W - pr) + '" y="12" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+  }
+  function svgBar(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 22, pb = 28, v = d.values, n = v.length, iw = W - pl - pr, ih = H - pt - pb, max = Math.max.apply(null, v) * 1.16, bw = Math.min(96, iw / n * .5), out = "";
+    for (var i = 0; i < n; i++) {
+      var cx = pl + iw * ((i + .5) / n), bh = ih * (v[i] / max), y = pt + ih - bh;
+      out += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="4" style="fill:' + C.o + ';opacity:.88"/>';
+      out += '<text x="' + cx.toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" text-anchor="middle" style="font:800 12px Inter,sans-serif;fill:' + C.ink + '">' + f(v[i]) + "</text>";
+      out += '<text x="' + cx.toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 10px Inter,sans-serif;fill:' + C.muted + '">' + d.labels[i] + "</text>";
+    }
+    return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet"><line x1="' + pl + '" y1="' + (pt + ih) + '" x2="' + (W - pr) + '" y2="' + (pt + ih) + '" style="stroke:' + C.soft + ';stroke-width:1"/>' + out + '<text x="' + (W - pr) + '" y="14" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+  }
+  function svgGBar(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 22, pb = 28, s = d.series, n = d.labels.length, iw = W - pl - pr, ih = H - pt - pb;
+    var all = s.reduce(function (a, se) { return a.concat(se.values); }, []), max = Math.max.apply(null, all) * 1.18, gw = iw / n, bw = Math.min(28, gw / (s.length + 1)), out = "";
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < s.length; j++) {
+        var cx = pl + gw * i + gw / 2 + (j - (s.length - 1) / 2) * (bw + 4), bh = ih * (s[j].values[i] / max), y = pt + ih - bh;
+        out += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="3" style="fill:' + s[j].color + ';opacity:.9"/>';
+      }
+      out += '<text x="' + (pl + gw * i + gw / 2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 9.5px Inter,sans-serif;fill:' + C.muted + '">' + d.labels[i] + "</text>";
+    }
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet"><line x1="' + pl + '" y1="' + (pt + ih) + '" x2="' + (W - pr) + '" y2="' + (pt + ih) + '" style="stroke:' + C.soft + ';stroke-width:1"/>' + out + '<text x="' + (W - pr) + '" y="14" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+    var leg = '<div class="wd-legend">' + s.map(function (se) { return '<span><i style="background:' + se.color + '"></i>' + L(se.name) + "</span>"; }).join("") + "</div>";
+    return svg + leg;
+  }
+  function chart(d) {
+    if (d.kind === "line") return svgLine(d);
+    if (d.kind === "bar") return svgBar(d);
+    if (d.kind === "gbar") return svgGBar(d);
+    if (d.kind === "metric") return '<div class="wd-metric"><div class="lab">' + L(d.metric.label) + '</div><div style="margin-top:2px"><span class="v">' + d.metric.value + '</span> <span class="u">' + d.metric.unit + '</span></div><div class="note">' + L(d.metric.note) + "</div></div>";
+    if (d.kind === "table") {
+      var head = "<tr>" + d.cols.map(function (c) { return "<th>" + L(c) + "</th>"; }).join("") + "</tr>";
+      var body = d.rows.map(function (r) { return '<tr class="' + (r[3] ? "flag" : "") + '">' + r.map(function (c) { return "<td>" + c + "</td>"; }).join("") + "</tr>"; }).join("");
+      return '<table class="wd-table">' + head + body + "</table>";
+    }
+    return "";
+  }
+
+  function build(d) {
+    return '<div class="wd-step"><div class="wd-q">' + L(d.q) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-k">① ' + L(T.flux) + '</div><div class="wd-flux">' + esc(d.flux) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-exec">✓ ' + L(T.exec) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-k">② ' + L(T.result) + '</div><div class="wd-chart">' + chart(d) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-summary">' + L(d.summary) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-reason-toggle" data-rt>▸ ' + L(T.reason) + '</div><div class="wd-reason-body">' + L(d.reasoning) + "</div></div>";
+  }
+
+  var DEMO = {
+    patient: [
+      { q: { fr: "Comment la FC de repos de ce patient a-t-elle évolué sur 7 jours ?", en: "How did this patient's resting heart rate evolve over the last 7 days?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "resting_hr_bpm")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [73.1, 70.4, 68.2, 72.6, 74.0, 70.8, 67.2], unit: "bpm", yMin: 60, yMax: 82,
+        summary: { fr: "FC de repos entre <b>67,2</b> et <b>74,0 bpm</b> (moyenne <b>71,3</b>). Semaine stable, aucun seuil d'alerte dépassé.", en: "Resting HR ranged <b>67.2</b>–<b>74.0 bpm</b> (mean <b>71.3</b>). Stable week, no alerting threshold exceeded." },
+        reasoning: { fr: "Moyenne journalière du champ resting_hr_bpm pour le device 019c625c ; fenêtres manquantes exclues (aucune imputation). Concorde avec le tableau Grafana (dernier point 67,2).", en: "Daily mean of resting_hr_bpm for device 019c625c; missing windows excluded (no imputation). Matches the Grafana reading (last 67.2)." } },
+      { q: { fr: "Quelle a été la tendance de la VFC cette semaine ?", en: "What was the HRV trend for this patient this week?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "hrv_ms")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [210, 224, 218, 225, 215, 221, 219], unit: "ms", yMin: 195, yMax: 240,
+        summary: { fr: "VFC moyenne de <b>219 ms</b> sur la semaine. Pic léger le 19 (225 ms). Valeurs dans la plage normale du patient — aucun seuil franchi.", en: "HRV averaged <b>219 ms</b> over the week. Slight peak on the 19th (225 ms). Within the patient's normal range — no threshold crossed." },
+        reasoning: { fr: "VFC calculée comme la moyenne journalière du champ hrv_ms. Une VFC plus élevée indique une meilleure récupération autonome. La stabilité hebdomadaire suggère l'absence de stress physiologique aigu.", en: "HRV computed as the daily mean of hrv_ms. Higher values indicate better autonomic recovery. Week-on-week stability suggests no acute physiological stress." } },
+      { q: { fr: "Quelle a été la tendance de la fréquence respiratoire ?", en: "What was this patient's respiratory rate trend this week?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "respiratory_rate_brpm")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [15.8, 15.5, 16.1, 15.3, 15.9, 15.7, 15.5], unit: "br/min", yMin: 13, yMax: 19,
+        summary: { fr: "Fréquence respiratoire stable, de <b>15,3</b> à <b>16,1 br/min</b> (moyenne <b>15,7</b>). Aucune variation cliniquement significative.", en: "Respiratory rate stable, <b>15.3</b>–<b>16.1 br/min</b> (mean <b>15.7</b>). No clinically significant variation detected." },
+        reasoning: { fr: "Moyennes journalières du champ respiratory_rate_brpm pour le device 019c625c. Le profil stable correspond à une ligne de base cliniquement saine.", en: "Daily means of respiratory_rate_brpm for device 019c625c. The stable pattern is consistent with a clinically healthy baseline." } },
+      { q: { fr: "Énergie active vs énergie de base, jour par jour ?", en: "How much active vs. basal energy did this patient burn each day?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and (r._field == "energy_basal" or r._field == "energy_active"))\n  |> aggregateWindow(every: 1d, fn: sum)',
+        kind: "gbar", labels: ["16", "17", "18", "19", "20", "21", "22"], unit: "k kcal",
+        series: [{ name: { fr: "Base", en: "Basal" }, color: C.b, values: [1.69, 1.71, 1.68, 1.70, 1.72, 1.67, 1.68] }, { name: { fr: "Active", en: "Active" }, color: C.o, values: [0.25, 0.31, 0.22, 0.30, 0.28, 0.27, 0.29] }],
+        summary: { fr: "Totaux : <b>base ~11,8k kcal</b> (~1 685/j) · <b>active ~1,92k kcal</b> (~274/j). L'énergie active culmine les 17 et 19 — jours les plus actifs.", en: "Weekly totals: <b>basal ~11.8k kcal</b> (~1,685/day) · <b>active ~1.92k kcal</b> (~274/day). Active energy peaks on the 17th & 19th — the higher-step days." },
+        reasoning: { fr: "Sommes journalières des champs energy_basal et energy_active pour le device 019c625c. Concorde avec les totaux Grafana (base 11,8k, active 1,92k kcal).", en: "Daily sums of energy_basal and energy_active for device 019c625c. Matches the Grafana totals (basal 11.8k, active 1.92k kcal)." } }
+    ],
+    cohort: [
+      { q: { fr: "Dépense énergétique quotidienne moyenne sur la cohorte ?", en: "What was the average daily energy burn across the cohort?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "energy_kcal_total")\n  |> aggregateWindow(every: 1d, fn: mean)\n  |> mean()',
+        kind: "metric", metric: { value: "1,959", unit: "kcal/day", label: { fr: "Dépense énergétique quotidienne moyenne — cohorte, 7 j", en: "Mean daily energy expenditure — cohort, last 7 days" }, note: { fr: "Base ~1 685 kcal/j · Active ~274 kcal/j · total suivi : 13,7k kcal/sem", en: "Basal ~1,685 kcal/day · Active ~274 kcal/day · total tracked: 13.7k kcal/week" } },
+        summary: { fr: "La cohorte dépense en moyenne <b>1 959 kcal/jour</b> (base ~1 685 + active ~274).", en: "The cohort averages <b>1,959 kcal/day</b> (basal ~1,685 + active ~274)." },
+        reasoning: { fr: "Sommes par device et par jour de energy_kcal_total, puis moyenne de cohorte. Source : base 11,8k / active 1,92k sur 7 jours → 1 685 + 274 = 1 959 kcal/j.", en: "Summed energy_kcal_total per device per day, then cohort mean. Source: basal 11.8k / active 1.92k over 7 days → 1,685 + 274 = 1,959 kcal/day." } },
+      { q: { fr: "Compare la FC de repos entre les groupes A et B.", en: "Compare resting heart rate between patient groups A and B." },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "resting_hr_bpm")\n  |> group(columns: ["patient_group"])\n  |> mean()',
+        kind: "bar", labels: ["Group A", "Group B"], values: [71.3, 75.8], unit: "bpm",
+        summary: { fr: "Groupe A : <b>71,3 bpm</b> · Groupe B : <b>75,8 bpm</b> — soit <b>+6,3 %</b>. L'écart peut refléter l'âge, la condition physique ou l'état clinique. Comparaison descriptive uniquement.", en: "Group A: <b>71.3 bpm</b> · Group B: <b>75.8 bpm</b> — a <b>+6.3%</b> gap. May reflect age, fitness or clinical condition. Descriptive comparison only." },
+        reasoning: { fr: "resting_hr_bpm pour tous les devices, regroupé par le tag patient_group (A/B), moyenne par groupe sur 7 jours. Aucune significativité statistique évaluée.", en: "resting_hr_bpm for all devices, grouped by the patient_group tag (A/B), mean per group over 7 days. No statistical significance assessed." } },
+      { q: { fr: "Quels patients ont eu l'activité la plus faible cette semaine ?", en: "Which patients had the lowest activity levels this week?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "step_count")\n  |> group(columns: ["device_id"]) |> sum()\n  |> sort(columns: ["_value"]) |> limit(n: 5)',
+        kind: "table", cols: [{ fr: "Patient", en: "Patient" }, { fr: "Pas (7 j)", en: "Steps (7d)" }, { fr: "Groupe", en: "Group" }, { fr: "", en: "" }],
+        rows: [["019c625c", "27,898", "A", ""], ["03fa81b2", "18,430", "B", ""], ["07dc554e", "14,210", "A", "⚠️"], ["11ac203f", "11,890", "B", "⚠️"], ["1f88a901", "8,340", "B", "🔴"]],
+        summary: { fr: "Le plus bas : <b>1f88a901</b> (groupe B) avec <b>8 340 pas</b> — bien sous la moyenne (~27 000). Les patients signalés ⚠️ / 🔴 peuvent justifier un suivi.", en: "Lowest: <b>1f88a901</b> (Group B) at <b>8,340 steps</b> — well below the ~27,000 cohort mean. Flagged ⚠️ / 🔴 patients may warrant follow-up." },
+        reasoning: { fr: "step_count sommé par device_id sur 7 jours, trié en ordre croissant. Les 3 derniers patients sont sous 60 % de la moyenne — signalés pour revue clinique.", en: "step_count summed per device_id over 7 days, sorted ascending. The bottom 3 patients are below 60% of the mean — flagged for clinical review." } },
+      { q: { fr: "Compare les pas en semaine vs week-end (30 derniers jours).", en: "Compare step counts between weekdays and weekends (last 30 days)." },
+        flux: 'from(bucket: "wearables")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r._field == "step_count")\n  |> aggregateWindow(every: 1d, fn: sum)\n  |> group(columns: ["day_type"]) |> mean()',
+        kind: "bar", labels: [{ fr: "Semaine", en: "Weekdays" }, { fr: "Week-end", en: "Weekends" }], values: [8240, 6910], unit: "steps/day",
+        summary: { fr: "<b>8 240</b> pas/j en semaine vs <b>6 910</b> le week-end — un écart de <b>16 %</b> (~10–13 min de marche soutenue), probablement lié aux trajets et au rythme de travail.", en: "<b>8,240</b> steps/day on weekdays vs <b>6,910</b> on weekends — a <b>16%</b> gap (~10–13 min of brisk walking), likely driven by commuting and work routines." },
+        reasoning: { fr: "step_count sommé par device et par jour, classé par day_type via weekday(), puis moyenne de cohorte sur 30 jours. L'écart de 1 330 pas/j est cliniquement pertinent.", en: "step_count summed per device per day, classified by day_type via weekday(), then cohort mean over 30 days. The 1,330 steps/day gap is clinically meaningful." } }
+    ]
+  };
+  // localize bar labels that are {fr,en}
+  function barLabels(d) { return d.labels.map(function (l) { return typeof l === "string" ? l : L(l); }); }
+
+  var state = { tab: "patient", idx: 0 }, animated = false;
+
+  function renderButtons() {
+    ask.innerHTML = DEMO[state.tab].map(function (d, i) {
+      return '<button class="wd-qbtn' + (i === state.idx ? " active" : "") + '" data-i="' + i + '">' + L(d.q) + "</button>";
+    }).join("");
+  }
+  function current() { var d = DEMO[state.tab][state.idx]; if (d.kind === "bar") { d = Object.assign({}, d, { labels: barLabels(d) }); } return d; }
+  function render(animate) {
+    resp.classList.remove("anim");
+    resp.innerHTML = build(current());
+    if (animate) { void resp.offsetWidth; resp.classList.add("anim"); }
+    [].forEach.call(ask.querySelectorAll(".wd-qbtn"), function (b, i) { b.classList.toggle("active", i === state.idx); });
+  }
+
+  ask.addEventListener("click", function (e) {
+    var btn = e.target.closest(".wd-qbtn"); if (!btn) return;
+    state.idx = +btn.getAttribute("data-i"); render(true);
+  });
+  resp.addEventListener("click", function (e) {
+    if (e.target.hasAttribute("data-rt")) { var body = e.target.nextElementSibling; if (body) { body.classList.toggle("open"); e.target.textContent = (body.classList.contains("open") ? "▾ " : "▸ ") + L(T.reason); } }
+  });
+  [].forEach.call(document.querySelectorAll("#demo-wearables .wd-tab"), function (tab) {
+    tab.addEventListener("click", function () {
+      state.tab = tab.getAttribute("data-tab"); state.idx = 0;
+      [].forEach.call(document.querySelectorAll("#demo-wearables .wd-tab"), function (t) { t.classList.toggle("active", t === tab); });
+      renderButtons(); render(true);
+    });
+  });
+  // re-render on language switch (the engine flips html[data-lang])
+  new MutationObserver(function () { renderButtons(); render(false); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
+  // animate once when the slide first comes into view (skipped for print)
+  var slide = document.getElementById("demo-wearables");
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= .5 && !animated) { animated = true; render(true); } });
+  }, { threshold: [0, .5, 1] }).observe(slide);
+
+  renderButtons();
+  render(false); // static default — visible immediately + PDF-safe
+})();
+</script>
+</body>
+</html>
