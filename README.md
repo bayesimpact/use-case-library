@@ -1,4 +1,4 @@
-# Bayes Demos
+# Bayes Use-Case Library
 
 A single home for **Bayes Impact's interactive demos and presentations** — built on one shared,
 dependency-free design system. Website-linkable demo pages and partner decks live side by side.
@@ -35,7 +35,7 @@ python3 -m http.server 8016
 ```
 
 Then commit & push — it goes live at
-`https://bayesimpact.github.io/bayes-demos/demos/<slug>/`.
+`https://bayesimpact.github.io/bayes-use-case-library/demos/<slug>/`.
 
 ## Layout
 

@@ -1,4 +1,4 @@
-# Bayes Demos — agent playbook
+# Bayes Use-Case Library — agent playbook
 
 You (Claude) build **Bayes Impact demos and presentations** in this repo, from a content brief a
 teammate gives you (a meeting note, a pitch outline, "make a deck for hospital X", a use case to
@@ -95,7 +95,7 @@ phrase uses the same warm gold. **Do not** set big headlines or fills in orange.
 ## 3 · Repo layout
 
 ```
-bayes-demos/
+bayes-use-case-library/
 ├── index.html         splash gate — visitor types a code → /demos/<slug>/
 ├── lib/  bayes.css · bayes.js · bayes-slides.js   (shared — rarely edited)
 ├── assets/  logos/ · planet.webp · partners/      (shared brand assets)
@@ -252,7 +252,7 @@ third only if the brief asks.)
 
 Commit the new `demos/<slug>/` and push. It goes live at:
 ```
-https://bayesimpact.github.io/bayes-demos/demos/<slug>/
+https://bayesimpact.github.io/bayes-use-case-library/demos/<slug>/
 ```
 Give the teammate that URL **and** the splash access code (the slug). The splash at `/` is a soft
 gate (the repo is public — security-by-obscurity only). Mark genuinely confidential pitches as such.
