@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bayes Platform — Congo · Bayes Impact</title>
+<link rel="icon" href="../../assets/logos/bi-colors.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../lib/bayes.css" />
+</head>
+<body
+  data-assets="../../assets/"
+  data-logo="../../assets/logos/bi-colors.svg"
+  data-logo-dark="../../assets/logos/bi-white.svg"
+  data-label-fr="BAYES PLATFORM · CONGO"
+  data-label-en="BAYES PLATFORM · CONGO">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bi-mark" viewBox="0 0 415 409">
+    <path d="M309.59,246.07H373a41.67,41.67,0,0,0,0-83.34H309.44l92.73-91.11a41.66,41.66,0,0,0-58.4-59.44l-94.51,92.87V42.23a41.67,41.67,0,1,0-83.34,0v63l-94.86-93A41.66,41.66,0,1,0,12.72,71.65l92.88,91.08H41.89a41.67,41.67,0,0,0,0,83.34h63.56l-92.7,90.72A41.67,41.67,0,1,0,71,396.35l94.89-92.87v63.09a41.67,41.67,0,1,0,83.34,0v-63l94.54,92.71a41.66,41.66,0,0,0,58.34-59.5Z"/>
+    <circle cx="207.59" cy="41.49" r="41.34"/><circle cx="207.59" cy="367.01" r="41.34"/><circle cx="41.37" cy="204.4" r="41.34"/><circle cx="373.76" cy="204.4" r="41.34"/><circle cx="373.52" cy="366.86" r="41.34"/><circle cx="41.34" cy="366.86" r="41.34"/><circle cx="41.34" cy="41.34" r="41.34"/><circle cx="373.52" cy="41.34" r="41.34"/><circle cx="207.57" cy="204.25" r="41.34"/>
+  </symbol>
+</svg>
+
+<div class="progress"><div class="progress-fill" id="pfill"></div></div>
+<div class="dots" id="dots"></div>
+<div class="counter" id="counter">01 / 01</div>
+<div class="hint">← → · space · click</div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 · COVER -->
+  <section class="slide dark cover" id="cover" data-dark>
+    <div class="slide-inner">
+      <div class="cover-mark reveal"><img class="bilogo" src="../../assets/logos/bi-white.svg" alt="Bayes Impact"/></div>
+      <p class="eyebrow reveal"><span data-lang="fr">Présentation · Juin 2026</span><span data-lang="en">Briefing · June 2026</span></p>
+      <h1 class="reveal">Bayes Platform</h1>
+      <p class="sub reveal"><span data-lang="fr">Le système d'exploitation des services publics IA-natifs</span><span data-lang="en">The operating system for AI-native public services</span></p>
+      <p class="tagline reveal"><span data-lang="fr">Souveraine, open-source — <em>au service de l'intérêt général.</em></span><span data-lang="en">Sovereign, open-source — <em>built for the public good.</em></span></p>
+    </div>
+    <div class="cover-foot">
+      <span data-lang="fr">Ministère des Postes, des Télécommunications et de l'Économie numérique</span><span data-lang="en">Ministry of Posts, Telecommunications & the Digital Economy</span>
+      <span class="cf-r">Bayes Impact × ACSI — Brazzaville</span>
+    </div>
+  </section>
+
+  <!-- 2 · EARTH (shared) -->
+  <div data-shared="earth">
+    <script type="application/json">
+    { "lead": { "fr": "L'IA pour aider celles et ceux qui en ont besoin et celles et ceux qui les accompagnent.",
+                "en": "AI to empower people in need — and those who serve them." },
+      "believe": { "fr": ["chacun reçoit l'aide dont il a besoin.","chaque citoyen accède aux services publics.","l'administration parle la langue de chacun — en lingala, en kituba…","personne n'est laissé de côté.","une démarche tient dans une conversation.","l'IA sert d'abord l'intérêt général."],
+                   "en": ["everyone receives the help they need.","every citizen can reach public services.","the administration speaks everyone's language.","no one is left behind.","a procedure fits in a conversation.","AI serves the common good first."] } }
+    </script>
+  </div>
+
+  <!-- 3 · WHO WE ARE (shared) -->
+  <div data-shared="about"></div>
+
+  <!-- 4 · VISION -->
+  <section class="slide" id="vision">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Notre vision</span><span data-lang="en">Our vision</span></p>
+      <h1 class="big reveal"><span data-lang="fr">L'IA agentique au service de la <em class="hl">digitalisation du pays</em>.</span><span data-lang="en">Agentic AI for the <em class="hl">country's digital transformation</em>.</span></h1>
+      <div class="cards c3 reveal">
+        <div class="card">
+          <div class="kicker">Inclusion</div>
+          <h3><span data-lang="fr">IA conversationnelle, en voix et en langues nationales</span><span data-lang="en">Conversational AI, by voice and in national languages</span></h3>
+          <p><span data-lang="fr">Lingala, kituba… Le levier pour inclure toute la population congolaise — y compris celles et ceux qui ne lisent ni n'écrivent le français.</span><span data-lang="en">Lingala, Kituba… The lever to include the whole Congolese population — even those who cannot read or write French.</span></p>
+        </div>
+        <div class="card">
+          <div class="kicker"><span data-lang="fr">Continuité</span><span data-lang="en">Continuity</span></div>
+          <h3><span data-lang="fr">Bâtie sur le socle numérique du Congo</span><span data-lang="en">Built on Congo's digital base</span></h3>
+          <p><span data-lang="fr">La Bayes Platform prolonge <b>Congo Digital 2025</b> et le <b>PATN</b> (Banque mondiale), sur les rails déjà posés.</span><span data-lang="en">The Bayes Platform extends <b>Congo Digital 2025</b> and the <b>PATN</b> (World Bank), on the rails already laid.</span></p>
+          <div class="dpi-row"><span class="dpi">NIU</span><span class="dpi">Mobile Money</span><span class="dpi">service-public.cg</span><span class="dpi">SIFEC</span><span class="dpi">Data Center</span></div>
+        </div>
+        <div class="card">
+          <div class="kicker"><span data-lang="fr">Souveraineté</span><span data-lang="en">Sovereignty</span></div>
+          <h3><span data-lang="fr">Souveraine et open-source</span><span data-lang="en">Sovereign and open-source</span></h3>
+          <p><span data-lang="fr">Construite main dans la main avec l'ACSI, hébergée à terme à Brazzaville.</span><span data-lang="en">Built hand in hand with ACSI, hosted in time in Brazzaville.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · LE SOCLE — DPI -->
+  <section class="slide" id="socle">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Le socle</span><span data-lang="en">The foundation</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Un socle unique : le <em class="hl">DPI du gouvernement agentique</em>.</span><span data-lang="en">One foundation: the <em class="hl">DPI of the agentic government</em>.</span></h2>
+      <p class="lead reveal"><span data-lang="fr">La Bayes Platform est l'<b>infrastructure publique numérique (DPI)</b> du gouvernement agentique : un socle transversal et souverain qui alimente toutes les administrations, plutôt qu'autant de projets isolés.</span><span data-lang="en">The Bayes Platform is the <b>digital public infrastructure (DPI)</b> of the agentic government: a cross-cutting, sovereign foundation that powers every administration, instead of as many siloed projects.</span></p>
+      <div class="socle reveal">
+        <div class="socle-ministries">
+          <div class="min-col lead-col"><div class="mc-name"><span data-lang="fr">Numérique</span><span data-lang="en">Digital</span></div><div class="mc-sub"><span data-lang="fr">Services au citoyen</span><span data-lang="en">Citizen services</span></div></div>
+          <div class="min-col"><div class="mc-name">Justice</div></div>
+          <div class="min-col"><div class="mc-name"><span data-lang="fr">Santé</span><span data-lang="en">Health</span></div></div>
+          <div class="min-col"><div class="mc-name"><span data-lang="fr">Éducation</span><span data-lang="en">Education</span></div></div>
+          <div class="min-col more-col"><div class="mc-name">…</div></div>
+        </div>
+        <div class="conn"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v12M5 11l4 4 4-4"/></svg></div>
+        <div class="socle-bar">
+          <span class="sb-name"><svg class="mark"><use href="#bi-mark"/></svg><span data-lang="fr">La Bayes Platform</span><span data-lang="en">The Bayes Platform</span></span>
+          <span class="sb-meta"><span data-lang="fr">Souveraine · open-source · le DPI du gouvernement agentique</span><span data-lang="en">Sovereign · open-source · the DPI of the agentic government</span></span>
+        </div>
+        <div class="socle-base"><span class="bl"><span data-lang="fr">Socle numérique national</span><span data-lang="en">National digital base</span></span><span class="dpi">NIU</span><span class="dpi">Mobile Money</span><span class="dpi">service-public.cg</span><span class="dpi">SIFEC</span><span class="dpi">Data Center</span></div>
+      </div>
+      <p class="footnote reveal"><span data-lang="fr">Hébergé à terme au <b>Data Center national</b>.</span><span data-lang="en">Hosted in time at the <b>national Data Center</b>.</span></p>
+    </div>
+  </section>
+
+  <!-- 6 · ARCHITECTURE -->
+  <section class="slide" id="archi">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">L'architecture</span><span data-lang="en">The architecture</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Une architecture souveraine, en couches.</span><span data-lang="en">A sovereign, layered architecture.</span></h2>
+      <div class="arch reveal">
+        <div class="arch-layer apps">
+          <div class="al-label"><span class="al-k">Applications</span><span data-lang="fr">Ce que vivent les usagers</span><span data-lang="en">What citizens experience</span></div>
+          <div class="al-items">
+            <span class="arch-chip"><span data-lang="fr">Copilote de l'agent public</span><span data-lang="en">Civil-servant copilot</span></span>
+            <span class="arch-chip"><span data-lang="fr">Services au citoyen sur WhatsApp</span><span data-lang="en">Citizen services on WhatsApp</span></span>
+            <span class="arch-chip"><span data-lang="fr">Chatbots citoyens</span><span data-lang="en">Citizen chatbots</span></span>
+            <span class="arch-chip"><span data-lang="fr">Recherche de jurisprudence</span><span data-lang="en">Case-law search</span></span>
+            <span class="arch-chip more">…</span>
+          </div>
+        </div>
+        <div class="arch-layer socle">
+          <div class="al-label"><span class="al-k"><span data-lang="fr">Le socle — DPI agentique</span><span data-lang="en">The foundation — agentic DPI</span></span><span data-lang="fr">La Bayes Platform</span><span data-lang="en">The Bayes Platform</span></div>
+          <div class="al-desc"><span data-lang="fr">Création <b>no-code</b> d'agents IA <b>sécurisés</b>, <b>fiabilisés (RAG)</b> et <b>industrialisés</b> — qui interagissent, via leurs capacités agentiques, avec l'infrastructure digitale.</span><span data-lang="en"><b>No-code</b> creation of <b>secured</b>, <b>RAG-grounded</b> and <b>production-grade</b> AI agents — that interact, through their agentic capabilities, with the digital infrastructure.</span></div>
+        </div>
+        <div class="arch-layer">
+          <div class="al-label"><span class="al-k"><span data-lang="fr">Infrastructure digitale du Congo</span><span data-lang="en">Congo's digital infrastructure</span></span><span data-lang="fr">Le socle numérique national</span><span data-lang="en">The national digital base</span></div>
+          <div class="al-items">
+            <span class="arch-chip">NIU</span><span class="arch-chip">Mobile Money</span><span class="arch-chip">service-public.cg</span><span class="arch-chip">SIFEC</span><span class="arch-chip"><span data-lang="fr">Base de connaissance</span><span data-lang="en">Knowledge base</span></span><span class="arch-chip more">…</span>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="al-label"><span class="al-k"><span data-lang="fr">Fondations</span><span data-lang="en">Foundations</span></span><span data-lang="fr">Hébergement souverain</span><span data-lang="en">Sovereign hosting</span></div>
+          <div class="al-items">
+            <span class="arch-chip"><span data-lang="fr">Data Center national</span><span data-lang="en">National Data Center</span></span><span class="arch-chip"><span data-lang="fr">Serveurs ministériels</span><span data-lang="en">Ministry servers</span></span><span class="arch-chip"><span data-lang="fr">Cloud Bayes — pilotes rapides</span><span data-lang="en">Bayes Cloud — fast pilots</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · SOUVERAINETÉ & CONFIANCE -->
+  <section class="slide" id="trust">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Souveraineté & confiance</span><span data-lang="en">Sovereignty & trust</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Une chaîne de confiance, de l'infrastructure aux usages.</span><span data-lang="en">A chain of trust, from infrastructure to use.</span></h2>
+      <div class="flow reveal" style="margin-top:30px">
+        <div class="flow-step"><div class="fs-n">01</div><div class="fs-t"><span data-lang="fr">Souveraineté de l'infrastructure</span><span data-lang="en">Infrastructure sovereignty</span></div><div class="fs-d"><span data-lang="fr">La donnée congolaise reste au Congo, au Data Center national.</span><span data-lang="en">Congolese data stays in Congo, at the national Data Center.</span></div></div>
+        <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="flow-step"><div class="fs-n">02</div><div class="fs-t"><span data-lang="fr">Base de connaissance vérifiée</span><span data-lang="en">Verified knowledge base</span></div><div class="fs-d"><span data-lang="fr">Ancrée dans les documents officiels — sources tracées et à jour.</span><span data-lang="en">Grounded in official documents — sources traced and up to date.</span></div></div>
+        <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="flow-step" style="border-color:var(--accent-orange); box-shadow:0 0 0 2px rgba(255,132,0,.12)"><div class="fs-n" style="color:var(--accent-orange)">03</div><div class="fs-t"><span data-lang="fr">Applications IA de confiance</span><span data-lang="en">Trustworthy AI applications</span></div><div class="fs-d"><span data-lang="fr">Zéro hallucination · citation des sources sur chaque réponse.</span><span data-lang="en">Zero hallucination · sources cited on every answer.</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <p class="q"><span data-lang="fr">« Tous les projets justifiés et justifiables. »</span><span data-lang="en">"Every project justified and justifiable."</span></p>
+        <p class="qs"><span data-lang="fr">Chaque réponse est sourcée, traçable et vérifiable.</span><span data-lang="en">Every answer is sourced, traceable and verifiable.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · DEMO — chat (birth certificate via SIFEC) -->
+  <section class="slide" id="demo-chat" data-demo="chat">
+    <div class="slide-inner">
+      <div class="demo-head reveal">
+        <h2><span data-lang="fr">Démonstration — acte de naissance sur WhatsApp</span><span data-lang="en">Demo — birth certificate on WhatsApp</span></h2>
+        <div class="demo-controls"><button class="dc-btn dc-toggle">⏸</button><button class="dc-btn ghost dc-replay">↻</button></div>
+      </div>
+      <div class="demo-stage" style="margin-top:12px">
+        <div class="reveal">
+          <div class="srs">
+            <div class="srs-top">
+              <span class="srs-badge"><span data-lang="fr">Portail des services publics (à terme) · service-public.cg</span><span data-lang="en">Public-services portal (in time) · service-public.cg</span></span>
+              <h3><span data-lang="fr">Demande d'acte de naissance</span><span data-lang="en">Birth-certificate request</span></h3>
+              <div class="srs-meta"><span data-lang="fr">État civil · Registre national (SIFEC)</span><span data-lang="en">Civil registry · National registry (SIFEC)</span></div>
+            </div>
+            <div class="srs-body">
+              <div class="bpmn-wrap">
+                <div class="bl"><span data-lang="fr">Parcours du service</span><span data-lang="en">Service journey</span></div>
+                <div class="bpmn">
+                  <span class="bpmn-node"><span data-lang="fr">Demande</span><span data-lang="en">Request</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node"><span data-lang="fr">Authentification NIU</span><span data-lang="en">NIU auth</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node"><span data-lang="fr">Vérification OTP</span><span data-lang="en">OTP check</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node"><span data-lang="fr">Pré-remplissage SIFEC</span><span data-lang="en">SIFEC auto-fill</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node"><span data-lang="fr">Instruction</span><span data-lang="en">Processing</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node">Notification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="footnote" style="margin-top:14px"><span data-lang="fr">Extensible aux <b>langues nationales</b> (lingala, kituba) et au <b>message vocal</b> — un levier d'inclusion.</span><span data-lang="en">Extensible to <b>national languages</b> (Lingala, Kituba) and <b>voice notes</b> — a key inclusion lever.</span></p>
+        </div>
+        <div class="reveal">
+          <div class="phone"><div class="phone-screen">
+            <div class="notch"></div>
+            <div class="statusbar"><span>9:41</span><span>5G ▮▮▮ ◢ 84%</span></div>
+            <div class="wa-header"><span class="wa-back">‹</span><span class="wa-av"><svg class="mark" style="color:var(--wa-green)"><use href="#bi-mark"/></svg></span><div class="wa-head-txt"><div class="h-name"><span data-lang="fr">Service de l'état civil</span><span data-lang="en">Civil registry service</span></div><div class="h-sub wa-sub"></div></div><div class="wa-icons"><span>📹</span><span>📞</span></div></div>
+            <div class="wa-thread"><div class="wa-day"></div></div>
+            <div class="wa-input"><div class="wa-field"><span>😊</span><span class="ph">Message</span><span>📎</span><span>📷</span></div><span class="wa-mic">🎤</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"pay":{"provider":"Mobile Money","host":"pay.cg/"},
+     "fr":[
+      {"type":"in","text":"Bonjour 👋 Je suis l'assistant de l'état civil. Écrivez-moi ou envoyez une note vocale — en français, et bientôt en lingala et en kituba."},
+      {"type":"out","text":"Bonjour, j'ai besoin d'un acte de naissance"},
+      {"type":"in","text":"Avec plaisir. Pour vous identifier, envoyez votre numéro d'identité (NIU).","bp":1},
+      {"type":"out","text":"23 1204 8473921","digits":true},
+      {"type":"tool","name":"Base SIFEC — état civil","arg":"niu: \"23 1204 8473921\"","result":"1 citoyen trouvé"},
+      {"type":"in","text":"Vous êtes bien <b>Rodrigue Nkodia</b>, né le 12/03/1984 à Brazzaville ?"},
+      {"type":"out","text":"Oui, c'est bien moi"},
+      {"type":"in","text":"Je vous envoie un code de vérification par SMS (OTP).","bp":2},
+      {"type":"out","text":"729 014","digits":true},
+      {"type":"tool","name":"Vérification OTP","arg":"otp: \"729 014\"","result":"Vérifié ✓"},
+      {"type":"in","text":"Identité confirmée ✅ Je récupère votre acte depuis le registre national (SIFEC).","bp":3},
+      {"type":"fill","src":"État civil — SIFEC","rows":[["Nom","Nkodia"],["Prénoms","Rodrigue"],["Naissance","12/03/1984"],["Lieu","Brazzaville"],["N° acte","1984-BZV-04827"]]},
+      {"type":"in","text":"Combien de copies souhaitez-vous ?"},
+      {"type":"voice","dur":"0:05","transcript":"Deux copies s'il vous plaît, c'est pour une inscription scolaire."},
+      {"type":"in","text":"🎙️ Bien reçu : <b>2 copies</b>, motif « inscription scolaire »."},
+      {"type":"dossier","num":"AN-2026-04827","rows":[["Service","État civil · SIFEC"],["Demandeur","R. Nkodia"],["Document","Acte de naissance"],["Copies","2"]],"bp":4},
+      {"type":"in","text":"Votre demande <b>AN-2026-04827</b> est complète ✅ Réglez les frais via votre lien <b>Mobile Money</b> sécurisé."},
+      {"type":"paylink","amount":"1 000 FCFA","ref":"Acte de naissance · SIFEC","code":"r/AN-2026-04827"},
+      {"type":"notif","tag":"N04","text":"Paiement de <b>1 000 FCFA</b> confirmé via MTN MoMo / Airtel Money.","bp":5},
+      {"type":"in","text":"Votre demande est enregistrée ✅ Vous recevrez les mises à jour ici, dans cette conversation."}
+     ],
+     "en":[
+      {"type":"in","text":"Hello 👋 I'm the civil-registry assistant. Write to me or send a voice note — in French, and soon in Lingala and Kituba."},
+      {"type":"out","text":"Hi, I need a birth certificate"},
+      {"type":"in","text":"Gladly. To identify you, send your identity number (NIU).","bp":1},
+      {"type":"out","text":"23 1204 8473921","digits":true},
+      {"type":"tool","name":"SIFEC base — civil registry","arg":"niu: \"23 1204 8473921\"","result":"1 citizen found"},
+      {"type":"in","text":"You are <b>Rodrigue Nkodia</b>, born 12/03/1984 in Brazzaville?"},
+      {"type":"out","text":"Yes, that's me"},
+      {"type":"in","text":"I'm sending you a verification code by SMS (OTP).","bp":2},
+      {"type":"out","text":"729 014","digits":true},
+      {"type":"tool","name":"OTP check","arg":"otp: \"729 014\"","result":"Verified ✓"},
+      {"type":"in","text":"Identity confirmed ✅ Fetching your certificate from the national registry (SIFEC).","bp":3},
+      {"type":"fill","src":"Civil registry — SIFEC","rows":[["Surname","Nkodia"],["Given names","Rodrigue"],["Born","12/03/1984"],["Place","Brazzaville"],["Record no.","1984-BZV-04827"]]},
+      {"type":"in","text":"How many copies would you like?"},
+      {"type":"voice","dur":"0:05","transcript":"Two copies please, it's for a school enrollment."},
+      {"type":"in","text":"🎙️ Got it: <b>2 copies</b>, purpose \"school enrollment\"."},
+      {"type":"dossier","num":"AN-2026-04827","rows":[["Service","Civil registry · SIFEC"],["Applicant","R. Nkodia"],["Document","Birth certificate"],["Copies","2"]],"bp":4},
+      {"type":"in","text":"Your request <b>AN-2026-04827</b> is complete ✅ Pay the fee via your secure <b>Mobile Money</b> link."},
+      {"type":"paylink","amount":"1,000 FCFA","ref":"Birth certificate · SIFEC","code":"r/AN-2026-04827"},
+      {"type":"notif","tag":"N04","text":"Payment of <b>1,000 FCFA</b> confirmed via MTN MoMo / Airtel Money.","bp":5},
+      {"type":"in","text":"Your request is registered ✅ You'll get updates here, in this conversation."}
+     ]}
+    </script>
+  </section>
+
+  <!-- 9 · DEMO — copilot (magistrate case-law, Congo courts) -->
+  <section class="slide" id="demo-copilot" data-demo="copilot">
+    <div class="slide-inner">
+      <div class="demo-head reveal"><h2><span data-lang="fr">Le copilote du magistrat</span><span data-lang="en">The magistrate's copilot</span></h2><span class="dh-sub"><span data-lang="fr">L'agent en coulisses qui répond en langage naturel — sources à l'appui.</span><span data-lang="en">The back-office agent that answers in natural language — with sources.</span></span></div>
+      <div class="copilot reveal">
+        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote Justice · recherche de jurisprudence</span><span data-lang="en">Justice copilot · case-law search</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">headless</span></div>
+        <div class="cp-body"></div>
+      </div>
+      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
+      <div class="pipeline reveal">
+        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Scans de décisions</span><span data-lang="en">1 · Scanned rulings</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span>Type</span><b><span data-lang="fr">Arrêt</span><span data-lang="en">Ruling</span></b></div><div class="extract-row"><span><span data-lang="fr">Juridiction</span><span data-lang="en">Court</span></span><b>C. d'appel de Brazzaville</b></div><div class="extract-row"><span><span data-lang="fr">Année</span><span data-lang="en">Year</span></span><b>2021</b></div><div class="extract-row"><span><span data-lang="fr">Matière</span><span data-lang="en">Matter</span></span><b><span data-lang="fr">Droit commercial</span><span data-lang="en">Commercial law</span></b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Arrêt</span><span data-lang="en">Ruling</span></td><td>2021</td></tr><tr><td>087</td><td><span data-lang="fr">Jugt</span><span data-lang="en">Judgt</span></td><td>2019</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Magistrat","en":"Magistrate"},"search":{"fr":"Recherche · jurisprudence","en":"Search · case law"},"name":{"fr":"Copilote","en":"Copilot"}},
+     "fr":[
+      {"q":"Jurisprudence récente sur la rupture abusive d'un contrat commercial ?","arg":"rupture abusive · depuis 2015","res":"3 décisions","a":"Trois décisions depuis 2015 : la rupture est jugée abusive en l'absence d'un préavis raisonnable, proportionné à la durée de la relation commerciale.","s":["Cour d'appel de Brazzaville · 2021 · n°142","Tribunal de commerce de Brazzaville · 2019 · n°087","Cour suprême du Congo · 2016 · n°031"]},
+      {"q":"Quels sont les délais légaux de la garde à vue ?","arg":"garde à vue · délais","res":"2 textes","a":"La garde à vue est limitée à 48 heures, prolongeable une fois sur autorisation écrite du procureur.","s":["Cour suprême du Congo · 2020 · n°208","Cour d'appel de Pointe-Noire · 2018 · n°054"]}
+     ],
+     "en":[
+      {"q":"Recent case law on wrongful termination of a commercial contract?","arg":"wrongful termination · since 2015","res":"3 rulings","a":"Three rulings since 2015: termination is wrongful absent reasonable notice, proportionate to the length of the commercial relationship.","s":["Brazzaville Court of Appeal · 2021 · no.142","Brazzaville Commercial Court · 2019 · no.087","Supreme Court of Congo · 2016 · no.031"]},
+      {"q":"What are the legal time limits for police custody?","arg":"custody · limits","res":"2 statutes","a":"Custody is limited to 48 hours, extendable once with the prosecutor's written authorization.","s":["Supreme Court of Congo · 2020 · no.208","Pointe-Noire Court of Appeal · 2018 · no.054"]}
+     ]}
+    </script>
+  </section>
+
+  <!-- ═══ Bayes Platform showcase (shared) ═══ -->
+  <div data-shared="platform-studio"></div>
+  <div data-shared="platform-observability"></div>
+  <div data-shared="platform-evaluation"></div>
+
+  <!-- 10 · DIGITALISATION -->
+  <section class="slide" id="dig360">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Digitalisation du pays</span><span data-lang="en">Nationwide digitization</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Le même socle, dans chaque ministère.</span><span data-lang="en">The same platform, in every ministry.</span></h2>
+      <p class="lead reveal"><span data-lang="fr">La plateforme qui digitalise les services au citoyen étend la digitalisation aux autres administrations — en commençant par la Justice.</span><span data-lang="en">The platform that digitizes citizen services extends digitization to the others — starting with Justice.</span></p>
+      <div class="cards c3 reveal">
+        <div class="card" style="border-color:var(--accent-orange); box-shadow:0 0 0 2px rgba(255,132,0,.1), var(--shadow)"><div class="kicker"><span data-lang="fr">En premier</span><span data-lang="en">First</span></div><h3>Justice</h3><p><span data-lang="fr">Nationalité, archivage, casier judiciaire, anti-fraude RCCM.</span><span data-lang="en">Nationality, archiving, criminal records, RCCM fraud detection.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Puis</span><span data-lang="en">Then</span></div><h3><span data-lang="fr">Santé</span><span data-lang="en">Health</span></h3><p><span data-lang="fr">Téléconsultation, couverture CAMU, ruptures de stock.</span><span data-lang="en">Teleconsultation, CAMU insurance coverage, stockouts.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Puis</span><span data-lang="en">Then</span></div><h3><span data-lang="fr">Éducation</span><span data-lang="en">Education</span></h3><p><span data-lang="fr">Tuteur élève, pré-inscription UMNG, info & réclamations.</span><span data-lang="en">Student tutor, UMNG pre-enrollment, info & complaints.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · JUSTICE -->
+  <section class="slide" id="justice">
+    <div class="slide-inner">
+      <div class="min-flag reveal"><span class="mf-ico">JU</span><span class="mf-name">Justice</span><span class="mf-rank"><span data-lang="fr">Premier déploiement</span><span data-lang="en">First deployment</span></span></div>
+      <div class="split" style="margin-top:8px">
+        <div class="reveal">
+          <ul class="uc-list">
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Agent Nationalité — sur WhatsApp</span><span data-lang="en">Nationality agent — on WhatsApp</span></div><div class="uc-d"><span data-lang="fr">Demande conversationnelle ; photo de la pièce → formulaire. Fini la dépendance aux intermédiaires.</span><span data-lang="en">Conversational request; photo of the ID → form. No more dependence on intermediaries.</span></div></div></li>
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Gestion de l'archivage</span><span data-lang="en">Records management</span></div><div class="uc-d"><span data-lang="fr">Numériser, classer et retrouver les dossiers — la donnée exploitée concrètement.</span><span data-lang="en">Digitize, classify and retrieve case files — data actually put to use.</span></div></div></li>
+            <li><span class="uc-flag">+</span><div><div class="uc-t"><span data-lang="fr">Casier judiciaire · anti-fraude RCCM</span><span data-lang="en">Criminal record · RCCM fraud detection</span></div><div class="uc-d"><span data-lang="fr">Vérification fiable des antécédents ; détection de fraude au registre du commerce.</span><span data-lang="en">Reliable background checks; fraud detection at the commercial registry.</span></div></div></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="mini-wa">
+            <div class="mwb in"><span data-lang="fr">Bonjour, je souhaite un certificat de nationalité.</span><span data-lang="en">Hello, I'd like a certificate of nationality.</span></div>
+            <div class="mwb out"><span data-lang="fr">Bonjour 👋 Envoyez une photo de votre pièce d'identité, je m'occupe du reste.</span><span data-lang="en">Hello 👋 Send a photo of your ID and I'll handle the rest.</span></div>
+            <div class="mwb in">📷 <span data-lang="fr">Carte d'identité — photo</span><span data-lang="en">ID card — photo</span></div>
+            <div class="mwb out"><span data-lang="fr">J'ai lu votre pièce. Je confirme : <b>Mavoungou Loemba</b>, né le 04/08/1990 ? Formulaire pré-rempli ✅</span><span data-lang="en">I've read your ID. Confirming: <b>Mavoungou Loemba</b>, born 04/08/1990? Form pre-filled ✅</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · SANTÉ -->
+  <section class="slide" id="sante">
+    <div class="slide-inner">
+      <div class="min-flag reveal"><span class="mf-ico">SA</span><span class="mf-name"><span data-lang="fr">Santé</span><span data-lang="en">Health</span></span></div>
+      <div class="split" style="margin-top:8px">
+        <div class="reveal">
+          <ul class="uc-list">
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Téléconsultation & triage</span><span data-lang="en">Teleconsultation & triage</span></div><div class="uc-d"><span data-lang="fr">Orienter avant le déplacement — désengorger les hôpitaux.</span><span data-lang="en">Guide before the trip — relieve overcrowded hospitals.</span></div></div></li>
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Couverture CAMU</span><span data-lang="en">CAMU insurance coverage</span></div><div class="uc-d"><span data-lang="fr">Accompagner l'accès à l'assurance maladie universelle ; suivi des droits.</span><span data-lang="en">Support access to universal health insurance; entitlement tracking.</span></div></div></li>
+            <li><span class="uc-flag">+</span><div><div class="uc-t"><span data-lang="fr">Ruptures de stock · aide à la décision</span><span data-lang="en">Stockouts · clinical decision support</span></div><div class="uc-d"><span data-lang="fr">Anticiper les ruptures et la chaîne du froid ; protocoles adaptés au contexte.</span><span data-lang="en">Anticipate stockouts and cold-chain issues; context-adapted protocols.</span></div></div></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="mini-wa">
+            <div class="mwb out">🎙️ <span data-lang="fr">Note vocale — 0:08</span><span data-lang="en">Voice note — 0:08</span></div>
+            <div class="mwb in"><span data-lang="fr">J'ai compris : fièvre depuis 2 jours chez un enfant de 3 ans.</span><span data-lang="en">Understood: fever for 2 days in a 3-year-old child.</span></div>
+            <div class="mwb in"><span data-lang="fr">⚠️ Orientation : consultez le centre de santé le plus proche aujourd'hui. Voici l'adresse.</span><span data-lang="en">⚠️ Guidance: visit the nearest health center today. Here's the address.</span></div>
+            <div class="mwb out"><span data-lang="fr">Merci 🙏</span><span data-lang="en">Thank you 🙏</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · ÉDUCATION -->
+  <section class="slide" id="education">
+    <div class="slide-inner">
+      <div class="min-flag reveal"><span class="mf-ico">ED</span><span class="mf-name"><span data-lang="fr">Éducation</span><span data-lang="en">Education</span></span><span class="mf-rank"><span data-lang="fr">Université Marien Ngouabi · 30 000+ étudiants</span><span data-lang="en">Marien Ngouabi University · 30,000+ students</span></span></div>
+      <div class="split" style="margin-top:8px">
+        <div class="reveal">
+          <ul class="uc-list">
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Agent tuteur & révision élève</span><span data-lang="en">Student tutor & revision agent</span></div><div class="uc-d"><span data-lang="fr">Aide personnalisée à domicile, sur WhatsApp — contre la fracture numérique.</span><span data-lang="en">Personalized help at home, on WhatsApp — against the digital divide.</span></div></div></li>
+            <li><span class="uc-flag">★</span><div><div class="uc-t"><span data-lang="fr">Pré-inscription & démarches (UMNG)</span><span data-lang="en">Pre-enrollment & procedures (UMNG)</span></div><div class="uc-d"><span data-lang="fr">Accompagner l'inscription en ligne à l'Université Marien Ngouabi.</span><span data-lang="en">Support online enrollment at Marien Ngouabi University.</span></div></div></li>
+            <li><span class="uc-flag">+</span><div><div class="uc-t"><span data-lang="fr">Info & réclamations scolaires</span><span data-lang="en">School info & complaints</span></div><div class="uc-d"><span data-lang="fr">Informer sur le système éducatif ; traiter affectations, notes et résultats avec suivi.</span><span data-lang="en">Inform on the education system; handle assignments, grades and results with tracking.</span></div></div></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="mini-wa">
+            <div class="mwb in"><span data-lang="fr">Bonjour ! Sur quoi veux-tu réviser aujourd'hui ?</span><span data-lang="en">Hi! What would you like to revise today?</span></div>
+            <div class="mwb out"><span data-lang="fr">Les fractions, je n'ai pas compris en classe 😕</span><span data-lang="en">Fractions, I didn't get it in class 😕</span></div>
+            <div class="mwb in"><span data-lang="fr">Pas de souci. Commençons simplement : 1/2 + 1/4… je t'explique étape par étape.</span><span data-lang="en">No worries. Let's start simple: 1/2 + 1/4… I'll explain step by step.</span></div>
+            <div class="mwb out">🎙️ <span data-lang="fr">Note vocale — en lingala</span><span data-lang="en">Voice note — in Lingala</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · PARTNERSHIP -->
+  <section class="slide" id="team">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Comment nous travaillons</span><span data-lang="en">How we work</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Un partenariat, pas un fournisseur.</span><span data-lang="en">A partnership, not a vendor.</span></h2>
+      <div class="cards c3 reveal">
+        <div class="card"><div class="kicker"><span data-lang="fr">Présence</span><span data-lang="en">Presence</span></div><h3><span data-lang="fr">Un bureau local à Brazzaville</span><span data-lang="en">A local office in Brazzaville</span></h3><p><span data-lang="fr">Bayes Impact construit au plus près du terrain et des équipes.</span><span data-lang="en">Bayes Impact builds close to the field and the teams.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Souveraineté</span><span data-lang="en">Sovereignty</span></div><h3><span data-lang="fr">Transfert de compétences</span><span data-lang="en">Skills transfer</span></h3><p><span data-lang="fr">Montée en compétences des équipes congolaises — la maîtrise reste nationale.</span><span data-lang="en">Upskilling Congolese teams — control stays national.</span></p></div>
+        <div class="card"><div class="kicker"><span data-lang="fr">Main dans la main</span><span data-lang="en">Hand in hand</span></div><h3><span data-lang="fr">Avec l'ACSI</span><span data-lang="en">With ACSI</span></h3><p><span data-lang="fr">Nous co-construisons avec l'ACSI, sur le socle numérique déjà bâti par le Congo.</span><span data-lang="en">We co-build with ACSI, on the digital base Congo has already built.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · ROADMAP -->
+  <section class="slide" id="roadmap">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Feuille de route</span><span data-lang="en">Roadmap</span></p>
+      <h2 class="title reveal"><span data-lang="fr">Concrète, séquencée, maîtrisée.</span><span data-lang="en">Concrete, sequenced, controlled.</span></h2>
+      <div class="flow reveal" style="margin-top:30px">
+        <div class="flow-step" style="border-color:var(--accent-orange); box-shadow:0 0 0 2px rgba(255,132,0,.12)"><div class="fs-n" style="color:var(--accent-orange)">PHASE 0</div><div class="fs-t"><span data-lang="fr">20 services prioritaires</span><span data-lang="en">20 priority services</span></div><div class="fs-d"><span data-lang="fr">Les premiers services citoyens sur WhatsApp.</span><span data-lang="en">The first citizen services on WhatsApp.</span></div></div>
+        <div class="flow-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="flow-step"><div class="fs-n"><span data-lang="fr">CADRAGE</span><span data-lang="en">SCOPING</span></div><div class="fs-t"><span data-lang="fr">Agents pilotes</span><span data-lang="en">Pilot agents</span></div><div class="fs-d"><span data-lang="fr">Sélection, corpus, points focaux par ministère.</span><span data-lang="en">Selection, corpus, focal points per ministry.</span></div></div>
+        <div class="flow-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="flow-step"><div class="fs-n"><span data-lang="fr">DÉV & TEST</span><span data-lang="en">BUILD & TEST</span></div><div class="fs-t"><span data-lang="fr">Sur le terrain</span><span data-lang="en">In the field</span></div><div class="fs-d"><span data-lang="fr">Itération avec les agents publics, conduite du changement.</span><span data-lang="en">Iterating with civil servants, change management.</span></div></div>
+        <div class="flow-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="flow-step"><div class="fs-n"><span data-lang="fr">EXTENSION</span><span data-lang="en">SCALE-UP</span></div><div class="fs-t">Justice · <span data-lang="fr">Santé</span><span data-lang="en">Health</span> · <span data-lang="fr">Éducation</span><span data-lang="en">Education</span></div><div class="fs-d"><span data-lang="fr">Passage à l'échelle, transfert de compétences.</span><span data-lang="en">Scaling up, skills transfer.</span></div></div>
+      </div>
+      <p class="footnote reveal"><span data-lang="fr">Hébergement souverain à terme à Brazzaville · monitoring et évaluation continue des agents.</span><span data-lang="en">Sovereign hosting in time in Brazzaville · continuous monitoring and evaluation of agents.</span></p>
+    </div>
+  </section>
+
+  <!-- 16 · CLOSING -->
+  <section class="slide dark cover" id="thanks" data-dark>
+    <div class="slide-inner">
+      <div class="cover-mark reveal"><img class="bilogo" src="../../assets/logos/bi-white.svg" alt="Bayes Impact"/></div>
+      <h1 class="reveal" style="font-size:clamp(40px,6.5vw,92px);line-height:1;letter-spacing:-.035em;margin:0"><span data-lang="fr">Le service public,<br/><em class="hl">à l'ère de l'IA.</em></span><span data-lang="en">Public services,<br/><em class="hl">in the age of AI.</em></span></h1>
+      <p class="tagline reveal" style="margin-top:40px;font-size:clamp(18px,2vw,26px)"><span data-lang="fr">L'IA au service de ceux qui en ont besoin et de ceux qui les accompagnent.</span><span data-lang="en">AI for those in need and those who serve them.</span></p>
+    </div>
+    <div class="cover-foot"><span data-lang="fr">Merci. — Construisons-le ensemble.</span><span data-lang="en">Thank you. — Let's build it together.</span><span class="cf-r">bayesimpact.org · Bayes Impact × ACSI</span></div>
+  </section>
+
+</main>
+
+<script src="../../lib/bayes-slides.js"></script>
+<script src="../../lib/bayes.js"></script>
+</body>
+</html>
