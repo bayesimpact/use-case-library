@@ -9,7 +9,7 @@ ready-to-present deck. They are illustrations of the product in context, not thr
 Everything runs on one shared, dependency-free design system: bilingual (FR/EN), mobile-readable,
 PDF-exportable, and published straight to GitHub Pages.
 
-**Live → https://bayesimpact.github.io/use-case-library/**
+**Live → https://bayesimpact.github.io/use-cases/**
 
 ## About the Bayes Platform
 
@@ -37,7 +37,7 @@ Google.org and the Gates Foundation.
 ## What's inside
 
 - A **generic Bayes Platform overview** — the cold-share introduction to the platform:
-  [→ open](https://bayesimpact.github.io/use-case-library/demos/bayes/)
+  [→ open](https://bayesimpact.github.io/use-cases/demos/bayes/)
 - **Partner use cases** — contexts such as government digital public infrastructure, health, and
   employment, each as an interactive mockup or presentation. These sit behind the splash gate at the
   site root (enter the use case's short code); confidential pitches are marked as such.
@@ -77,7 +77,7 @@ python3 -m http.server 8016
 ```
 
 Commit and push — it goes live at
-`https://bayesimpact.github.io/use-case-library/demos/<slug>/`.
+`https://bayesimpact.github.io/use-cases/demos/<slug>/`.
 
 ## Layout
 

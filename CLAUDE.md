@@ -103,7 +103,7 @@ layer, `.arch-layer.socle`, is the lit cream centerpiece with the `#bi-mark` wat
 ## 3 · Repo layout
 
 ```
-use-case-library/
+use-cases/
 ├── index.html         splash gate — visitor types a code → /demos/<slug>/
 ├── lib/  bayes.css · bayes.js · bayes-slides.js   (shared — rarely edited)
 ├── assets/  logos/ · planet.webp · partners/      (shared brand assets)
@@ -272,7 +272,7 @@ third only if the brief asks.)
 
 Commit the new `demos/<slug>/` and push. It goes live at:
 ```
-https://bayesimpact.github.io/use-case-library/demos/<slug>/
+https://bayesimpact.github.io/use-cases/demos/<slug>/
 ```
 Give the teammate that URL **and** the splash access code (the slug). The splash at `/` is a soft
 gate (the repo is public — security-by-obscurity only). Mark genuinely confidential pitches as such.
