@@ -42,24 +42,24 @@
        • <div data-shared="name"></div>         pulls a canonical Bayes slide from
          lib/bayes-slides.js (edit there → every deck updates). Customise with an inner
          <script type="application/json">{…opts…}</script>; override by writing your own
-         <section> instead. Available: earth · context · about · platform-overview ·
+         <section> instead. Available: cover · earth · context · about · platform-overview ·
          platform-grounding · platform-sources · platform-studio · platform-observability
          · platform-compliance · platform-evaluation · closing.
-       • The COVER, the use-case middle and the two demos below are BESPOKE — rewrite them
-         for your brief. Keep every string FR + EN.  Delete any slide you don't need.
+       • The use-case middle and the demos are BESPOKE — rewrite them for your brief.
+         Keep every string FR + EN.  Delete any slide you don't need.
        ════════════════════════════════════════════════════════════════════ -->
 
-  <!-- 1 · COVER (bespoke — edit per deck) -->
-  <section class="slide dark cover" id="cover" data-dark>
-    <div class="slide-inner">
-      <div class="cover-mark reveal"><img class="bilogo" src="../../assets/logos/bi-white.svg" alt="Bayes Impact"/></div>
-      <p class="eyebrow reveal"><span data-lang="fr">Présentation · 2026</span><span data-lang="en">Presentation · 2026</span></p>
-      <h1 class="reveal">Bayes Platform</h1>
-      <p class="sub reveal"><span data-lang="fr">La plateforme d'agents IA open-source, pour le service public.</span><span data-lang="en">The open-source AI agent platform, for public services.</span></p>
-      <p class="tagline reveal"><span data-lang="fr">Souveraine, open-source — <em>au service de l'intérêt général.</em></span><span data-lang="en">Sovereign, open-source — <em>built for the public good.</em></span></p>
-    </div>
-    <div class="cover-foot"><span data-lang="fr">Partenaire / Organisation</span><span data-lang="en">Partner / Organization</span><span class="cf-r">Bayes Impact — 2026</span></div>
-  </section>
+  <!-- 1 · COVER (shared — customise via JSON, or write your own <section> to override) -->
+  <div data-shared="cover">
+    <script type="application/json">
+    { "eyebrow": { "fr": "Bayes Platform · 2026", "en": "Bayes Platform · 2026" },
+      "title":   { "fr": "La plateforme d'IA pour le service public.", "en": "The AI platform for public services." },
+      "sub":     { "fr": "Open-source, souveraine — déployée sur votre infrastructure.", "en": "Open-source, sovereign — deployed on your infrastructure." },
+      "chips":   [ { "fr": "Souveraine &amp; open-source", "en": "Sovereign &amp; open-source" },
+                   { "fr": "Sur votre infrastructure", "en": "On your infrastructure" } ],
+      "foot":    { "fr": "Partenaire / Organisation", "en": "Partner / Organisation" } }
+    </script>
+  </div>
 
   <!-- 2 · EARTH — the vision hero (shared). Customise the cycling phrases / lead below. -->
   <div data-shared="earth">

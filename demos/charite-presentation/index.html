@@ -127,21 +127,21 @@
 
 <main class="deck" id="deck">
 
-  <!-- 1 · COVER -->
-  <section class="slide dark cover" id="cover" data-dark>
-    <div class="slide-inner">
-      <div class="cover-mark reveal"><img class="bilogo" src="../../assets/logos/bi-white.svg" alt="Bayes Impact"/></div>
-      <p class="eyebrow reveal"><span data-lang="fr">Bayes Platform × Charité · Impulse Healthcare · 2026</span><span data-lang="en">Bayes Platform × Charité · Impulse Healthcare · 2026</span></p>
-      <h1 class="reveal"><span data-lang="fr">Une couche d'analyse<br>pour vos <em class="hl">capteurs de santé</em></span><span data-lang="en">A conversational layer<br>for your <em class="hl">wearables data</em></span></h1>
-      <p class="sub reveal"><span data-lang="fr">Industrialiser la plateforme de capteurs de Charité — interroger des données multimodales en langage clair, sur une couche que vos équipes possèdent.</span><span data-lang="en">Productionizing the Charité wearables platform — querying multimodal health data in plain language, on a layer your teams own.</span></p>
-      <div class="chips reveal" style="margin-top:30px">
-        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Souveraine &amp; open-source</span><span data-lang="en">Sovereign &amp; open-source</span></div>
-        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Sur votre infrastructure · certifié HDS</span><span data-lang="en">On your infrastructure · HDS-certified</span></div>
-        <div class="chip"><span class="dot-ok"></span> <span data-lang="fr">Vous la possédez</span><span data-lang="en">You own it</span></div>
-      </div>
-    </div>
-    <div class="cover-foot"><span data-lang="fr">Charité — Universitätsmedizin Berlin</span><span data-lang="en">Charité — Universitätsmedizin Berlin</span><span class="cf-r">Bayes Impact — 2026</span></div>
-  </section>
+  <!-- 1 · COVER (shared) -->
+  <div data-shared="cover">
+    <script type="application/json">
+    { "eyebrow": { "fr": "Bayes Platform × Charité · Impulse Healthcare · 2026",
+                   "en": "Bayes Platform × Charité · Impulse Healthcare · 2026" },
+      "title":   { "fr": "La plateforme d'IA <em class=\"hl\">pour la santé</em>.",
+                   "en": "The AI platform <em class=\"hl\">for healthcare</em>." },
+      "sub":     { "fr": "Open-source, souveraine — sur votre infrastructure. Vos données ne quittent jamais Charité.",
+                   "en": "Open-source, sovereign — on your infrastructure. Your data never leaves Charité." },
+      "chips":   [ { "fr": "Souveraine &amp; open-source", "en": "Sovereign &amp; open-source" },
+                   { "fr": "Sur votre infrastructure · certifié HDS", "en": "On your infrastructure · HDS-certified" },
+                   { "fr": "Vous la possédez", "en": "You own it" } ],
+      "foot":    { "fr": "Charité — Universitätsmedizin Berlin", "en": "Charité — Universitätsmedizin Berlin" } }
+    </script>
+  </div>
 
   <!-- 2 · CONTEXT — project framing slide (Charité-specific, before the generic Bayes intro) -->
   <section class="slide" id="context">
