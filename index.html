@@ -9,6 +9,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="lib/bayes.css" />
+<style>
+  /* splash-only: the "browse the library" affordance */
+  .browse-link{display:inline-flex; align-items:center; gap:6px; margin-top:18px; background:none;
+    border:0; padding:0; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600;
+    letter-spacing:.02em; color:var(--muted); cursor:pointer; transition:color .15s;}
+  .browse-link:hover{color:var(--ink);}
+  .browse-link .bl-chev{transition:transform .2s; color:var(--accent-orange);}
+  .browse-link.is-open .bl-chev{transform:rotate(180deg);}
+  .browse-panel{display:none; width:min(460px,88vw); margin-top:16px;}
+  .browse-panel.open{display:block; animation:blFade .4s ease;}
+  @keyframes blFade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+  .uc-row{display:flex; align-items:center; gap:12px; padding:12px 15px; margin-bottom:8px;
+    background:var(--card); border:1px solid var(--border-soft); border-radius:12px;
+    text-decoration:none; color:var(--ink); box-shadow:var(--shadow); transition:border-color .15s, transform .15s;}
+  .uc-row:hover{border-color:var(--accent-orange); transform:translateX(2px);}
+  .uc-txt{display:flex; flex-direction:column; gap:2px; text-align:left;}
+  .uc-t{font-weight:700; font-size:14.5px; letter-spacing:-.01em;}
+  .uc-d{font-size:12px; color:var(--muted);}
+  .uc-arrow{margin-left:auto; color:var(--accent-orange); font-weight:700;}
+</style>
 </head>
 <body>
 
@@ -34,7 +54,7 @@
 
 <main class="splash" id="splash">
   <div class="splash-orbit" id="splashOrbit"></div>
-  <p class="eyebrow splash-eyebrow"><span data-lang="fr">Bayes Impact</span><span data-lang="en">Bayes Impact</span></p>
+  <p class="eyebrow splash-eyebrow"><span data-lang="fr">Bayes Impact · Bibliothèque de cas d'usage</span><span data-lang="en">Bayes Impact · Use-case library</span></p>
   <h1>
     <span data-lang="fr">Voir la Bayes Platform <em class="hl">en action</em>.</span>
     <span data-lang="en">See the Bayes Platform <em class="hl">in action</em>.</span>
@@ -48,6 +68,34 @@
     <button type="submit" aria-label="Open">→</button>
   </form>
   <div class="splash-hint" id="hint"></div>
+
+  <button type="button" class="browse-link" id="browseLink" aria-expanded="false" aria-controls="browsePanel">
+    <span data-lang="fr">ou parcourir la bibliothèque</span><span data-lang="en">or browse the library</span>
+    <svg class="bl-chev" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="browse-panel" id="browsePanel" role="list">
+    <a class="uc-row" href="demos/bayes/" role="listitem">
+      <span class="uc-txt"><span class="uc-t">Bayes Platform</span><span class="uc-d"><span data-lang="fr">Présentation générale de la plateforme</span><span data-lang="en">General platform overview</span></span></span>
+      <span class="uc-arrow">→</span>
+    </a>
+    <a class="uc-row" href="demos/togo/" role="listitem">
+      <span class="uc-txt"><span class="uc-t">Togo</span><span class="uc-d"><span data-lang="fr">Service public augmenté par l'IA</span><span data-lang="en">AI-augmented public services</span></span></span>
+      <span class="uc-arrow">→</span>
+    </a>
+    <a class="uc-row" href="demos/benin/" role="listitem">
+      <span class="uc-txt"><span class="uc-t">Bénin</span><span class="uc-d"><span data-lang="fr">Plateforme agentique nationale</span><span data-lang="en">National agentic platform</span></span></span>
+      <span class="uc-arrow">→</span>
+    </a>
+    <a class="uc-row" href="demos/congo/" role="listitem">
+      <span class="uc-txt"><span class="uc-t">Congo</span><span class="uc-d"><span data-lang="fr">Le DPI du gouvernement agentique</span><span data-lang="en">The DPI of the agentic government</span></span></span>
+      <span class="uc-arrow">→</span>
+    </a>
+    <a class="uc-row" href="demos/employment/" role="listitem">
+      <span class="uc-txt"><span class="uc-t"><span data-lang="fr">Emploi · MCP</span><span data-lang="en">Employment · MCP</span></span><span class="uc-d"><span data-lang="fr">Agents conformes aux protocoles</span><span data-lang="en">Protocol-compliant agents</span></span></span>
+      <span class="uc-arrow">→</span>
+    </a>
+  </div>
+
   <div class="splash-foot">bayesimpact.org · <span data-lang="fr">open-source, pour l'intérêt général</span><span data-lang="en">open-source, for the public good</span></div>
 </main>
 
@@ -98,6 +146,16 @@
     hint.textContent = l === "en" ? "Opening…" : "Ouverture…";
     window.location.href = "demos/" + slug + "/";
   });
+
+  // browse the library — reveal the list of use cases
+  var browseLink = document.getElementById("browseLink"), browsePanel = document.getElementById("browsePanel");
+  if (browseLink && browsePanel) {
+    browseLink.addEventListener("click", function () {
+      var open = browsePanel.classList.toggle("open");
+      browseLink.classList.toggle("is-open", open);
+      browseLink.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
 })();
 </script>
 </body>
