@@ -37,6 +37,19 @@
   .tm{ background:var(--card); border:1px solid var(--border-soft); border-radius:14px; padding:16px 16px 18px; box-shadow:var(--shadow); }
   .tm-n{ font-weight:700; font-size:15.5px; color:var(--ink); }
   .tm-r{ font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.4; }
+  /* leadership cards (photo + bio) */
+  .av{ width:60px; height:60px; border-radius:50%; object-fit:cover; display:block; background:var(--cream); border:1px solid var(--border-soft); }
+  .av-ph{ display:grid; place-items:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:17px; color:var(--muted); }
+  .tm .av{ margin-bottom:13px; }
+  .tm-role{ font-size:11.5px; font-weight:700; color:var(--ink-soft); margin-top:4px; letter-spacing:.01em; }
+  .tm-bio{ font-size:11.5px; color:var(--muted); line-height:1.45; margin-top:8px; }
+  /* the rest of the team (compact: small avatar + name + role) */
+  .team-rest{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px 18px; margin-top:14px; }
+  .trc{ display:flex; align-items:center; gap:10px; }
+  .trc .av{ width:40px; height:40px; flex:0 0 auto; }
+  .trc .av-ph{ font-size:12px; }
+  .trc-n{ font-weight:700; font-size:12.5px; color:var(--ink); line-height:1.2; }
+  .trc-r{ font-size:10.5px; color:var(--muted); line-height:1.25; margin-top:2px; }
 
   /* ── references: real logos + wordmark chips for the rest ── */
   .refs-lab{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:4px 0 12px; }
@@ -106,6 +119,7 @@
     .tl{ grid-template-columns:1fr 1fr 1fr; row-gap:26px; } .tl::before{ display:none; }
     .tl-item::before{ display:none; } .tl-y{ margin-top:0; }
     .team{ grid-template-columns:1fr 1fr; } .hc-grid, .phi-grid{ grid-template-columns:1fr; }
+    .team-rest{ grid-template-columns:1fr 1fr; }
   }
   @media print{
     .tl{ grid-template-columns:repeat(6,1fr) !important; } .team{ grid-template-columns:repeat(4,1fr) !important; }
@@ -172,20 +186,59 @@
     </div>
   </section>
 
-  <!-- 4 · TEAM & REFERENCES -->
+  <!-- 4 · TEAM -->
   <section class="slide" id="team">
     <div class="slide-inner">
-      <p class="eyebrow reveal"><span data-lang="fr">Équipe &amp; références</span><span data-lang="en">Team &amp; references</span></p>
-      <h2 class="title reveal" style="max-width:28ch"><span data-lang="fr">Une équipe du service public et de la tech, <em class="hl">de confiance</em>.</span><span data-lang="en">A public-service and tech team you can <em class="hl">trust</em>.</span></h2>
+      <p class="eyebrow reveal"><span data-lang="fr">L'équipe</span><span data-lang="en">The team</span></p>
+      <h2 class="title reveal" style="max-width:28ch"><span data-lang="fr">Une équipe du <em class="hl">service public et de la tech</em>.</span><span data-lang="en">A team from <em class="hl">public service and tech</em>.</span></h2>
       <div class="team reveal">
-        <div class="tm"><div class="tm-n">Paul Duan</div><div class="tm-r"><span data-lang="fr">Fondateur &amp; Président · Forbes, Ashoka, MIT Tech Review</span><span data-lang="en">Founder &amp; President · Forbes, Ashoka, MIT Tech Review</span></div></div>
-        <div class="tm"><div class="tm-n">Elodie Juan-Julia</div><div class="tm-r"><span data-lang="fr">COO · ex-CFO Dogami, Head of Finance Datadog</span><span data-lang="en">COO · ex-CFO Dogami, Head of Finance Datadog</span></div></div>
-        <div class="tm"><div class="tm-n">Jérémie Doucy, PhD</div><div class="tm-r"><span data-lang="fr">CTO · doctorat TAL, 15 ans d'ingénierie IA (Airbus)</span><span data-lang="en">CTO · NLP PhD, 15 yrs AI engineering (Airbus)</span></div></div>
-        <div class="tm"><div class="tm-n">Vincent Vercamer, PhD</div><div class="tm-r"><span data-lang="fr">Directeur Santé · ex-Délégation au Numérique en Santé</span><span data-lang="en">Health Director · ex-France Digital Health Delegation</span></div></div>
+        <div class="tm">
+          <img class="av" src="../../assets/team/paul.jpg" alt="Paul Duan" />
+          <div class="tm-n">Paul Duan</div>
+          <div class="tm-role"><span data-lang="fr">Fondateur &amp; Président</span><span data-lang="en">Founder &amp; President</span></div>
+          <div class="tm-bio"><span data-lang="fr">Entrepreneur social et data scientist. Reconnu par Forbes, Ashoka et le MIT Technology Review.</span><span data-lang="en">Social entrepreneur and data scientist. Recognized by Forbes, Ashoka and MIT Technology Review.</span></div>
+        </div>
+        <div class="tm">
+          <img class="av" src="../../assets/team/elodie.jpg" alt="Elodie Juan-Julia" />
+          <div class="tm-n">Elodie Juan-Julia</div>
+          <div class="tm-role">COO</div>
+          <div class="tm-bio"><span data-lang="fr">15+ ans de direction en scale-up. Ex-CFO de Dogami, Head of Finance chez Datadog.</span><span data-lang="en">15+ years of scale-up leadership. Former CFO at Dogami, Head of Finance at Datadog.</span></div>
+        </div>
+        <div class="tm">
+          <img class="av" src="../../assets/team/jeremie.jpg" alt="Jérémie Doucy" />
+          <div class="tm-n">Jérémie Doucy, PhD</div>
+          <div class="tm-role">CTO</div>
+          <div class="tm-bio"><span data-lang="fr">Doctorat en TAL. 15+ ans d'ingénierie logicielle et IA, dont Airbus.</span><span data-lang="en">PhD in NLP. 15+ years in software and AI engineering, including Airbus.</span></div>
+        </div>
+        <div class="tm">
+          <img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" />
+          <div class="tm-n">Vincent Vercamer, PhD</div>
+          <div class="tm-role"><span data-lang="fr">Directeur Santé</span><span data-lang="en">Health Director</span></div>
+          <div class="tm-bio"><span data-lang="fr">Doctorat en physique. Ex-directeur à la Délégation au Numérique en Santé, Head of Market Access chez Withings.</span><span data-lang="en">PhD in physics. Former director at France's Digital Health Delegation and Head of Market Access at Withings.</span></div>
+        </div>
       </div>
-      <div class="reveal" style="margin-top:28px">
+      <div class="team-rest reveal">
+        <div class="trc"><span class="av av-ph">AA</span><div><div class="trc-n">Augustin Ador</div><div class="trc-r"><span data-lang="fr">Lead Forward Deployed Engineer · ex-Dataiku</span><span data-lang="en">Lead Forward Deployed Engineer · ex-Dataiku</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/carine.jpg" alt="Carine Sit" /><div><div class="trc-n">Carine Sit</div><div class="trc-r"><span data-lang="fr">Directrice des programmes</span><span data-lang="en">Programs Director</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/anna.jpg" alt="Anna Bauer" /><div><div class="trc-n">Anna Bauer</div><div class="trc-r"><span data-lang="fr">Directrice marketing</span><span data-lang="en">Marketing Director</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/noe.jpg" alt="Noé Bosc-Haddad" /><div><div class="trc-n">Noé Bosc-Haddad</div><div class="trc-r">Data Scientist</div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/didier.jpg" alt="Didier Lafforgue" /><div><div class="trc-n">Didier Lafforgue</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/olivier.jpg" alt="Olivier Doucy" /><div><div class="trc-n">Olivier Doucy</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/melissa.jpg" alt="Mélissa Lacombe" /><div><div class="trc-n">Mélissa Lacombe</div><div class="trc-r">Communications</div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/neva.jpg" alt="Neva Sainte-Marie" /><div><div class="trc-n">Neva Sainte-Marie</div><div class="trc-r"><span data-lang="fr">Opérations</span><span data-lang="en">Operations</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · REFERENCES -->
+  <section class="slide" id="references">
+    <div class="slide-inner">
+      <p class="eyebrow reveal"><span data-lang="fr">Références</span><span data-lang="en">References</span></p>
+      <h2 class="title reveal" style="max-width:26ch"><span data-lang="fr">Ils nous <em class="hl">font confiance</em>.</span><span data-lang="en">They <em class="hl">trust us</em>.</span></h2>
+      <div class="reveal" style="margin-top:30px">
         <div class="refs-lab"><span data-lang="fr">Institutions publiques &amp; partenaires</span><span data-lang="en">Public institutions &amp; partners</span></div>
-        <div class="partners-grid" style="justify-content:flex-start; gap:22px 30px; margin-bottom:18px">
+        <div class="partners-grid" style="justify-content:flex-start; gap:26px 34px; margin-bottom:24px">
           <img src="../../assets/partners/france-travail.webp" alt="France Travail" />
           <img src="../../assets/partners/ministere-travail.webp" alt="Ministère du Travail" />
           <img src="../../assets/partners/ap-hp.webp" alt="AP-HP" />
@@ -198,7 +251,7 @@
           <img src="../../assets/partners/togo.webp" alt="Government of Togo" />
         </div>
         <div class="refs-lab"><span data-lang="fr">Financeurs &amp; soutiens</span><span data-lang="en">Funders &amp; supporters</span></div>
-        <div class="partners-grid" style="justify-content:flex-start; gap:22px 30px">
+        <div class="partners-grid" style="justify-content:flex-start; gap:26px 34px">
           <img src="../../assets/partners/google.webp" alt="Google.org" />
           <img src="../../assets/partners/gates.webp" alt="Gates Foundation" />
           <img src="../../assets/partners/yc.webp" alt="Y Combinator" />
