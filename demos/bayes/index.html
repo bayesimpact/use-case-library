@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bayes Impact</title>
-<link rel="icon" href="../../assets/logos/bi-mark.svg" />
+<link rel="icon" href="../../assets/logos/bi-icon-colors.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../lib/bayes.css" />
@@ -43,6 +43,7 @@
   .refs{ display:flex; flex-wrap:wrap; gap:9px 10px; align-items:center; }
   .ref{ font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--ink-soft); background:var(--card); border:1px solid var(--border-soft); border-radius:8px; padding:7px 12px; white-space:nowrap; }
   .ref.fund{ color:var(--muted); }
+  .ref-logo{ height:34px; width:auto; display:block; object-fit:contain; }
 
   /* ── healthcare category grid ── */
   .hc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:8px; }
@@ -172,17 +173,17 @@
       </div>
       <div class="reveal" style="margin-top:30px">
         <div class="refs-lab"><span data-lang="fr">Ils nous font confiance · partenaires &amp; financeurs</span><span data-lang="en">Trusted by · partners &amp; funders</span></div>
-        <div class="partners-grid" style="justify-content:flex-start; gap:30px; margin-bottom:14px">
+        <div class="partners-grid" style="justify-content:flex-start; gap:26px 30px; margin-bottom:14px">
           <img src="../../assets/partners/france-travail.webp" alt="France Travail" />
+          <img src="../../assets/partners/ap-hp.gif" alt="AP-HP" />
+          <img src="../../assets/partners/assurance-maladie.webp" alt="L'Assurance Maladie" />
           <img src="../../assets/partners/google.webp" alt="Google.org" />
           <img src="../../assets/partners/gates.webp" alt="Gates Foundation" />
           <img src="../../assets/partners/yc.webp" alt="Y Combinator" />
           <img class="va" src="../../assets/partners/va.svg" alt="U.S. Dept of Veterans Affairs" />
         </div>
         <div class="refs">
-          <span class="ref">AP-HP</span>
           <span class="ref">DINUM</span>
-          <span class="ref">Assurance Maladie</span>
           <span class="ref">Ashoka</span>
           <span class="ref">Actiris · Bruxelles</span>
           <span class="ref">UK DWP</span>
@@ -267,7 +268,11 @@
       </div>
       <div class="reveal" style="margin-top:22px">
         <div class="refs">
-          <span class="ref">AP-HP</span><span class="ref">Hôtel-Dieu</span><span class="ref">CHU de Montpellier</span><span class="ref fund"><span data-lang="fr">Programme Impulse Healthcare · cohorte #1 (FR-26)</span><span data-lang="en">Impulse Healthcare program · cohort #1 (FR-26)</span></span>
+          <img class="ref-logo" src="../../assets/partners/ap-hp.gif" alt="AP-HP" />
+          <img class="ref-logo" src="../../assets/partners/hotel-dieu.webp" alt="Hôtel-Dieu (AP-HP)" />
+          <img class="ref-logo" src="../../assets/partners/bopex.webp" alt="BOpEx (AP-HP)" />
+          <span class="ref">CHU de Montpellier</span>
+          <span class="ref fund"><span data-lang="fr">Programme Impulse Healthcare · cohorte #1 (FR-26)</span><span data-lang="en">Impulse Healthcare program · cohort #1 (FR-26)</span></span>
         </div>
       </div>
     </div>
