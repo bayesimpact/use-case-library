@@ -33,7 +33,7 @@
   .stat span{ font-size:13px; color:var(--muted); }
 
   /* ── team ── */
-  .team{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:8px; }
+  .team{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; max-width:900px; }
   .tm{ background:var(--card); border:1px solid var(--border-soft); border-radius:14px; padding:16px 16px 18px; box-shadow:var(--shadow); }
   .tm-n{ font-weight:700; font-size:15.5px; color:var(--ink); }
   .tm-r{ font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.4; }
@@ -125,6 +125,55 @@
     .tl{ grid-template-columns:repeat(6,1fr) !important; } .team{ grid-template-columns:repeat(4,1fr) !important; }
     .hc-grid, .phi-grid{ grid-template-columns:repeat(3,1fr) !important; }
   }
+
+  /* ── analytics agent demo (interactive, inline-SVG charts on the fly) ── */
+  .wd-banner{display:flex; align-items:center; gap:9px; background:var(--cream); border:1px solid var(--border-soft); border-radius:10px; padding:9px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-top:12px; line-height:1.5;}
+  .wd-banner .dot-ok{width:8px; height:8px; border-radius:50%; background:var(--ok); flex:0 0 auto;}
+  .wd-banner b{color:var(--ink);}
+  .wd-tabs{display:flex; gap:8px; margin-top:14px;}
+  .wd-tab{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; padding:7px 15px; border-radius:999px; border:1px solid var(--border-soft); background:var(--card); color:var(--muted); cursor:pointer; transition:all .15s;}
+  .wd-tab.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .wd-grid{display:grid; grid-template-columns:286px 1fr; gap:18px; align-items:start; margin-top:16px;}
+  .wd-ask{display:flex; flex-direction:column; gap:8px;}
+  .wd-qbtn{text-align:left; font-family:inherit; font-size:12.5px; line-height:1.35; padding:10px 12px; border-radius:10px; border:1px solid var(--border-soft); background:var(--card); color:var(--ink-soft); cursor:pointer; transition:all .15s; box-shadow:var(--shadow);}
+  .wd-qbtn:hover{border-color:var(--ink); transform:translateY(-1px);}
+  .wd-qbtn.active{border-color:var(--accent-orange); box-shadow:0 0 0 2px rgba(255,132,0,.1), var(--shadow); color:var(--ink);}
+  .wd-resp{background:var(--card); border:1px solid var(--border-soft); border-radius:14px; box-shadow:var(--shadow); padding:14px 16px; min-height:300px;}
+  .wd-step{margin-bottom:8px;}
+  .wd-chart svg{display:block; width:100%; max-width:430px; height:auto; margin:0 auto;}
+  .wd-step:last-child{margin-bottom:0;}
+  .wd-q{font-size:15px; font-weight:700; color:var(--ink); display:flex; gap:8px; align-items:flex-start;}
+  .wd-q::before{content:'›'; color:var(--accent-orange); font-weight:800;}
+  .wd-k{font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-orange); margin-bottom:5px;}
+  .wd-flux{font-family:'JetBrains Mono',monospace; font-size:10.5px; background:#0d1117; color:#79c0ff; border-radius:8px; padding:9px 12px; line-height:1.6; white-space:pre; overflow-x:auto;}
+  .wd-exec{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ok); font-weight:700;}
+  .wd-chart{padding:2px 0;}
+  .wd-summary{font-size:13.5px; color:var(--ink-soft); line-height:1.5; background:var(--cream); border-left:3px solid var(--accent-orange); border-radius:0 8px 8px 0; padding:10px 13px;}
+  .wd-summary b{color:var(--ink); font-weight:700;}
+  .wd-reason-toggle{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent-blue); cursor:pointer; font-weight:700; user-select:none;}
+  .wd-reason-body{display:none; font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:7px; padding-left:12px; border-left:2px solid var(--border-soft);}
+  .wd-reason-body.open{display:block;}
+  .wd-metric .lab{font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
+  .wd-metric .v{font-size:36px; font-weight:800; letter-spacing:-.02em; color:var(--ink);}
+  .wd-metric .u{font-size:14px; color:var(--muted); font-weight:600;}
+  .wd-metric .note{font-size:12px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .wd-table{width:100%; border-collapse:collapse; font-size:12px;}
+  .wd-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--border-soft); padding:5px 8px;}
+  .wd-table td{padding:6px 8px; border-bottom:1px solid var(--border); color:var(--ink-soft); font-family:'JetBrains Mono',monospace;}
+  .wd-table tr.flag td{background:rgba(154,74,4,.06);}
+  .wd-table tr:last-child td{border-bottom:none;}
+  .wd-legend{display:flex; gap:16px; font-size:11px; color:var(--muted); margin-top:6px; font-family:'JetBrains Mono',monospace;}
+  .wd-legend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px;}
+  .wd-resp.anim .wd-step{opacity:0; transform:translateY(8px); animation:wdIn .42s ease forwards;}
+  .wd-resp.anim .wd-step:nth-child(1){animation-delay:.04s} .wd-resp.anim .wd-step:nth-child(2){animation-delay:.34s}
+  .wd-resp.anim .wd-step:nth-child(3){animation-delay:.6s} .wd-resp.anim .wd-step:nth-child(4){animation-delay:.82s}
+  .wd-resp.anim .wd-step:nth-child(5){animation-delay:1.04s} .wd-resp.anim .wd-step:nth-child(6){animation-delay:1.22s}
+  @keyframes wdIn{to{opacity:1; transform:none;}}
+  #demo-analytics{padding-top:56px; padding-bottom:48px;}
+  #demo-analytics .demo-head h2{font-size:25px;}
+  #demo-analytics .wd-banner{margin-top:10px;} #demo-analytics .wd-tabs{margin-top:10px;} #demo-analytics .wd-grid{margin-top:12px;}
+  @media (max-width:1100px){ .wd-grid{grid-template-columns:1fr;} }
+  @media print{ .wd-grid{grid-template-columns:286px 1fr !important;} .wd-resp.anim .wd-step{opacity:1 !important; animation:none !important;} }
 </style>
 </head>
 <body
@@ -210,17 +259,12 @@
           <div class="tm-role">CTO</div>
           <div class="tm-bio"><span data-lang="fr">Doctorat en TAL. 15+ ans d'ingénierie logicielle et IA, dont Airbus.</span><span data-lang="en">PhD in NLP. 15+ years in software and AI engineering, including Airbus.</span></div>
         </div>
-        <div class="tm">
-          <img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" />
-          <div class="tm-n">Vincent Vercamer, PhD</div>
-          <div class="tm-role"><span data-lang="fr">Directeur Santé</span><span data-lang="en">Health Director</span></div>
-          <div class="tm-bio"><span data-lang="fr">Doctorat en physique. Ex-directeur à la Délégation au Numérique en Santé, Head of Market Access chez Withings.</span><span data-lang="en">PhD in physics. Former director at France's Digital Health Delegation and Head of Market Access at Withings.</span></div>
-        </div>
       </div>
       <div class="team-rest reveal">
         <div class="trc"><span class="av av-ph">AA</span><div><div class="trc-n">Augustin Ador</div><div class="trc-r"><span data-lang="fr">Lead Forward Deployed Engineer · ex-Dataiku</span><span data-lang="en">Lead Forward Deployed Engineer · ex-Dataiku</span></div></div></div>
-        <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/carine.jpg" alt="Carine Sit" /><div><div class="trc-n">Carine Sit</div><div class="trc-r"><span data-lang="fr">Directrice des programmes</span><span data-lang="en">Programs Director</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" /><div><div class="trc-n">Vincent Vercamer, PhD</div><div class="trc-r"><span data-lang="fr">Directeur Santé · ex-Délégation au Numérique en Santé</span><span data-lang="en">Health Director · ex-Digital Health Delegation</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/anna.jpg" alt="Anna Bauer" /><div><div class="trc-n">Anna Bauer</div><div class="trc-r"><span data-lang="fr">Directrice marketing</span><span data-lang="en">Marketing Director</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/noe.jpg" alt="Noé Bosc-Haddad" /><div><div class="trc-n">Noé Bosc-Haddad</div><div class="trc-r">Data Scientist</div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/didier.jpg" alt="Didier Lafforgue" /><div><div class="trc-n">Didier Lafforgue</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
@@ -315,7 +359,35 @@
   <div data-shared="platform-grounding"></div>
   <div data-shared="platform-sources"></div>
   <div data-shared="platform-studio"></div>
-  <div data-shared="platform-compliance"></div>
+  <!-- INTERACTIVE MCP DEMO — a grounded back-office copilot (tool-calling + cited answers) -->
+  <section class="slide" id="demo-copilot" data-demo="copilot">
+    <div class="slide-inner">
+      <div class="demo-head reveal"><h2><span data-lang="fr">Un copilote ancré dans vos systèmes</span><span data-lang="en">A copilot grounded in your systems</span></h2><span class="dh-sub"><span data-lang="fr">Via MCP, l'agent interroge vos back-offices en bac à sable et répond en langage clair, sources à l'appui.</span><span data-lang="en">Through MCP, the agent queries your back-offices in a sandbox and answers in plain language, with sources.</span></span></div>
+      <div class="copilot reveal">
+        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote · accès MCP en bac à sable</span><span data-lang="en">Copilot · sandboxed MCP access</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
+        <div class="cp-body"></div>
+      </div>
+      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
+      <div class="pipeline reveal">
+        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Documents</span><span data-lang="en">1 · Documents</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span data-lang="fr">Type</span><span data-lang="en">Type</span><b><span data-lang="fr">Décision</span><span data-lang="en">Ruling</span></b></div><div class="extract-row"><span>Source</span><b><span data-lang="fr">Cour d'appel</span><span data-lang="en">Court</span></b></div><div class="extract-row"><span><span data-lang="fr">Année</span><span data-lang="en">Year</span></span><b>2021</b></div><div class="extract-row"><span><span data-lang="fr">Texte</span><span data-lang="en">Text</span></span><b>OCR ✓</b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Arrêt</span><span data-lang="en">Ruling</span></td><td>2021</td></tr><tr><td>087</td><td><span data-lang="fr">Jugt</span><span data-lang="en">Judgt</span></td><td>2019</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Agent","en":"Officer"},"search":{"fr":"Recherche · base documentaire","en":"Search · document base"},"name":{"fr":"Copilote","en":"Copilot"}},
+     "fr":[
+      {"q":"Jurisprudence sur la rupture abusive d'un contrat ?","arg":"rupture abusive · depuis 2015","res":"3 décisions","a":"Trois décisions depuis 2015 : la rupture est abusive sans préavis raisonnable.","s":["Cour d'appel · 2021 · n°142","Tribunal · 2019 · n°087"]},
+      {"q":"Délais légaux de la garde à vue ?","arg":"garde à vue · délais","res":"2 textes","a":"48 heures, prolongeable une fois sur autorisation du procureur.","s":["Cour suprême · 2020 · n°208"]}
+     ],
+     "en":[
+      {"q":"Case law on wrongful contract termination?","arg":"wrongful termination · since 2015","res":"3 rulings","a":"Three rulings since 2015: termination is wrongful absent reasonable notice.","s":["Court of appeal · 2021 · no.142","Court · 2019 · no.087"]},
+      {"q":"Legal time limits for police custody?","arg":"custody · limits","res":"2 statutes","a":"48 hours, extendable once with the prosecutor's authorization.","s":["Supreme court · 2020 · no.208"]}
+     ]}
+    </script>
+  </section>
   <div data-shared="platform-observability"></div>
   <div data-shared="platform-evaluation"></div>
 
@@ -340,6 +412,23 @@
           <img class="ref-logo" src="../../assets/partners/bopex.webp" alt="BOpEx (AP-HP)" />
           <span class="ref fund"><span data-lang="fr">Programme Impulse Healthcare · cohorte #1 (FR-26)</span><span data-lang="en">Impulse Healthcare program · cohort #1 (FR-26)</span></span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASE — analytics agent (structures data, charts on the fly) -->
+  <section class="slide usecase" id="demo-analytics">
+    <div class="slide-inner">
+      <p class="uc-tag reveal"><span data-lang="fr">Cas d'usage · Analytique</span><span data-lang="en">Use case · Analytics</span></p>
+      <div class="demo-head reveal"><h2><span data-lang="fr">Un autre type d'agent : <em class="hl">vos données en insights</em>, à la volée.</span><span data-lang="en">A different kind of agent: <em class="hl">your data into insights</em>, on the fly.</span></h2><span class="dh-sub"><span data-lang="fr">Posez la question en langage clair. L'agent structure la donnée, écrit la requête, et génère le bon graphique automatiquement.</span><span data-lang="en">Ask in plain language. The agent structures the data, writes the query, and generates the right chart automatically.</span></span></div>
+      <div class="wd-banner reveal"><span class="dot-ok"></span><span><span data-lang="fr">Exemple : <b>cohorte de capteurs santé</b> · InfluxDB · 7 derniers jours · FC · VFC · pas · énergie · sommeil · <b>données illustratives</b></span><span data-lang="en">Example: <b>a health wearables cohort</b> · InfluxDB · last 7 days · HR · HRV · steps · energy · sleep · <b>illustrative data</b></span></span></div>
+      <div class="wd-tabs reveal">
+        <button class="wd-tab active" data-tab="patient">👤 <span data-lang="fr">Vue patient</span><span data-lang="en">Patient view</span></button>
+        <button class="wd-tab" data-tab="cohort">👥 <span data-lang="fr">Vue cohorte</span><span data-lang="en">Cohort view</span></button>
+      </div>
+      <div class="wd-grid reveal">
+        <div class="wd-ask" id="wd-ask"></div>
+        <div class="wd-resp" id="wd-resp"></div>
       </div>
     </div>
   </section>
@@ -529,5 +618,151 @@
 
 <script src="../../lib/bayes-slides.js"></script>
 <script src="../../lib/bayes.js"></script>
+
+<!-- Analytics agent demo — bespoke, dependency-free (inline SVG charts + NL→query trace) -->
+<script>
+(function () {
+  "use strict";
+  var resp = document.getElementById("wd-resp"), ask = document.getElementById("wd-ask");
+  if (!resp || !ask) return;
+
+  var C = { o: "var(--accent-orange)", b: "var(--accent-blue)", soft: "var(--border-soft)", muted: "var(--muted)", ink: "var(--ink)" };
+  function lang() { return document.documentElement.getAttribute("data-lang") || "en"; }
+  function L(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[lang()] != null ? o[lang()] : o.en; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function f(n) { return (Math.round(n * 10) / 10).toString(); }
+  var T = {
+    flux: { fr: "Requête exécutable (Flux / InfluxDB)", en: "Executable query (Flux / InfluxDB)" },
+    exec: { fr: "Requête exécutée sur l'InfluxDB · < 200 ms", en: "Query run on the InfluxDB · < 200 ms" },
+    result: { fr: "Réponse mise en forme", en: "Formatted response" },
+    reason: { fr: "Comment l'agent a répondu", en: "How the agent answered" }
+  };
+
+  function svgLine(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 16, pb = 28, v = d.values, n = v.length, iw = W - pl - pr, ih = H - pt - pb;
+    var X = function (i) { return pl + iw * (n <= 1 ? .5 : i / (n - 1)); }, Y = function (val) { return pt + ih * (1 - (val - d.yMin) / (d.yMax - d.yMin)); };
+    var mean = v.reduce(function (a, x) { return a + x; }, 0) / n;
+    var line = v.map(function (val, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(val).toFixed(1); }).join(" ");
+    var area = "M" + X(0).toFixed(1) + " " + (pt + ih) + " " + v.map(function (val, i) { return "L" + X(i).toFixed(1) + " " + Y(val).toFixed(1); }).join(" ") + " L" + X(n - 1).toFixed(1) + " " + (pt + ih) + " Z";
+    var pts = v.map(function (val, i) { return '<circle cx="' + X(i).toFixed(1) + '" cy="' + Y(val).toFixed(1) + '" r="' + (i === n - 1 ? 4 : 2.6) + '" style="fill:' + C.o + '"/>'; }).join("");
+    var xl = d.labels.map(function (l, i) { return '<text x="' + X(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + l + "</text>"; }).join("");
+    var gy = [d.yMin, mean, d.yMax].map(function (val) { var y = Y(val).toFixed(1), dash = val === mean ? ' stroke-dasharray="3 3"' : ""; return '<line x1="' + pl + '" y1="' + y + '" x2="' + (W - pr) + '" y2="' + y + '"' + dash + ' style="stroke:' + C.soft + ';stroke-width:1"/><text x="' + (pl - 6) + '" y="' + (+y + 3) + '" text-anchor="end" style="font:600 9px JetBrains Mono,monospace;fill:' + C.muted + '">' + f(val) + "</text>"; }).join("");
+    return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet" role="img">' + gy + '<path d="' + area + '" style="fill:' + C.o + ';opacity:.09"/><path d="' + line + '" fill="none" style="stroke:' + C.o + ';stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round"/>' + pts + xl + '<text x="' + (W - pr) + '" y="12" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+  }
+  function svgBar(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 22, pb = 28, v = d.values, n = v.length, iw = W - pl - pr, ih = H - pt - pb, max = Math.max.apply(null, v) * 1.16, bw = Math.min(96, iw / n * .5), out = "";
+    for (var i = 0; i < n; i++) {
+      var cx = pl + iw * ((i + .5) / n), bh = ih * (v[i] / max), y = pt + ih - bh;
+      out += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="4" style="fill:' + C.o + ';opacity:.88"/>';
+      out += '<text x="' + cx.toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" text-anchor="middle" style="font:800 12px Inter,sans-serif;fill:' + C.ink + '">' + f(v[i]) + "</text>";
+      out += '<text x="' + cx.toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 10px Inter,sans-serif;fill:' + C.muted + '">' + d.labels[i] + "</text>";
+    }
+    return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet"><line x1="' + pl + '" y1="' + (pt + ih) + '" x2="' + (W - pr) + '" y2="' + (pt + ih) + '" style="stroke:' + C.soft + ';stroke-width:1"/>' + out + '<text x="' + (W - pr) + '" y="14" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+  }
+  function svgGBar(d) {
+    var W = 560, H = 184, pl = 44, pr = 16, pt = 22, pb = 28, s = d.series, n = d.labels.length, iw = W - pl - pr, ih = H - pt - pb;
+    var all = s.reduce(function (a, se) { return a.concat(se.values); }, []), max = Math.max.apply(null, all) * 1.18, gw = iw / n, bw = Math.min(28, gw / (s.length + 1)), out = "";
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < s.length; j++) {
+        var cx = pl + gw * i + gw / 2 + (j - (s.length - 1) / 2) * (bw + 4), bh = ih * (s[j].values[i] / max), y = pt + ih - bh;
+        out += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="3" style="fill:' + s[j].color + ';opacity:.9"/>';
+      }
+      out += '<text x="' + (pl + gw * i + gw / 2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="font:600 9.5px Inter,sans-serif;fill:' + C.muted + '">' + d.labels[i] + "</text>";
+    }
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet"><line x1="' + pl + '" y1="' + (pt + ih) + '" x2="' + (W - pr) + '" y2="' + (pt + ih) + '" style="stroke:' + C.soft + ';stroke-width:1"/>' + out + '<text x="' + (W - pr) + '" y="14" text-anchor="end" style="font:700 10px JetBrains Mono,monospace;fill:' + C.muted + '">' + d.unit + "</text></svg>";
+    var leg = '<div class="wd-legend">' + s.map(function (se) { return '<span><i style="background:' + se.color + '"></i>' + L(se.name) + "</span>"; }).join("") + "</div>";
+    return svg + leg;
+  }
+  function chart(d) {
+    if (d.kind === "line") return svgLine(d);
+    if (d.kind === "bar") return svgBar(d);
+    if (d.kind === "gbar") return svgGBar(d);
+    if (d.kind === "metric") return '<div class="wd-metric"><div class="lab">' + L(d.metric.label) + '</div><div style="margin-top:2px"><span class="v">' + d.metric.value + '</span> <span class="u">' + d.metric.unit + '</span></div><div class="note">' + L(d.metric.note) + "</div></div>";
+    if (d.kind === "table") {
+      var head = "<tr>" + d.cols.map(function (c) { return "<th>" + L(c) + "</th>"; }).join("") + "</tr>";
+      var body = d.rows.map(function (r) { return '<tr class="' + (r[3] ? "flag" : "") + '">' + r.map(function (c) { return "<td>" + c + "</td>"; }).join("") + "</tr>"; }).join("");
+      return '<table class="wd-table">' + head + body + "</table>";
+    }
+    return "";
+  }
+  function build(d) {
+    return '<div class="wd-step"><div class="wd-q">' + L(d.q) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-k">① ' + L(T.flux) + '</div><div class="wd-flux">' + esc(d.flux) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-exec">✓ ' + L(T.exec) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-k">② ' + L(T.result) + '</div><div class="wd-chart">' + chart(d) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-summary">' + L(d.summary) + "</div></div>" +
+      '<div class="wd-step"><div class="wd-reason-toggle" data-rt>▸ ' + L(T.reason) + '</div><div class="wd-reason-body">' + L(d.reasoning) + "</div></div>";
+  }
+
+  var DEMO = {
+    patient: [
+      { q: { fr: "Comment la FC de repos de ce patient a-t-elle évolué sur 7 jours ?", en: "How did this patient's resting heart rate evolve over the last 7 days?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "resting_hr_bpm")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [73.1, 70.4, 68.2, 72.6, 74.0, 70.8, 67.2], unit: "bpm", yMin: 60, yMax: 82,
+        summary: { fr: "FC de repos entre <b>67,2</b> et <b>74,0 bpm</b> (moyenne <b>71,3</b>). Semaine stable, aucun seuil d'alerte dépassé.", en: "Resting HR ranged <b>67.2</b>–<b>74.0 bpm</b> (mean <b>71.3</b>). Stable week, no alerting threshold exceeded." },
+        reasoning: { fr: "Moyenne journalière du champ resting_hr_bpm pour le device 019c625c ; fenêtres manquantes exclues (aucune imputation).", en: "Daily mean of resting_hr_bpm for device 019c625c; missing windows excluded (no imputation)." } },
+      { q: { fr: "Quelle a été la tendance de la VFC cette semaine ?", en: "What was the HRV trend this week?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "hrv_ms")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [210, 224, 218, 225, 215, 221, 219], unit: "ms", yMin: 195, yMax: 240,
+        summary: { fr: "VFC moyenne de <b>219 ms</b> sur la semaine. Pic léger le 19 (225 ms). Valeurs dans la plage normale, aucun seuil franchi.", en: "HRV averaged <b>219 ms</b> over the week. Slight peak on the 19th (225 ms). Within normal range, no threshold crossed." },
+        reasoning: { fr: "VFC calculée comme la moyenne journalière du champ hrv_ms. Une VFC plus élevée indique une meilleure récupération autonome.", en: "HRV computed as the daily mean of hrv_ms. Higher values indicate better autonomic recovery." } },
+      { q: { fr: "Quelle a été la tendance de la fréquence respiratoire ?", en: "What was the respiratory rate trend this week?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and r._field == "respiratory_rate_brpm")\n  |> aggregateWindow(every: 1d, fn: mean)',
+        kind: "line", labels: ["16", "17", "18", "19", "20", "21", "22"], values: [15.8, 15.5, 16.1, 15.3, 15.9, 15.7, 15.5], unit: "br/min", yMin: 13, yMax: 19,
+        summary: { fr: "Fréquence respiratoire stable, de <b>15,3</b> à <b>16,1 br/min</b> (moyenne <b>15,7</b>). Aucune variation cliniquement significative.", en: "Respiratory rate stable, <b>15.3</b>–<b>16.1 br/min</b> (mean <b>15.7</b>). No clinically significant variation." },
+        reasoning: { fr: "Moyennes journalières du champ respiratory_rate_brpm. Le profil stable correspond à une ligne de base saine.", en: "Daily means of respiratory_rate_brpm. The stable pattern is consistent with a healthy baseline." } },
+      { q: { fr: "Énergie active vs énergie de base, jour par jour ?", en: "Active vs. basal energy, day by day?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r.device_id == "019c625c" and (r._field == "energy_basal" or r._field == "energy_active"))\n  |> aggregateWindow(every: 1d, fn: sum)',
+        kind: "gbar", labels: ["16", "17", "18", "19", "20", "21", "22"], unit: "k kcal",
+        series: [{ name: { fr: "Base", en: "Basal" }, color: C.b, values: [1.69, 1.71, 1.68, 1.70, 1.72, 1.67, 1.68] }, { name: { fr: "Active", en: "Active" }, color: C.o, values: [0.25, 0.31, 0.22, 0.30, 0.28, 0.27, 0.29] }],
+        summary: { fr: "Totaux : <b>base ~11,8k kcal</b> (~1 685/j) · <b>active ~1,92k kcal</b> (~274/j). L'énergie active culmine les 17 et 19.", en: "Totals: <b>basal ~11.8k kcal</b> (~1,685/day) · <b>active ~1.92k kcal</b> (~274/day). Active energy peaks on the 17th & 19th." },
+        reasoning: { fr: "Sommes journalières des champs energy_basal et energy_active pour le device 019c625c.", en: "Daily sums of energy_basal and energy_active for device 019c625c." } }
+    ],
+    cohort: [
+      { q: { fr: "Dépense énergétique quotidienne moyenne sur la cohorte ?", en: "Average daily energy burn across the cohort?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "energy_kcal_total")\n  |> aggregateWindow(every: 1d, fn: mean)\n  |> mean()',
+        kind: "metric", metric: { value: "1,959", unit: "kcal/day", label: { fr: "Dépense énergétique quotidienne moyenne — cohorte, 7 j", en: "Mean daily energy expenditure — cohort, last 7 days" }, note: { fr: "Base ~1 685 kcal/j · Active ~274 kcal/j", en: "Basal ~1,685 kcal/day · Active ~274 kcal/day" } },
+        summary: { fr: "La cohorte dépense en moyenne <b>1 959 kcal/jour</b> (base ~1 685 + active ~274).", en: "The cohort averages <b>1,959 kcal/day</b> (basal ~1,685 + active ~274)." },
+        reasoning: { fr: "Sommes par device et par jour de energy_kcal_total, puis moyenne de cohorte.", en: "Summed energy_kcal_total per device per day, then cohort mean." } },
+      { q: { fr: "Compare la FC de repos entre les groupes A et B.", en: "Compare resting heart rate between groups A and B." },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "resting_hr_bpm")\n  |> group(columns: ["patient_group"])\n  |> mean()',
+        kind: "bar", labels: ["Group A", "Group B"], values: [71.3, 75.8], unit: "bpm",
+        summary: { fr: "Groupe A : <b>71,3 bpm</b> · Groupe B : <b>75,8 bpm</b> (soit <b>+6,3 %</b>). Comparaison descriptive uniquement.", en: "Group A: <b>71.3 bpm</b> · Group B: <b>75.8 bpm</b> (a <b>+6.3%</b> gap). Descriptive comparison only." },
+        reasoning: { fr: "resting_hr_bpm regroupé par le tag patient_group (A/B), moyenne par groupe sur 7 jours.", en: "resting_hr_bpm grouped by the patient_group tag (A/B), mean per group over 7 days." } },
+      { q: { fr: "Quels patients ont eu l'activité la plus faible ?", en: "Which patients had the lowest activity?" },
+        flux: 'from(bucket: "wearables")\n  |> range(start: 2024-02-16, stop: 2024-02-23)\n  |> filter(fn: (r) => r._field == "step_count")\n  |> group(columns: ["device_id"]) |> sum()\n  |> sort(columns: ["_value"]) |> limit(n: 5)',
+        kind: "table", cols: [{ fr: "Patient", en: "Patient" }, { fr: "Pas (7 j)", en: "Steps (7d)" }, { fr: "Groupe", en: "Group" }, { fr: "", en: "" }],
+        rows: [["019c625c", "27,898", "A", ""], ["03fa81b2", "18,430", "B", ""], ["07dc554e", "14,210", "A", "⚠️"], ["11ac203f", "11,890", "B", "⚠️"], ["1f88a901", "8,340", "B", "🔴"]],
+        summary: { fr: "Le plus bas : <b>1f88a901</b> (groupe B) avec <b>8 340 pas</b>, bien sous la moyenne (~27 000). Les patients signalés peuvent justifier un suivi.", en: "Lowest: <b>1f88a901</b> (Group B) at <b>8,340 steps</b>, well below the ~27,000 mean. Flagged patients may warrant follow-up." },
+        reasoning: { fr: "step_count sommé par device_id sur 7 jours, trié en ordre croissant ; les 3 derniers sous 60 % de la moyenne.", en: "step_count summed per device_id over 7 days, sorted ascending; the bottom 3 are below 60% of the mean." } },
+      { q: { fr: "Compare les pas en semaine vs week-end.", en: "Compare steps between weekdays and weekends." },
+        flux: 'from(bucket: "wearables")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r._field == "step_count")\n  |> aggregateWindow(every: 1d, fn: sum)\n  |> group(columns: ["day_type"]) |> mean()',
+        kind: "bar", labels: [{ fr: "Semaine", en: "Weekdays" }, { fr: "Week-end", en: "Weekends" }], values: [8240, 6910], unit: "steps/day",
+        summary: { fr: "<b>8 240</b> pas/j en semaine vs <b>6 910</b> le week-end (écart de <b>16 %</b>), probablement lié aux trajets et au rythme de travail.", en: "<b>8,240</b> steps/day on weekdays vs <b>6,910</b> on weekends (a <b>16%</b> gap), likely driven by commuting and work routines." },
+        reasoning: { fr: "step_count sommé par device et par jour, classé par day_type via weekday(), puis moyenne sur 30 jours.", en: "step_count summed per device per day, classified by day_type via weekday(), then mean over 30 days." } }
+    ]
+  };
+  function barLabels(d) { return d.labels.map(function (l) { return typeof l === "string" ? l : L(l); }); }
+
+  var state = { tab: "patient", idx: 0 }, animated = false;
+  function renderButtons() { ask.innerHTML = DEMO[state.tab].map(function (d, i) { return '<button class="wd-qbtn' + (i === state.idx ? " active" : "") + '" data-i="' + i + '">' + L(d.q) + "</button>"; }).join(""); }
+  function current() { var d = DEMO[state.tab][state.idx]; if (d.kind === "bar") { d = Object.assign({}, d, { labels: barLabels(d) }); } return d; }
+  function render(animate) { resp.classList.remove("anim"); resp.innerHTML = build(current()); if (animate) { void resp.offsetWidth; resp.classList.add("anim"); } [].forEach.call(ask.querySelectorAll(".wd-qbtn"), function (b, i) { b.classList.toggle("active", i === state.idx); }); }
+  ask.addEventListener("click", function (e) { var btn = e.target.closest(".wd-qbtn"); if (!btn) return; state.idx = +btn.getAttribute("data-i"); render(true); });
+  resp.addEventListener("click", function (e) { if (e.target.hasAttribute("data-rt")) { var body = e.target.nextElementSibling; if (body) { body.classList.toggle("open"); e.target.textContent = (body.classList.contains("open") ? "▾ " : "▸ ") + L(T.reason); } } });
+  [].forEach.call(document.querySelectorAll("#demo-analytics .wd-tab"), function (tab) {
+    tab.addEventListener("click", function () {
+      state.tab = tab.getAttribute("data-tab"); state.idx = 0;
+      [].forEach.call(document.querySelectorAll("#demo-analytics .wd-tab"), function (t) { t.classList.toggle("active", t === tab); });
+      renderButtons(); render(true);
+    });
+  });
+  new MutationObserver(function () { renderButtons(); render(false); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
+  var slide = document.getElementById("demo-analytics");
+  new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= .5 && !animated) { animated = true; render(true); } }); }, { threshold: [0, .5, 1] }).observe(slide);
+  renderButtons();
+  render(false);
+})();
+</script>
 </body>
 </html>

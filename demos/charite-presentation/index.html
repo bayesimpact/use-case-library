@@ -33,7 +33,7 @@
   .stat span{ font-size:13px; color:var(--muted); }
 
   /* ── team ── */
-  .team{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:8px; }
+  .team{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; max-width:900px; }
   .tm{ background:var(--card); border:1px solid var(--border-soft); border-radius:14px; padding:16px 16px 18px; box-shadow:var(--shadow); }
   .tm-n{ font-weight:700; font-size:15.5px; color:var(--ink); }
   .tm-r{ font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.4; }
@@ -328,17 +328,12 @@
           <div class="tm-role">CTO</div>
           <div class="tm-bio"><span data-lang="fr">Doctorat en TAL. 15+ ans d'ingénierie logicielle et IA, dont Airbus.</span><span data-lang="en">PhD in NLP. 15+ years in software and AI engineering, including Airbus.</span></div>
         </div>
-        <div class="tm">
-          <img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" />
-          <div class="tm-n">Vincent Vercamer, PhD</div>
-          <div class="tm-role"><span data-lang="fr">Directeur Santé</span><span data-lang="en">Health Director</span></div>
-          <div class="tm-bio"><span data-lang="fr">Doctorat en physique. Ex-directeur à la Délégation au Numérique en Santé, Head of Market Access chez Withings.</span><span data-lang="en">PhD in physics. Former director at France's Digital Health Delegation and Head of Market Access at Withings.</span></div>
-        </div>
       </div>
       <div class="team-rest reveal">
         <div class="trc"><span class="av av-ph">AA</span><div><div class="trc-n">Augustin Ador</div><div class="trc-r"><span data-lang="fr">Lead Forward Deployed Engineer · ex-Dataiku</span><span data-lang="en">Lead Forward Deployed Engineer · ex-Dataiku</span></div></div></div>
-        <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/carine.jpg" alt="Carine Sit" /><div><div class="trc-n">Carine Sit</div><div class="trc-r"><span data-lang="fr">Directrice des programmes</span><span data-lang="en">Programs Director</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" /><div><div class="trc-n">Vincent Vercamer, PhD</div><div class="trc-r"><span data-lang="fr">Directeur Santé · ex-Délégation au Numérique en Santé</span><span data-lang="en">Health Director · ex-Digital Health Delegation</span></div></div></div>
+        <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/anna.jpg" alt="Anna Bauer" /><div><div class="trc-n">Anna Bauer</div><div class="trc-r"><span data-lang="fr">Directrice marketing</span><span data-lang="en">Marketing Director</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/noe.jpg" alt="Noé Bosc-Haddad" /><div><div class="trc-n">Noé Bosc-Haddad</div><div class="trc-r">Data Scientist</div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/didier.jpg" alt="Didier Lafforgue" /><div><div class="trc-n">Didier Lafforgue</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
@@ -457,7 +452,35 @@
 
   <!-- PLATFORM SHOWCASE (curated for Charité: trust · sandbox · metrics · review) -->
   <div data-shared="platform-grounding"></div>
-  <div data-shared="platform-compliance"></div>
+  <!-- INTERACTIVE MCP DEMO — a grounded back-office copilot (tool-calling + cited answers) -->
+  <section class="slide" id="demo-copilot" data-demo="copilot">
+    <div class="slide-inner">
+      <div class="demo-head reveal"><h2><span data-lang="fr">Un copilote ancré dans vos systèmes</span><span data-lang="en">A copilot grounded in your systems</span></h2><span class="dh-sub"><span data-lang="fr">Via MCP, l'agent interroge vos systèmes en bac à sable et répond en langage clair, sources à l'appui.</span><span data-lang="en">Through MCP, the agent queries your systems in a sandbox and answers in plain language, with sources.</span></span></div>
+      <div class="copilot reveal">
+        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote · accès MCP en bac à sable</span><span data-lang="en">Copilot · sandboxed MCP access</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
+        <div class="cp-body"></div>
+      </div>
+      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
+      <div class="pipeline reveal">
+        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Documents cliniques</span><span data-lang="en">1 · Clinical documents</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span data-lang="fr">Type</span><span data-lang="en">Type</span><b><span data-lang="fr">Protocole</span><span data-lang="en">Protocol</span></b></div><div class="extract-row"><span>Source</span><b>Charité</b></div><div class="extract-row"><span><span data-lang="fr">Version</span><span data-lang="en">Version</span></span><b>2025</b></div><div class="extract-row"><span><span data-lang="fr">Texte</span><span data-lang="en">Text</span></span><b>OCR ✓</b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Protocole</span><span data-lang="en">Protocol</span></td><td>2025</td></tr><tr><td>087</td><td><span data-lang="fr">Circulaire</span><span data-lang="en">Circular</span></td><td>2024</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Clinicien","en":"Clinician"},"search":{"fr":"Recherche · protocoles Charité","en":"Search · Charité protocols"},"name":{"fr":"Copilote","en":"Copilot"}},
+     "fr":[
+      {"q":"Conduite à tenir devant une fièvre chez un nourrisson de moins de 3 mois ?","arg":"fièvre · nourrisson < 3 mois","res":"2 protocoles","a":"Avant 3 mois, toute fièvre impose une consultation en urgence, conformément au protocole en vigueur.","s":["Protocole Charité · 2025 · n°142","Circulaire interne · 2024 · n°087"]},
+      {"q":"Quel est le seuil de transfusion recommandé en post-opératoire ?","arg":"transfusion · seuil · post-op","res":"1 protocole","a":"Seuil de 7 g/dL en l'absence de comorbidité cardiaque, selon le protocole interne.","s":["Protocole Charité · 2025 · n°204"]}
+     ],
+     "en":[
+      {"q":"What to do about a fever in an infant under 3 months?","arg":"fever · infant < 3 months","res":"2 protocols","a":"Under 3 months, any fever requires urgent review, per the protocol in force.","s":["Charité protocol · 2025 · no.142","Internal circular · 2024 · no.087"]},
+      {"q":"What is the recommended post-op transfusion threshold?","arg":"transfusion · threshold · post-op","res":"1 protocol","a":"A 7 g/dL threshold absent cardiac comorbidity, per the internal protocol.","s":["Charité protocol · 2025 · no.204"]}
+     ]}
+    </script>
+  </section>
   <div data-shared="platform-observability"></div>
   <div data-shared="platform-evaluation"></div>
 
