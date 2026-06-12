@@ -120,8 +120,9 @@ use-cases/
 
 Two content types share the system: **website-linkable demo pages** (a focused interactive
 showcase) and **partner decks** (intro → vision → use cases → demos → platform → team → thanks).
-`demos/bayes/` is the **generic cold-share deck** (Bayes + platform, no partner context) — point
-people there when there's no specific engagement yet.
+`demos/bayes/` is the **master presentation**: the maximalist, fully-built Bayes deck (every
+argument, both demos, every use-case family). It doubles as the cold-share deck when there's no
+specific engagement yet, and is the **source you personalise down** for each partner (see §5).
 
 ---
 
@@ -175,7 +176,8 @@ it.** A deck runs ~8–14 slides, one idea each.
 1. **Cover** (`data-shared="cover"`, customise via opts — or override with your own `<section>`, as
    Togo does) — title, one-line pitch, partner/org name.
 2. **Earth hero** (`data-shared="earth"`) — "We believe in a world where __" over the living planet.
-   Our signature; keep it second. Living Earth + starfield + faint orbit, *quiet* glow.
+   Our signature; keep it second. Living Earth + an **orbiting dots cloud** (the brand dots/data
+   motif, JS-built, *not* a starfield), *quiet* glow. Harmonious on mobile too.
 3. **Context** (`data-shared="context"`, *optional*) — partner · country · date + the meeting/project
    theme. Position 3 in a partner deck; **delete it** from a cold/generic deck (the `demos/bayes/` one
    has no context slide).
@@ -190,6 +192,28 @@ it.** A deck runs ~8–14 slides, one idea each.
 
 `demos/_template/index.html` is exactly this, maximalist (every shared slide present). Start there
 and delete down.
+
+### Personalising the master deck for a partner
+
+`demos/bayes/` is the **master presentation** — maximalist on purpose. A partner declension is made by
+**subtracting and swapping**, not starting from scratch. Three buckets:
+
+- **Keep as-is (Bayes-canonical — don't touch the copy):** Cover (swap only the title / partner name),
+  Earth · mission, Who-we-are · history, Team & references, the `platform-*` showcase, Open-source
+  philosophy, How-we-work, Closing. These say who Bayes is and what the platform does; identical
+  across partners.
+- **Personalise (ask the partner-context questions first):** the **use-case slides** and the demos.
+  Lead with the partner's own sector/example (e.g. the Togo or France Travail focus slides are the
+  pattern), re-point the reference logos to the ones that matter to them, and add a `context` slide at
+  position 3 (partner · country · date · meeting theme). Numbers and demo data always need an expert
+  check.
+- **Drop or move to an annex:** use-case examples from other sectors, and any `platform-*` slide whose
+  claim isn't part of this conversation. Don't delete outright — park them after the Closing under an
+  `<!-- ANNEX -->` marker so they're available if a question comes up, without cluttering the flow.
+
+When the context is missing (which partner, which sector, default language, what the meeting is for),
+**ask before personalising** rather than guessing. The master deck is the safe thing to share until
+then.
 
 ---
 

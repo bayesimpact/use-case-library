@@ -85,6 +85,14 @@
   .intro-state h1{ font-size:clamp(40px,6.6vw,88px); line-height:1; letter-spacing:-.035em; font-weight:800; margin:0; color:#fff; max-width:16ch; }
   .intro-state .lead{ color:rgba(255,255,255,.82); max-width:46ch; margin-top:22px; }
 
+  /* ── focus use-case: subtle on-brand background + faint brand-mark watermark ── */
+  .slide.usecase .slide-inner{ position:relative; z-index:1; }
+  .slide.usecase.focus{ background:radial-gradient(58% 78% at 88% 2%, rgba(16,103,254,.06) 0%, transparent 52%), radial-gradient(48% 60% at 4% 98%, rgba(255,132,0,.045) 0%, transparent 55%), var(--bg); }
+  .uc-watermark{ position:absolute; right:-70px; bottom:-90px; z-index:0; pointer-events:none; opacity:.04; }
+  .uc-watermark svg{ display:block; width:420px; height:auto; }
+  /* WhatsApp chrome icons (consistent line set, replacing emoji) */
+  .wa-ic{ width:17px; height:17px; display:block; }
+
   /* ── open-source philosophy ── */
   .phi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
   .phi-li{ font-size:13px; color:var(--ink-soft); line-height:1.5; padding-left:18px; position:relative; margin-top:8px; }
@@ -141,8 +149,8 @@
   <section class="slide" id="history">
     <div class="slide-inner">
       <p class="eyebrow reveal"><span data-lang="fr">Qui nous sommes</span><span data-lang="en">Who we are</span></p>
-      <h2 class="title reveal" style="max-width:30ch"><span data-lang="fr">Dix ans à construire l'IA <em class="hl">au service de l'intérêt général</em>.</span><span data-lang="en">Ten years building AI <em class="hl">for the public good</em>.</span></h2>
-      <p class="lead reveal" style="margin-top:4px; max-width:62ch"><span data-lang="fr">Une organisation à but non lucratif née dans la Silicon Valley. Nous développons des cas d'usage d'IA au service de celles et ceux qui en ont besoin, à travers la Bayes Platform.</span><span data-lang="en">A nonprofit born in Silicon Valley. We build AI use cases for the people who need them, through the Bayes Platform.</span></p>
+      <h2 class="title reveal" style="max-width:30ch"><span data-lang="fr">Pionniers de l'IA <em class="hl">d'intérêt général</em>, depuis 2014.</span><span data-lang="en">Pioneers of <em class="hl">public-interest AI</em>, since 2014.</span></h2>
+      <p class="lead reveal" style="margin-top:4px; max-width:64ch"><span data-lang="fr">Organisation à but non lucratif née dans la Silicon Valley. La Bayes Platform gère <b>tout le cycle de vie</b> des agents IA du service public, de l'expérimentation à la production à grande échelle.</span><span data-lang="en">A Silicon Valley-born nonprofit. The Bayes Platform handles the <b>entire lifecycle</b> of public-service AI agents, from experimentation to production at scale.</span></p>
       <div class="tl reveal">
         <div class="tl-item"><span class="tl-y">2014</span><span class="tl-d"><span data-lang="fr"><b>Fondation</b> à San Francisco, incubés par Y Combinator.</span><span data-lang="en"><b>Founded</b> in San Francisco, backed by Y Combinator.</span></span></div>
         <div class="tl-item"><span class="tl-y">2016</span><span class="tl-d"><span data-lang="fr"><b>Bob</b>, coach emploi avec Pôle Emploi. 500&nbsp;000+ personnes.</span><span data-lang="en"><b>Bob</b>, a job coach with Pôle Emploi. 500k+ people.</span></span></div>
@@ -152,11 +160,12 @@
         <div class="tl-item"><span class="tl-y">2026</span><span class="tl-d"><span data-lang="fr"><b>Togo</b> : services publics par WhatsApp pour 9M de citoyens.</span><span data-lang="en"><b>Togo</b>: public services on WhatsApp for 9M citizens.</span></span></div>
       </div>
       <div class="stats reveal">
-        <div class="stat"><b>10M+</b><span data-lang="fr">personnes aidées</span><span data-lang="en">people served</span></div>
-        <div class="stat"><b>3</b><span data-lang="fr">continents</span><span data-lang="en">continents</span></div>
-        <div class="stat"><b>2014</b><span data-lang="fr">Silicon Valley · à but non lucratif</span><span data-lang="en">Silicon Valley · nonprofit</span></div>
-        <div class="stat"><b>100%</b><span data-lang="fr">open-source</span><span data-lang="en">open-source</span></div>
+        <div class="stat"><b>9M</b><span data-lang="fr">citoyens · Togo</span><span data-lang="en">citizens · Togo</span></div>
+        <div class="stat"><b>~6M</b><span data-lang="fr">demandeurs d'emploi · France Travail</span><span data-lang="en">jobseekers · France Travail</span></div>
+        <div class="stat"><b>8M+</b><span data-lang="fr">patients/an · AP-HP</span><span data-lang="en">patients/yr · AP-HP</span></div>
+        <div class="stat"><b>10M+</b><span data-lang="fr">personnes déjà aidées</span><span data-lang="en">people already served</span></div>
       </div>
+      <p class="footnote reveal" style="margin-top:16px"><span data-lang="fr">La Bayes Platform se déploie à travers ces institutions : cumulés, <b>des millions de bénéficiaires</b>.</span><span data-lang="en">The Bayes Platform deploys across these institutions: together, <b>millions of beneficiaries</b>.</span></p>
     </div>
   </section>
 
@@ -171,25 +180,27 @@
         <div class="tm"><div class="tm-n">Jérémie Doucy, PhD</div><div class="tm-r"><span data-lang="fr">CTO · doctorat TAL, 15 ans d'ingénierie IA (Airbus)</span><span data-lang="en">CTO · NLP PhD, 15 yrs AI engineering (Airbus)</span></div></div>
         <div class="tm"><div class="tm-n">Vincent Vercamer, PhD</div><div class="tm-r"><span data-lang="fr">Directeur Santé · ex-Délégation au Numérique en Santé</span><span data-lang="en">Health Director · ex-France Digital Health Delegation</span></div></div>
       </div>
-      <div class="reveal" style="margin-top:30px">
-        <div class="refs-lab"><span data-lang="fr">Ils nous font confiance · partenaires &amp; financeurs</span><span data-lang="en">Trusted by · partners &amp; funders</span></div>
-        <div class="partners-grid" style="justify-content:flex-start; gap:26px 30px; margin-bottom:14px">
+      <div class="reveal" style="margin-top:28px">
+        <div class="refs-lab"><span data-lang="fr">Institutions publiques &amp; partenaires</span><span data-lang="en">Public institutions &amp; partners</span></div>
+        <div class="partners-grid" style="justify-content:flex-start; gap:22px 30px; margin-bottom:18px">
           <img src="../../assets/partners/france-travail.webp" alt="France Travail" />
-          <img src="../../assets/partners/ap-hp.gif" alt="AP-HP" />
+          <img src="../../assets/partners/ministere-travail.webp" alt="Ministère du Travail" />
+          <img src="../../assets/partners/ap-hp.webp" alt="AP-HP" />
           <img src="../../assets/partners/assurance-maladie.webp" alt="L'Assurance Maladie" />
+          <img src="../../assets/partners/dinum.webp" alt="DINUM" />
+          <img src="../../assets/partners/caisse-des-depots.webp" alt="Caisse des Dépôts" />
+          <img src="../../assets/partners/actiris.webp" alt="Actiris · Bruxelles" />
+          <img src="../../assets/partners/uk-dwp.webp" alt="UK Dept for Work and Pensions" />
+          <img class="va" src="../../assets/partners/va.svg" alt="U.S. Dept of Veterans Affairs" />
+          <img src="../../assets/partners/togo.webp" alt="Government of Togo" />
+        </div>
+        <div class="refs-lab"><span data-lang="fr">Financeurs &amp; soutiens</span><span data-lang="en">Funders &amp; supporters</span></div>
+        <div class="partners-grid" style="justify-content:flex-start; gap:22px 30px">
           <img src="../../assets/partners/google.webp" alt="Google.org" />
           <img src="../../assets/partners/gates.webp" alt="Gates Foundation" />
           <img src="../../assets/partners/yc.webp" alt="Y Combinator" />
-          <img class="va" src="../../assets/partners/va.svg" alt="U.S. Dept of Veterans Affairs" />
-        </div>
-        <div class="refs">
-          <span class="ref">DINUM</span>
-          <span class="ref">Ashoka</span>
-          <span class="ref">Actiris · Bruxelles</span>
-          <span class="ref">UK DWP</span>
-          <span class="ref fund">Caisse des Dépôts</span>
-          <span class="ref fund">Robert Wood Johnson Fdn</span>
-          <span class="ref fund">Fast Forward</span>
+          <img src="../../assets/partners/rwjf.webp" alt="Robert Wood Johnson Foundation" />
+          <img src="../../assets/partners/fast-forward.webp" alt="Fast Forward" />
         </div>
       </div>
     </div>
@@ -268,102 +279,109 @@
       </div>
       <div class="reveal" style="margin-top:22px">
         <div class="refs">
-          <img class="ref-logo" src="../../assets/partners/ap-hp.gif" alt="AP-HP" />
+          <img class="ref-logo" src="../../assets/partners/ap-hp.webp" alt="AP-HP" />
           <img class="ref-logo" src="../../assets/partners/hotel-dieu.webp" alt="Hôtel-Dieu (AP-HP)" />
           <img class="ref-logo" src="../../assets/partners/bopex.webp" alt="BOpEx (AP-HP)" />
-          <span class="ref">CHU de Montpellier</span>
           <span class="ref fund"><span data-lang="fr">Programme Impulse Healthcare · cohorte #1 (FR-26)</span><span data-lang="en">Impulse Healthcare program · cohort #1 (FR-26)</span></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 15 · USE CASE — Government (WhatsApp civil registry) -->
-  <section class="slide usecase" id="uc-gov" data-demo="chat">
+  <!-- 15 · USE CASE — Togo (public services on WhatsApp) -->
+  <section class="slide usecase focus" id="uc-togo" data-demo="chat">
+    <div class="uc-watermark" aria-hidden="true"><svg viewBox="0 0 415 409"><use href="#bi-mark"/></svg></div>
     <div class="slide-inner">
       <div class="demo-head reveal">
-        <div><p class="uc-tag" style="margin-bottom:8px"><span data-lang="fr">Cas d'usage · Gouvernement</span><span data-lang="en">Use case · Government</span></p>
-        <h2 style="margin:0"><span data-lang="fr">Le service public, accessible sur WhatsApp</span><span data-lang="en">Public services, on WhatsApp</span></h2></div>
+        <div>
+          <p class="uc-tag" style="margin-bottom:8px"><span data-lang="fr">Cas d'usage · Togo</span><span data-lang="en">Use case · Togo</span></p>
+          <h2 style="margin:0"><span data-lang="fr">Au Togo, le service public <em class="hl">tient dans une conversation</em>.</span><span data-lang="en">In Togo, a public service <em class="hl">fits in a conversation</em>.</span></h2>
+          <p class="dh-sub" style="margin-top:8px"><span data-lang="fr">9 millions de citoyens · avec l'Agence Togo Digital, hébergé à terme à Lomé.</span><span data-lang="en">9 million citizens · with Agence Togo Digital, hosted in time in Lomé.</span></p>
+        </div>
         <div class="demo-controls"><button class="dc-btn dc-toggle">⏸</button><button class="dc-btn ghost dc-replay">↻</button></div>
       </div>
       <div class="demo-stage" style="margin-top:12px">
         <div class="reveal">
           <div class="srs">
             <div class="srs-top">
-              <span class="srs-badge"><span data-lang="fr">portail des services publics</span><span data-lang="en">public services portal</span></span>
-              <h3><span data-lang="fr">Demande d'acte d'état civil</span><span data-lang="en">Civil-status certificate request</span></h3>
-              <div class="srs-meta"><span data-lang="fr">État civil · administration</span><span data-lang="en">Civil registry · government</span></div>
+              <span class="srs-badge"><span data-lang="fr">service public togolais</span><span data-lang="en">Togolese public service</span></span>
+              <h3><span data-lang="fr">Demande de diplôme (BAC)</span><span data-lang="en">Diploma request (BAC)</span></h3>
+              <div class="srs-meta"><span data-lang="fr">Éducation · DECC</span><span data-lang="en">Education · DECC</span></div>
             </div>
             <div class="srs-body">
               <div class="bpmn-wrap">
                 <div class="bl"><span data-lang="fr">Parcours du service</span><span data-lang="en">Service journey</span></div>
                 <div class="bpmn">
                   <span class="bpmn-node"><span data-lang="fr">Demande</span><span data-lang="en">Request</span></span><span class="bpmn-c">›</span>
-                  <span class="bpmn-node"><span data-lang="fr">Authentification</span><span data-lang="en">Auth</span></span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node">e-ID</span><span class="bpmn-c">›</span>
                   <span class="bpmn-node">OTP</span><span class="bpmn-c">›</span>
                   <span class="bpmn-node"><span data-lang="fr">Pré-remplissage</span><span data-lang="en">Auto-fill</span></span><span class="bpmn-c">›</span>
-                  <span class="bpmn-node"><span data-lang="fr">Instruction</span><span data-lang="en">Processing</span></span><span class="bpmn-c">›</span>
-                  <span class="bpmn-node">Notification</span>
+                  <span class="bpmn-node">GouvPay</span><span class="bpmn-c">›</span>
+                  <span class="bpmn-node">DECC</span>
                 </div>
               </div>
             </div>
           </div>
-          <p class="footnote" style="margin-top:14px"><span data-lang="fr">Extensible aux <b>langues locales</b> et au <b>message vocal</b> : un levier d'inclusion.</span><span data-lang="en">Extensible to <b>local languages</b> and <b>voice notes</b>, a key inclusion lever.</span></p>
+          <p class="footnote" style="margin-top:14px"><span data-lang="fr"><b>Langues locales</b> et <b>messages vocaux</b> : l'inclusion des ~40% d'adultes qui ne lisent ni n'écrivent (CIA World Factbook, 2015).</span><span data-lang="en"><b>Local languages</b> and <b>voice notes</b>: including the ~40% of adults who cannot read or write (CIA World Factbook, 2015).</span></p>
         </div>
         <div class="reveal">
           <div class="phone"><div class="phone-screen">
             <div class="notch"></div>
             <div class="statusbar"><span>9:41</span><span>5G ▮▮▮ ◢ 84%</span></div>
-            <div class="wa-header"><span class="wa-back">‹</span><span class="wa-av"><svg class="mark" style="color:var(--wa-green)"><use href="#bi-mark"/></svg></span><div class="wa-head-txt"><div class="h-name"><span data-lang="fr">Service de l'état civil</span><span data-lang="en">Civil registry service</span></div><div class="h-sub wa-sub"></div></div><div class="wa-icons"><span>📹</span><span>📞</span></div></div>
+            <div class="wa-header"><span class="wa-back">‹</span><span class="wa-av"><svg class="mark" style="color:var(--wa-green)"><use href="#bi-mark"/></svg></span><div class="wa-head-txt"><div class="h-name"><span data-lang="fr">Service des diplômes · Togo</span><span data-lang="en">Diploma service · Togo</span></div><div class="h-sub wa-sub"></div></div><div class="wa-icons"><span><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8Z"/></svg></span><span><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span></div></div>
             <div class="wa-thread"><div class="wa-day"></div></div>
-            <div class="wa-input"><div class="wa-field"><span>😊</span><span class="ph">Message</span><span>📎</span><span>📷</span></div><span class="wa-mic">🎤</span></div>
+            <div class="wa-input"><div class="wa-field"><span><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9.2" x2="9.01" y2="9.2"/><line x1="15" y1="9.2" x2="15.01" y2="9.2"/></svg></span><span class="ph">Message</span><span><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span><span><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg></span></div><span class="wa-mic"><svg class="wa-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/></svg></span></div>
           </div></div>
         </div>
       </div>
     </div>
     <script type="application/json" class="demo-data">
-    {"pay":{"provider":"Mobile Money","host":"pay.gov/"},
+    {"pay":{"provider":"GouvPay","host":"gouvpay.tg/"},
      "fr":[
-      {"type":"in","text":"Bonjour 👋 Je suis l'assistant de l'état civil. Écrivez-moi ou envoyez une note vocale."},
-      {"type":"out","text":"Bonjour, j'ai besoin d'un acte de naissance"},
-      {"type":"in","text":"Avec plaisir. Envoyez votre identifiant national.","bp":1},
-      {"type":"out","text":"23 1204 8473921","digits":true},
-      {"type":"tool","name":"Base état civil","arg":"id: \"23 1204 8473921\"","steps":["Connexion"],"result":"1 citoyen trouvé"},
-      {"type":"in","text":"Vous êtes bien <b>A. Diallo</b>, né(e) le 12/03/1984 ?"},
+      {"type":"in","text":"Bonjour 👋 Je suis l'agent du service des diplômes. Vous pouvez m'écrire ou m'envoyer une note vocale, en français ou en langue locale."},
+      {"type":"out","text":"Bonjour, je veux mon diplôme du BAC"},
+      {"type":"in","text":"Avec plaisir. Pour vous identifier, envoyez votre numéro d'identité nationale (e-ID).","bp":1},
+      {"type":"out","text":"4827 1593 0641","digits":true},
+      {"type":"tool","name":"Base e-ID nationale","arg":"eid: \"4827 1593 0641\"","steps":["Connexion"],"result":"1 citoyen trouvé"},
+      {"type":"in","text":"Vous êtes bien <b>Romaric Togbé Agbagla</b>, né le 12/03/1984 à Lomé ?"},
       {"type":"out","text":"Oui, c'est bien moi"},
-      {"type":"in","text":"Je vous envoie un code (OTP).","bp":2},
+      {"type":"in","text":"Je vous envoie un code de vérification par SMS (OTP).","bp":2},
       {"type":"out","text":"729 014","digits":true},
       {"type":"tool","name":"Vérification OTP","arg":"otp: \"729 014\"","steps":["Contrôle"],"result":"Vérifié ✓"},
-      {"type":"in","text":"Identité confirmée ✅ Je récupère votre acte.","bp":3},
-      {"type":"fill","src":"Registre d'état civil","rows":[["Nom","Diallo"],["Prénoms","Aïssatou"],["Naissance","12/03/1984"]]},
-      {"type":"voice","dur":"0:05","transcript":"Deux copies s'il vous plaît."},
-      {"type":"in","text":"🎙️ Bien reçu : <b>2 copies</b>."},
-      {"type":"dossier","num":"AN-2026-04827","rows":[["Document","Acte de naissance"],["Copies","2"]],"bp":4},
-      {"type":"in","text":"Réglez les frais via votre lien <b>Mobile Money</b>."},
-      {"type":"paylink","amount":"1 000 FCFA","ref":"Acte de naissance","code":"r/AN-2026-04827"},
-      {"type":"notif","tag":"N04","text":"Paiement de <b>1 000 FCFA</b> confirmé.","bp":5},
-      {"type":"in","text":"Votre demande est enregistrée ✅ Vous recevrez les mises à jour ici."}
+      {"type":"in","text":"Identité confirmée ✅ Je pré-remplis votre dossier depuis les bases nationales.","bp":3},
+      {"type":"fill","src":"e-ID national","rows":[["Nom","Agbagla"],["Prénoms","Romaric Togbé"],["Naissance","12/03/1984"],["Lieu","Lomé"]]},
+      {"type":"fill","src":"Golden Record éducation","rows":[["Diplôme","Baccalauréat"],["Série","D"],["Année","2003"],["Centre","Lycée de Tokoin"]]},
+      {"type":"in","text":"Il me reste deux questions. Combien d'exemplaires, et pour quel motif ?"},
+      {"type":"voice","dur":"0:06","transcript":"Deux exemplaires s'il vous plaît, c'est pour un dossier de bourse."},
+      {"type":"in","text":"🎙️ Bien reçu : <b>2 exemplaires</b>, motif « bourse »."},
+      {"type":"dossier","num":"DIPL-2026-04827","rows":[["Service","SRV-DECC-001"],["Demandeur","R. T. Agbagla"],["Exemplaires","2"],["Statut","Complet · à régler"]],"bp":4},
+      {"type":"in","text":"Votre dossier <b>DIPL-2026-04827</b> est complet ✅ Dernière étape : réglez les frais via votre lien <b>GouvPay</b>."},
+      {"type":"paylink","amount":"5 000 FCFA","ref":"Frais de délivrance · 2 exemplaires","code":"r/DIPL-2026-04827"},
+      {"type":"notif","tag":"N04","text":"Paiement de <b>5 000 FCFA</b> confirmé via GouvPay. Dossier transmis à la DECC.","bp":5},
+      {"type":"in","text":"Votre demande est enregistrée ✅ Vous recevrez les mises à jour ici, dans cette conversation."}
      ],
      "en":[
-      {"type":"in","text":"Hello 👋 I'm the civil-registry assistant. Write to me or send a voice note."},
-      {"type":"out","text":"Hi, I need a birth certificate"},
-      {"type":"in","text":"Gladly. Send your national ID.","bp":1},
-      {"type":"out","text":"23 1204 8473921","digits":true},
-      {"type":"tool","name":"Civil registry","arg":"id: \"23 1204 8473921\"","steps":["Connect"],"result":"1 citizen found"},
-      {"type":"in","text":"You are <b>A. Diallo</b>, born 12/03/1984 ?"},
+      {"type":"in","text":"Hello 👋 I'm the diploma-service agent. Write to me or send a voice note, in French or a local language."},
+      {"type":"out","text":"Hi, I'd like my high-school diploma (BAC)"},
+      {"type":"in","text":"Gladly. To identify you, send your national ID number (e-ID).","bp":1},
+      {"type":"out","text":"4827 1593 0641","digits":true},
+      {"type":"tool","name":"National e-ID base","arg":"eid: \"4827 1593 0641\"","steps":["Connect"],"result":"1 citizen found"},
+      {"type":"in","text":"You are <b>Romaric Togbé Agbagla</b>, born 12/03/1984 in Lomé?"},
       {"type":"out","text":"Yes, that's me"},
-      {"type":"in","text":"I'm sending you a code (OTP).","bp":2},
+      {"type":"in","text":"I'm sending you a verification code by SMS (OTP).","bp":2},
       {"type":"out","text":"729 014","digits":true},
       {"type":"tool","name":"OTP check","arg":"otp: \"729 014\"","steps":["Check"],"result":"Verified ✓"},
-      {"type":"in","text":"Identity confirmed ✅ Fetching your certificate.","bp":3},
-      {"type":"fill","src":"Civil registry","rows":[["Surname","Diallo"],["Given names","Aïssatou"],["Born","12/03/1984"]]},
-      {"type":"voice","dur":"0:05","transcript":"Two copies please."},
-      {"type":"in","text":"🎙️ Got it: <b>2 copies</b>."},
-      {"type":"dossier","num":"AN-2026-04827","rows":[["Document","Birth certificate"],["Copies","2"]],"bp":4},
-      {"type":"in","text":"Pay the fee via your <b>Mobile Money</b> link."},
-      {"type":"paylink","amount":"1,000 FCFA","ref":"Birth certificate","code":"r/AN-2026-04827"},
-      {"type":"notif","tag":"N04","text":"Payment of <b>1,000 FCFA</b> confirmed.","bp":5},
-      {"type":"in","text":"Your request is registered ✅ You'll get updates here."}
+      {"type":"in","text":"Identity confirmed ✅ I'm pre-filling your request from the national bases.","bp":3},
+      {"type":"fill","src":"National e-ID","rows":[["Surname","Agbagla"],["Given names","Romaric Togbé"],["Born","12/03/1984"],["Place","Lomé"]]},
+      {"type":"fill","src":"Education Golden Record","rows":[["Diploma","Baccalauréat"],["Track","D"],["Year","2003"],["Center","Lycée de Tokoin"]]},
+      {"type":"in","text":"Two questions left. How many copies, and for what purpose?"},
+      {"type":"voice","dur":"0:06","transcript":"Two copies please, it's for a scholarship application."},
+      {"type":"in","text":"🎙️ Got it: <b>2 copies</b>, purpose \"scholarship\"."},
+      {"type":"dossier","num":"DIPL-2026-04827","rows":[["Service","SRV-DECC-001"],["Applicant","R. T. Agbagla"],["Copies","2"],["Status","Complete · to pay"]],"bp":4},
+      {"type":"in","text":"Your request <b>DIPL-2026-04827</b> is complete ✅ Last step: pay the fee via your secure <b>GouvPay</b> link."},
+      {"type":"paylink","amount":"5,000 FCFA","ref":"Issuance fee · 2 copies","code":"r/DIPL-2026-04827"},
+      {"type":"notif","tag":"N04","text":"Payment of <b>5,000 FCFA</b> confirmed via GouvPay. Request sent to the DECC.","bp":5},
+      {"type":"in","text":"Your request is registered ✅ You'll get updates here, in this conversation."}
      ]}
     </script>
   </section>
