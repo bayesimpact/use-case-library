@@ -15,7 +15,8 @@
   /* ── section system: use-case slides get a faint wash + a blue "use case" marker;
        platform-feature slides keep the standard orange eyebrow. ── */
   .slide.usecase{ background:radial-gradient(72% 90% at 84% 6%, rgba(16,103,254,.05) 0%, transparent 56%), var(--bg); }
-  .uc-tag{ display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-blue); margin:0 0 22px; }
+  .uc-tag{ display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(0,0,0,.62); margin:0 0 22px; border:1px solid rgba(0,0,0,.16); border-radius:100px; padding:6px 14px; }
+  .uc-tag::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 3px rgba(31,122,63,.15); }
   .uc-tag::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--accent-blue); box-shadow:0 0 0 3px rgba(16,103,254,.16); }
 
   /* ── history timeline ── */
@@ -34,7 +35,7 @@
   /* headline impact-metric box */
   .impact{ display:flex; align-items:center; gap:18px; background:var(--card); border:1px solid var(--border-soft); border-left:4px solid var(--accent-orange); border-radius:12px; padding:13px 18px; margin:2px 0 4px; box-shadow:var(--shadow); max-width:820px; }
   .impact-n{ font-size:34px; font-weight:800; letter-spacing:-.02em; color:var(--ink); line-height:1; flex:0 0 auto; }
-  .impact-k{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-orange); }
+  .impact-k{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,0,0,.5); }
   .impact-d{ font-size:12.5px; color:var(--ink-soft); line-height:1.4; margin-top:3px; }
   /* Impulse press / highlight box (engagement slide) */
   .eimp{ display:flex; align-items:center; gap:22px; margin-top:18px; background:var(--card); border:1px solid var(--border-soft); border-left:4px solid var(--accent-orange); border-radius:14px; padding:15px 20px; box-shadow:var(--shadow); }
@@ -147,8 +148,18 @@
   .uc-note .ucn b{ color:var(--ink); }
   .uc-note .ucn .k{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-blue); display:block; margin-bottom:4px; }
 
+  /* ── cover: brand title, richer visual background, true-colour logo watermark ── */
+  #cover{ background:
+      radial-gradient(58% 76% at 86% 6%, rgba(16,103,254,.18) 0%, transparent 56%),
+      radial-gradient(70% 92% at 2% 104%, rgba(255,132,0,.16) 0%, transparent 56%),
+      linear-gradient(162deg, #0b0b10 0%, #100f15 52%, #18120a 100%); }
+  #cover::after{ content:''; position:absolute; right:-70px; bottom:-90px; width:520px; height:520px;
+    background:url(../../assets/logos/bi-icon-colors.svg) no-repeat center/contain; opacity:.16; pointer-events:none; z-index:0; }
+  #cover .slide-inner{ position:relative; z-index:1; }
+  #cover .sub{ font-weight:500; color:rgba(255,255,255,.82); max-width:30ch; margin-top:18px; }
+  #cover .chip .dot-ok{ background:rgba(255,255,255,.45); }
+
   /* ── "introducing" statement slide ── */
-  .intro-state .eyebrow{ color:var(--accent-orange); }
   .intro-state h1{ font-size:clamp(40px,6.6vw,88px); line-height:1; letter-spacing:-.035em; font-weight:800; margin:0; color:#fff; max-width:16ch; }
   .intro-state .lead{ color:rgba(255,255,255,.82); max-width:46ch; margin-top:22px; }
   .istate-grid{ display:grid; grid-template-columns:1.02fr .98fr; gap:46px; align-items:center; }
@@ -164,14 +175,19 @@
   .dws-bar .d{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.22); display:block; }
   .dws-bar .t{ margin-left:9px; font-weight:700; font-size:12px; color:rgba(255,255,255,.82); }
   .dws-bar .t small{ font-weight:500; color:rgba(255,255,255,.45); }
-  .dws-main{ display:grid; grid-template-columns:118px 1fr; }
-  .dws-side{ padding:12px 9px; border-right:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; gap:3px; }
-  .dws-side .s-item{ font-size:11.5px; color:rgba(255,255,255,.5); padding:6px 9px; border-radius:8px; }
+  .dws-bar .new{ margin-left:auto; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:#fff; background:rgba(255,132,0,.9); border-radius:7px; padding:4px 10px; }
+  .dws-main{ display:grid; grid-template-columns:138px 1fr; }
+  .dws-side{ padding:11px 9px; border-right:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; gap:3px; }
+  .dws-org{ display:flex; align-items:center; gap:8px; padding:5px 8px 11px; margin-bottom:5px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .dws-org b{ width:20px; height:20px; border-radius:6px; background:rgba(255,255,255,.14); display:grid; place-items:center; font-size:10px; color:#fff; flex:0 0 auto; }
+  .dws-org span{ font-size:11px; font-weight:600; color:rgba(255,255,255,.78); white-space:nowrap; }
+  .dws-side .s-item{ font-size:11px; color:rgba(255,255,255,.5); padding:6px 9px; border-radius:8px; white-space:nowrap; }
   .dws-side .s-item.on{ background:rgba(255,132,0,.2); color:#fff; font-weight:600; }
   .dws-list{ padding:11px 12px; display:flex; flex-direction:column; gap:7px; }
-  .dws-list .row{ display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:9px 11px; }
+  .dws-list .row{ display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:9px 11px; }
   .dws-list .row .ic{ font-size:14px; line-height:1; flex:0 0 auto; }
   .dws-list .row .nm{ font-size:12.5px; color:#fff; font-weight:600; flex:1; }
+  .dws-list .row .mdl{ font-family:'JetBrains Mono',monospace; font-size:8.5px; color:rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.16); border-radius:5px; padding:2px 6px; flex:0 0 auto; }
   .dws-list .badge{ font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 7px; border-radius:6px; flex:0 0 auto; }
   .dws-list .badge.ok{ background:rgba(46,160,67,.22); color:#86E3AC; }
   .dws-list .badge.run{ background:rgba(255,132,0,.2); color:#FFC07A; }
@@ -179,19 +195,54 @@
   @media (max-width:980px){ .istate-grid{ grid-template-columns:1fr; gap:26px; } .istate-grid h1{ max-width:16ch; } }
 
   /* ── section divider (intercalaire) ── */
-  .secdiv{ background:linear-gradient(125deg, rgba(255,132,0,.14) 0%, rgba(255,132,0,.04) 38%, rgba(16,103,254,.07) 100%), var(--bg); }
+  .secdiv{ background:
+      radial-gradient(60% 80% at 88% 8%, rgba(16,103,254,.22) 0%, transparent 55%),
+      radial-gradient(64% 86% at 4% 102%, rgba(255,132,0,.16) 0%, transparent 56%),
+      linear-gradient(160deg, #0b0b10 0%, #100f15 55%, #18120a 100%); }
   .secdiv .slide-inner{ display:flex; flex-direction:column; justify-content:center; }
-  .secdiv .num{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-orange); }
-  .secdiv h2{ font-size:clamp(46px,7vw,92px); line-height:1; letter-spacing:-.035em; font-weight:800; margin:16px 0 0; max-width:16ch; color:var(--ink); }
-  .secdiv .sub{ font-size:18px; line-height:1.5; color:var(--ink-soft); margin-top:22px; max-width:50ch; }
-  .secdiv .chips{ display:flex; gap:10px; flex-wrap:wrap; margin-top:30px; }
-  .secdiv .chips span{ background:var(--card); border:1px solid var(--border-soft); border-radius:999px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--ink); box-shadow:var(--shadow); }
-  /* ── focus use-case: subtle on-brand background + faint brand-mark watermark ── */
+  .secdiv .num{ display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.74); border:1px solid rgba(255,255,255,.22); border-radius:100px; padding:6px 14px; }
+  .secdiv .num::before{ content:''; width:7px; height:7px; border-radius:50%; background:#34b36a; box-shadow:0 0 0 3px rgba(52,179,106,.2); }
+  .secdiv h2{ font-size:clamp(46px,7vw,92px); line-height:1; letter-spacing:-.035em; font-weight:800; margin:16px 0 0; max-width:16ch; color:#fff; }
+  .secdiv .sub{ font-size:18px; line-height:1.55; color:rgba(255,255,255,.78); margin-top:22px; max-width:50ch; }
+  /* ── why-different: compact cards left + OECD page snapshot right ── */
+  .wd2{ display:grid; grid-template-columns:1.04fr 1fr; gap:30px; align-items:start; margin-top:16px; }
+  .wd2 .cards{ margin-top:0; gap:12px; }
+  .wd2 .card{ padding:13px 15px; }
+  .wd2 .card h3{ font-size:14.5px; margin:2px 0 0; }
+  .wd2 .card p{ font-size:11.5px; margin-top:5px; line-height:1.45; }
+  .wd-right{ display:flex; flex-direction:column; gap:10px; }
+  .wd-right .cap{ font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .wd-right .cap b{ color:var(--ink); }
+  .wd-right .cap a{ color:var(--accent-blue); font-weight:600; text-decoration:none; white-space:nowrap; }
+  /* the anti-demo: a generic assistant getting it wrong (mirrors the deck's demo mocks) */
+  .nope{ border:1px solid #e4cfca; border-radius:13px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+  .nope-bar{ display:flex; align-items:center; gap:8px; padding:9px 13px; background:linear-gradient(180deg,#fff,#fbf1ef); border-bottom:1px solid #efdcd7; }
+  .nope-bar .app{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:12px; color:var(--ink); }
+  .nope-bar .app b{ width:18px; height:18px; border-radius:5px; background:#e6e1d6; display:grid; place-items:center; font-size:11px; }
+  .nope-bar .flag{ margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#b3261e; background:rgba(179,38,30,.09); border:1px solid rgba(179,38,30,.25); border-radius:6px; padding:3px 8px; }
+  .nope-body{ padding:13px; display:flex; flex-direction:column; gap:9px; }
+  .nope-q{ align-self:flex-end; background:var(--accent-blue); color:#fff; border-radius:12px 12px 3px 12px; padding:8px 12px; font-size:12.5px; max-width:86%; }
+  .nope-a{ align-self:flex-start; background:var(--bg); border:1px solid var(--border-soft); border-radius:12px 12px 12px 3px; padding:10px 12px; font-size:12.5px; line-height:1.45; max-width:94%; }
+  .nope-stereo{ display:flex; gap:8px; margin-top:8px; }
+  .nope-stereo div{ flex:1; background:#fff; border:1px solid var(--border-soft); border-radius:8px; padding:7px 9px; font-size:11px; color:var(--ink); }
+  .nope-stereo b{ display:block; font-size:9px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:3px; font-weight:700; }
+  .nope-issues{ display:flex; gap:6px; flex-wrap:wrap; padding:0 13px 12px; }
+  .nope-issues span{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; color:#b3261e; background:rgba(179,38,30,.07); border:1px solid rgba(179,38,30,.2); border-radius:6px; padding:3px 8px; }
+  .nope-src{ font-size:10px; color:rgba(0,0,0,.45); padding:9px 13px; border-top:1px solid var(--border-soft); background:var(--cream); }
+  .nope-src a{ color:var(--accent-blue); font-weight:600; text-decoration:none; white-space:nowrap; }
+  /* ── use-case slides: each case study gets its own tint + faint partner watermark ── */
   .slide.usecase .slide-inner{ position:relative; z-index:1; }
-  .slide.usecase{ background:linear-gradient(180deg, rgba(255,132,0,.04) 0%, transparent 42%), var(--bg); }
-  .slide.usecase.focus{ background:radial-gradient(58% 78% at 88% 2%, rgba(16,103,254,.06) 0%, transparent 52%), radial-gradient(48% 60% at 4% 98%, rgba(255,132,0,.045) 0%, transparent 55%), var(--bg); }
+  .slide.usecase{ background:var(--bg); }
+  #uc-francetravail{ background:radial-gradient(60% 78% at 94% -8%, rgba(16,103,254,.11) 0%, transparent 56%), radial-gradient(46% 54% at -4% 104%, rgba(16,103,254,.05) 0%, transparent 60%), var(--bg); }
+  #demo-copilot{ background:radial-gradient(60% 78% at 94% -8%, rgba(178,122,42,.13) 0%, transparent 56%), var(--bg); }
+  #uc-health{ background:radial-gradient(60% 78% at 94% -8%, rgba(39,142,96,.12) 0%, transparent 56%), radial-gradient(46% 54% at -4% 104%, rgba(39,142,96,.05) 0%, transparent 60%), var(--bg); }
+  #demo-analytics{ background:radial-gradient(60% 78% at 94% -8%, rgba(255,132,0,.11) 0%, transparent 56%), var(--bg); }
+  .slide.usecase.focus{ background:radial-gradient(58% 78% at 88% 2%, rgba(43,104,64,.10) 0%, transparent 52%), radial-gradient(48% 60% at 4% 98%, rgba(240,196,25,.07) 0%, transparent 55%), var(--bg); }
   .uc-watermark{ position:absolute; right:-70px; bottom:-90px; z-index:0; pointer-events:none; opacity:.04; }
   .uc-watermark svg{ display:block; width:420px; height:auto; }
+  /* faint partner-logo watermark (the "picture" that differentiates each case study) */
+  .uc-pw{ position:absolute; right:34px; bottom:30px; z-index:0; pointer-events:none; width:300px; max-width:36%; opacity:.06; filter:grayscale(1); }
+  .uc-pw img{ display:block; width:100%; height:auto; }
   /* WhatsApp chrome icons (consistent line set, replacing emoji) */
   .wa-ic{ width:17px; height:17px; display:block; }
   /* featured card (orange-outlined highlight) */
@@ -289,10 +340,10 @@
   <!-- 1 · COVER — Bayes Impact title card (the brand) -->
   <div data-shared="cover">
     <script type="application/json">
-    { "eyebrow": { "fr": "L'ONG de référence pour l'IA au service public", "en": "The leading nonprofit for AI in public services" },
+    { "eyebrow": { "fr": "", "en": "" },
       "title":   { "fr": "Bayes Impact", "en": "Bayes Impact" },
-      "sub":     { "fr": "L'IA pour aider celles et ceux qui en ont besoin, et celles et ceux qui les accompagnent.", "en": "AI to empower people in need and those who help them." },
-      "chips":   [ { "fr": "À but non lucratif", "en": "Nonprofit" }, { "fr": "Open-source", "en": "Open-source" }, { "fr": "Depuis 2014", "en": "Since 2014" } ],
+      "sub":     { "fr": "La première plateforme open-source d'agents IA spécialisée pour le service public.", "en": "The first open-source AI agent platform built for public services." },
+      "chips":   [ { "fr": "Non-lucratif et open-source", "en": "Nonprofit & open-source" }, { "fr": "10M+ personnes accompagnées", "en": "10M+ people supported" }, { "fr": "12+ années d'intérêt général", "en": "12+ years of public-interest work" } ],
       "foot":    { "fr": "bayesimpact.org", "en": "bayesimpact.org" } }
     </script>
   </div>
@@ -316,15 +367,10 @@
       <div class="tl reveal">
         <div class="tl-item"><span class="tl-y">2014</span><span class="tl-d"><span data-lang="fr"><b>Fondation</b> à San Francisco, incubés par Y Combinator.</span><span data-lang="en"><b>Founded</b> in San Francisco, backed by Y Combinator.</span></span></div>
         <div class="tl-item"><span class="tl-y">2016</span><span class="tl-d"><span data-lang="fr"><b>Bob</b>, coach emploi avec Pôle Emploi. 500&nbsp;000+ personnes.</span><span data-lang="en"><b>Bob</b>, a job coach with Pôle Emploi. 500k+ people.</span></span></div>
-        <div class="tl-item"><span class="tl-y">2020</span><span class="tl-d"><span data-lang="fr"><b>Conotify</b>, alerte sanitaire. 10M+ citoyens.</span><span data-lang="en"><b>Conotify</b>, exposure alerts. 10M+ citizens.</span></span></div>
-        <div class="tl-item"><span class="tl-y">2024</span><span class="tl-d"><span data-lang="fr"><b>CaseAI</b>, open-source pour le travail social.</span><span data-lang="en"><b>CaseAI</b>, open-source for social work.</span></span></div>
-        <div class="tl-item"><span class="tl-y">2025</span><span class="tl-d"><span data-lang="fr"><b>France Travail</b> à l'échelle nationale. <b>AP-HP</b> (soutien Google.org).</span><span data-lang="en"><b>France Travail</b> nationwide. <b>AP-HP</b> (Google.org-backed).</span></span></div>
-        <div class="tl-item"><span class="tl-y">2026</span><span class="tl-d"><span data-lang="fr"><b>Togo</b> : services publics par WhatsApp pour 9M de citoyens.</span><span data-lang="en"><b>Togo</b>: public services on WhatsApp for 9M citizens.</span></span></div>
-      </div>
-      <div class="stats reveal">
-        <div class="stat"><b>2014</b><span data-lang="fr">fondés en Silicon Valley</span><span data-lang="en">founded in Silicon Valley</span></div>
-        <div class="stat"><b>3</b><span data-lang="fr">continents</span><span data-lang="en">continents</span></div>
-        <div class="stat"><b>MIT</b><span data-lang="fr">open-source, à but non lucratif</span><span data-lang="en">open-source, nonprofit</span></div>
+        <div class="tl-item"><span class="tl-y">2020</span><span class="tl-d"><span data-lang="fr"><b>Conotify</b> : télédéclaration des cas contact Covid. Repris par l'Assurance Maladie. 10M+ citoyens notifiés.</span><span data-lang="en"><b>Conotify</b>: Covid contact self-reporting. Adopted by the national health insurance. 10M+ citizens notified.</span></span></div>
+        <div class="tl-item"><span class="tl-y">2024</span><span class="tl-d"><span data-lang="fr"><b>CaseAI</b> : logiciel de gestion de bénéficiaires IA pour les associations. 50+ organisations accélérées.</span><span data-lang="en"><b>CaseAI</b>: AI-powered case management system for nonprofits. 50+ organizations accelerated.</span></span></div>
+        <div class="tl-item"><span class="tl-y">2025</span><span class="tl-d"><span data-lang="fr"><b>Impulse.Healthcare</b> : 200+ soignants sur 20 hôpitaux accompagnés dans la création de cas d'usage IA.</span><span data-lang="en"><b>Impulse.Healthcare</b>: 200+ caregivers across 20 hospitals supported in building AI use cases.</span></span></div>
+        <div class="tl-item"><span class="tl-y">2026</span><span class="tl-d"><span data-lang="fr"><b>Afrique de l'Ouest</b> : services publics accessibles par agents conversationnels pour 9M+ citoyens au Togo. <b>Impulse.Healthcare</b> : extension européenne sur 5 pays.</span><span data-lang="en"><b>West Africa</b>: public services made accessible via conversational agents for 9M+ citizens in Togo. <b>Impulse.Healthcare</b>: European expansion across 5 countries.</span></span></div>
       </div>
     </div>
   </section>
@@ -344,19 +390,20 @@
           </a>
         </div>
         <div class="dws reveal" aria-hidden="true">
-          <div class="dws-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">Bayes Platform <small>· workspace</small></span></div>
+          <div class="dws-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">Bayes Platform <small>· workspace</small></span><span class="new">＋ agent</span></div>
           <div class="dws-main">
             <div class="dws-side">
+              <div class="dws-org"><b>◑</b><span>AP-HP</span></div>
               <div class="s-item on">▦ Agents</div>
               <div class="s-item">◍ Sources</div>
               <div class="s-item">◐ Évaluations</div>
               <div class="s-item">◔ Observabilité</div>
             </div>
             <div class="dws-list">
-              <div class="row"><span class="ic">🧬</span><span class="nm">Copilote clinicien</span><span class="badge ok">déployé</span></div>
-              <div class="row"><span class="ic">💬</span><span class="nm">Assistant citoyen</span><span class="badge ok">déployé</span></div>
-              <div class="row"><span class="ic">📋</span><span class="nm">Appui aux protocoles</span><span class="badge ok">déployé</span></div>
-              <div class="row"><span class="ic">📊</span><span class="nm">Analytique métier</span><span class="badge run">en éval</span></div>
+              <div class="row"><span class="ic">🧬</span><span class="nm">Copilote clinicien</span><span class="mdl">Claude</span><span class="badge ok">déployé</span></div>
+              <div class="row"><span class="ic">💬</span><span class="nm">Assistant citoyen</span><span class="mdl">Gemma 3</span><span class="badge ok">déployé</span></div>
+              <div class="row"><span class="ic">📋</span><span class="nm">Appui aux protocoles</span><span class="mdl">Mistral</span><span class="badge ok">déployé</span></div>
+              <div class="row"><span class="ic">📊</span><span class="nm">Analytique métier</span><span class="mdl">Qwen</span><span class="badge run">en éval</span></div>
               <div class="row add">+ <span data-lang="fr">nouvel agent</span><span data-lang="en">new agent</span></div>
             </div>
           </div>
@@ -370,39 +417,53 @@
   <section class="slide" id="why-different">
     <div class="slide-inner">
       <p class="eyebrow reveal"><span data-lang="fr">Ce qui nous distingue</span><span data-lang="en">What sets us apart</span></p>
-      <h2 class="title reveal" style="max-width:24ch"><span data-lang="fr">Pas un générateur d'agents <em class="hl">générique</em>.</span><span data-lang="en">Not a generic <em class="hl">agent builder</em>.</span></h2>
+      <h2 class="title reveal" style="max-width:24ch"><span data-lang="fr">Pas un générateur d'agents IA <em class="hl">générique</em>.</span><span data-lang="en">Not a generic <em class="hl">AI agent builder</em>.</span></h2>
       <p class="lead reveal" style="margin-top:4px; max-width:64ch"><span data-lang="fr">Un cas d'usage de service public a des exigences qu'un assistant générique ignore. La Bayes Platform les traite <b>par défaut</b>, prête à l'emploi.</span><span data-lang="en">A public-service use case has requirements a generic assistant ignores. The Bayes Platform handles them <b>by default</b>, out of the box.</span></p>
-      <div class="cards c2 reveal" style="margin-top:16px">
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Protocoles à la lettre</span><span data-lang="en">Protocols to the letter</span></div>
-          <h3><span data-lang="fr">Pas un RAG générique</span><span data-lang="en">Not a dumb generic RAG</span></h3>
-          <p><span data-lang="fr">L'agent suit <b>vos protocoles officiels</b>, sources citées, sans dériver vers le web ouvert.</span><span data-lang="en">The agent follows <b>your official protocols</b>, sources cited, never drifting to the open web.</span></p>
+      <div class="wd2 reveal">
+        <div class="cards c2">
+          <div class="card">
+            <div class="kicker"><span data-lang="fr">Suivi des protocoles</span><span data-lang="en">Protocol adherence</span></div>
+            <h3><span data-lang="fr">Pas un RAG générique</span><span data-lang="en">Not a dumb generic RAG</span></h3>
+            <p><span data-lang="fr">L'agent suit <b>vos protocoles officiels</b>, sources citées, sans dériver vers le web ouvert.</span><span data-lang="en">The agent follows <b>your official protocols</b>, sources cited, never drifting to the open web.</span></p>
+          </div>
+          <div class="card">
+            <div class="kicker"><span data-lang="fr">Analytique métier</span><span data-lang="en">Business analytics</span></div>
+            <h3><span data-lang="fr">Métriques prêtes à l'emploi</span><span data-lang="en">Metrics out of the box</span></h3>
+            <p><span data-lang="fr">Volume, sujets, et angles morts documentaires : de quoi <b>piloter la qualité</b> de l'accompagnement.</span><span data-lang="en">Volume, topics, and documentation blind spots: everything to <b>steer the quality</b> of the guidance.</span></p>
+          </div>
+          <div class="card">
+            <div class="kicker"><span data-lang="fr">Validation avant production</span><span data-lang="en">Validation before production</span></div>
+            <h3><span data-lang="fr">Campagnes d'expérimentation</span><span data-lang="en">Experimentation campaigns</span></h3>
+            <p><span data-lang="fr">Faites valider les réponses par des experts, à l'aveugle, <b>avant tout lancement</b>.</span><span data-lang="en">Have experts validate answers, blind, <b>before any launch</b>.</span></p>
+          </div>
+          <div class="card">
+            <div class="kicker"><span data-lang="fr">Ouvert &amp; souverain</span><span data-lang="en">Open &amp; sovereign</span></div>
+            <h3><span data-lang="fr">Votre data sous contrôle</span><span data-lang="en">Your data, under control</span></h3>
+            <p><span data-lang="fr">Cloud ou on-premise, avec vos LLMs (frontières ou open-weights). La donnée de vos bénéficiaires reste maîtrisée.</span><span data-lang="en">Cloud or on-premise, with your choice of LLMs (frontier or open-weight). Your beneficiaries' data stays under your control.</span></p>
+          </div>
         </div>
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Analytique métier</span><span data-lang="en">Business analytics</span></div>
-          <h3><span data-lang="fr">Métriques prêtes à l'emploi</span><span data-lang="en">Metrics out of the box</span></h3>
-          <p><span data-lang="fr">Volume, sujets, et surtout les angles morts documentaires : de quoi <b>piloter la qualité</b> du contenu d'accompagnement.</span><span data-lang="en">Volume, topics, and crucially the documentation blind spots: everything to <b>steer the quality</b> of the guidance.</span></p>
-        </div>
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Validation avant production</span><span data-lang="en">Validation before production</span></div>
-          <h3><span data-lang="fr">Campagnes d'expérimentation</span><span data-lang="en">Experimentation campaigns</span></h3>
-          <p><span data-lang="fr">Faites valider les réponses par des experts, à l'aveugle, <b>avant tout lancement</b> en production.</span><span data-lang="en">Have experts validate answers, blind, <b>before any production</b> launch.</span></p>
-        </div>
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Ouvert &amp; souverain</span><span data-lang="en">Open &amp; sovereign</span></div>
-          <h3><span data-lang="fr">Votre data sous contrôle</span><span data-lang="en">Your data, under control</span></h3>
-          <p><span data-lang="fr">Open-source : dans le cloud ou on-premise sur votre infra, avec vos LLMs (frontières ou open-weights). La donnée de vos bénéficiaires reste maîtrisée.</span><span data-lang="en">Open-source: in the cloud or on-premise on your own infra, with your choice of LLMs (frontier or open-weight). Your beneficiaries' data stays under your control.</span></p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;gap:0;align-items:stretch;margin-top:16px;background:var(--card);border:1px solid var(--border-soft);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);max-width:900px;">
-        <div style="flex:0 0 130px;background:linear-gradient(135deg,#b3261e,#7a1a15);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:14px;text-align:center;">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;opacity:.85;">OECD.AI</span>
-          <span style="font-size:26px;line-height:1;">⚠</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.06em;opacity:.8;">AI INCIDENT · 2024</span>
-        </div>
-        <div style="flex:1 1 auto;padding:13px 17px;">
-          <div style="font-weight:700;font-size:14px;color:var(--ink);"><span data-lang="fr">Un chatbot d'emploi public (AMS, Autriche) a reproduit des biais de genre.</span><span data-lang="en">A public employment chatbot (Austria's AMS) reproduced gender bias.</span></div>
-          <div style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:6px;"><span data-lang="fr">Le faire soi-même, c'est mille subtilités à maîtriser : le dilemme entre souveraineté et réinventer la roue. Les briques ci-dessus sont précisément ce qui l'évite. </span><span data-lang="en">Building it yourself means a thousand subtleties to get right: the dilemma between sovereignty and reinventing the wheel. The bricks above are exactly what prevents it. </span><a href="https://oecd.ai/en/incidents/2024-01-04-47fe" target="_blank" rel="noopener" style="color:var(--accent-blue);font-weight:600;text-decoration:none;white-space:nowrap;">oecd.ai ↗</a></div>
+        <div class="wd-right">
+          <p class="uc-tag" style="margin:0 0 2px"><span data-lang="fr">À éviter · l'assistant générique</span><span data-lang="en">What not to do · the generic assistant</span></p>
+          <div class="nope">
+            <div class="nope-bar"><span class="app"><b>🤖</b> <span data-lang="fr">Assistant générique</span><span data-lang="en">Generic assistant</span></span><span class="flag">⚠ <span data-lang="fr">sans garde-fous</span><span data-lang="en">no guardrails</span></span></div>
+            <div class="nope-body">
+              <div class="nope-q"><span data-lang="fr">Quels métiers me conseillez-vous ?</span><span data-lang="en">What careers would you suggest for me?</span></div>
+              <div class="nope-a">
+                <span data-lang="fr">Voici mes recommandations :</span><span data-lang="en">Here are my recommendations:</span>
+                <div class="nope-stereo">
+                  <div><b><span data-lang="fr">Pour une femme</span><span data-lang="en">For a woman</span></b><span data-lang="fr">hôtellerie, secrétariat, soin</span><span data-lang="en">hospitality, secretarial, care</span></div>
+                  <div><b><span data-lang="fr">Pour un homme</span><span data-lang="en">For a man</span></b><span data-lang="fr">ingénierie, technique, IT</span><span data-lang="en">engineering, trades, IT</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="nope-issues">
+              <span>✗ <span data-lang="fr">biais de genre</span><span data-lang="en">gender bias</span></span>
+              <span>✗ <span data-lang="fr">aucun protocole</span><span data-lang="en">no protocol</span></span>
+              <span>✗ <span data-lang="fr">non sourcé</span><span data-lang="en">unsourced</span></span>
+            </div>
+            <div class="nope-src"><span data-lang="fr">Incident réel : chatbot emploi AMS (Autriche), 2024 · </span><span data-lang="en">Real incident: AMS employment chatbot (Austria), 2024 · </span><a href="https://oecd.ai/en/incidents/2024-01-04-47fe" target="_blank" rel="noopener">oecd.ai ↗</a></div>
+          </div>
+          <p class="cap"><span data-lang="fr"><b>Le piège du « fait maison ».</b> Les quatre briques ci-contre sont précisément ce qui l'évite.</span><span data-lang="en"><b>The "DIY" trap.</b> The four bricks at left are exactly what prevents this.</span></p>
         </div>
       </div>
     </div>
@@ -444,30 +505,24 @@
   <div data-shared="platform-privacy"></div>
 
   <!-- SECTION DIVIDER — use cases in action -->
-  <section class="slide secdiv" id="sec-usecases">
+  <section class="slide secdiv dark" id="sec-usecases" data-dark>
     <div class="slide-inner">
       <p class="num reveal"><span data-lang="fr">Partie 02 · Cas d'usage</span><span data-lang="en">Part 02 · Use cases</span></p>
       <h2 class="reveal"><span data-lang="fr">La plateforme <em class="hl">en action</em>.</span><span data-lang="en">The platform <em class="hl">in action</em>.</span></h2>
-      <p class="sub reveal"><span data-lang="fr">Des agents en production, sur le terrain : emploi, santé, services publics. Tous bâtis sur la même plateforme, déployés sur l'infrastructure de chaque organisation.</span><span data-lang="en">Agents in production, in the field: employment, healthcare, public services. All built on the same platform, deployed on each organization's infrastructure.</span></p>
-      <div class="chips reveal">
-        <span>💼 <span data-lang="fr">Emploi · France Travail</span><span data-lang="en">Employment · France Travail</span></span>
-        <span>🏥 <span data-lang="fr">Santé · AP-HP</span><span data-lang="en">Healthcare · AP-HP</span></span>
-        <span>📊 <span data-lang="fr">Analytique métier</span><span data-lang="en">Operational analytics</span></span>
-        <span>🇹🇬 <span data-lang="fr">Services publics · Togo</span><span data-lang="en">Public services · Togo</span></span>
-      </div>
+      <p class="sub reveal"><span data-lang="fr">Des agents en production, sur le terrain : emploi, santé, justice, services publics. Tous bâtis sur la même plateforme, déployés sur l'infrastructure de chaque organisation.</span><span data-lang="en">Agents in production, in the field: employment, healthcare, justice, public services. All built on the same platform, deployed on each organization's infrastructure.</span></p>
     </div>
   </section>
 
   <!-- 7 · USE CASE — France Travail (CoachFT) -->
   <section class="slide usecase" id="uc-francetravail">
+    <div class="uc-pw" aria-hidden="true"><img src="../../assets/partners/france-travail.webp" alt="" /></div>
     <div class="slide-inner">
       <p class="uc-tag reveal"><span data-lang="fr">Cas d'usage · Emploi</span><span data-lang="en">Use case · Employment</span></p>
-      <h2 class="title reveal" style="max-width:24ch"><span data-lang="fr">Un coach IA, <em class="hl">dans l'outil métier</em> de France Travail.</span><span data-lang="en">An AI coach, <em class="hl">inside the France Travail</em> workspace.</span></h2>
-      <div class="pscope reveal"><img src="../../assets/partners/france-travail.webp" alt="France Travail" /><div><b>~6M</b> <span data-lang="fr">demandeurs d'emploi dans le périmètre</span><span data-lang="en">jobseekers in the use-case scope</span></div></div>
+      <h2 class="title reveal" style="max-width:26ch"><span data-lang="fr">France Travail : un <em class="hl">coach IA proactif</em> pour les demandeurs d'emploi.</span><span data-lang="en">France Travail: a <em class="hl">proactive AI coach</em> for jobseekers.</span></h2>
+      <div class="pscope reveal"><img src="../../assets/partners/france-travail.webp" alt="France Travail" /><div><b>~6M</b> <span data-lang="fr">demandeurs d'emploi</span><span data-lang="en">jobseekers</span></div></div>
       <div class="split reveal" style="margin-top:8px; grid-template-columns:1.35fr .9fr; gap:34px">
         <div class="ftb">
-          <div class="ftb-bar"><div class="ftb-dots"><i></i><i></i><i></i></div><div class="ftb-url">vivatech.francetravail.bayes.org</div><span class="ftb-badge">démo</span></div>
-          <div class="ftb-app"><span class="ftb-logo"><span class="ft1">france</span><span class="ft2">travail</span></span><span class="ftb-app-sub"><span data-lang="fr">Coach · espace conseiller</span><span data-lang="en">Coach · advisor workspace</span></span></div>
+          <div class="ftb-bar"><div class="ftb-dots"><i></i><i></i><i></i></div></div>
           <div class="ftb-body">
             <div class="ftb-q">je veux devenir infirmière</div>
             <div class="ftb-a">
@@ -529,9 +584,10 @@
 
   <!-- 14 · USE CASE — Healthcare (Impulse cohort) -->
   <section class="slide usecase" id="uc-health">
+    <div class="uc-pw" aria-hidden="true"><img src="../../assets/partners/ap-hp.webp" alt="" /></div>
     <div class="slide-inner">
       <p class="uc-tag reveal"><span data-lang="fr">Cas d'usage · Santé</span><span data-lang="en">Use case · Healthcare</span></p>
-      <h2 class="title reveal" style="max-width:32ch"><span data-lang="fr">Focus santé : les cas d'usage que <em class="hl">la plateforme ouvre à l'hôpital public</em>.</span><span data-lang="en">Healthcare focus: the use cases <em class="hl">the platform unlocks for public hospitals</em>.</span></h2>
+      <h2 class="title reveal" style="max-width:32ch"><span data-lang="fr">Hôpitaux publics : <em class="hl">exemples de cas d'usage</em> de la Bayes Platform.</span><span data-lang="en">Public hospitals: <em class="hl">example use cases</em> on the Bayes Platform.</span></h2>
       <div class="pscope reveal"><img src="../../assets/partners/ap-hp.webp" alt="AP-HP" /><div><b>8M+</b> <span data-lang="fr">patients/an à l'AP-HP, dans le périmètre</span><span data-lang="en">patients/yr at AP-HP, in the use-case scope</span></div></div>
       <p class="lead reveal" style="margin-top:4px; max-width:66ch"><span data-lang="fr">Les besoins remontent du terrain ; notre programme <b>Impulse</b> les transforme en agents, déployés et monitorés côte à côte sur la Bayes Platform.</span><span data-lang="en">Needs come from the ground up; our <b>Impulse</b> program turns them into agents, deployed and monitored side by side on the Bayes Platform.</span></p>
       <div class="ws reveal">
@@ -565,8 +621,9 @@
   <!-- USE CASE — analytics agent (structures data, charts on the fly) -->
   <section class="slide usecase" id="demo-analytics">
     <div class="slide-inner">
-      <p class="uc-tag reveal"><span data-lang="fr">Cas d'usage · Analytique</span><span data-lang="en">Use case · Analytics</span></p>
-      <div class="demo-head reveal"><h2><span data-lang="fr">Un autre type d'agent : <em class="hl">vos données en insights</em>, à la volée.</span><span data-lang="en">A different kind of agent: <em class="hl">your data into insights</em>, on the fly.</span></h2><span class="dh-sub"><span data-lang="fr">Posez la question en langage clair. L'agent structure la donnée, écrit la requête, et génère le bon graphique automatiquement.</span><span data-lang="en">Ask in plain language. The agent structures the data, writes the query, and generates the right chart automatically.</span></span></div>
+      <p class="uc-tag reveal"><span data-lang="fr">Cas d'usage · Charité</span><span data-lang="en">Use case · Charité</span></p>
+      <div class="demo-head reveal"><h2><span data-lang="fr">Charité : <em class="hl">génération d'insights à la volée</em> pour les soignants.</span><span data-lang="en">Charité: <em class="hl">insights on the fly</em> for caregivers.</span></h2><span class="dh-sub"><span data-lang="fr">Posez la question en langage clair. L'agent structure la donnée, écrit la requête, et génère le bon graphique automatiquement.</span><span data-lang="en">Ask in plain language. The agent structures the data, writes the query, and generates the right chart automatically.</span></span></div>
+      <div class="pscope reveal" style="margin-top:8px"><span style="font-size:18px">🏥</span><div><b>1M+</b> <span data-lang="fr">cas traités/an · Charité (Berlin), l'un des plus grands hôpitaux universitaires d'Europe</span><span data-lang="en">treatment cases/yr · Charité (Berlin), one of Europe's largest university hospitals</span></div></div>
       <div class="wd-banner reveal"><span class="dot-ok"></span><span><span data-lang="fr">Exemple : <b>cohorte de capteurs santé</b> · InfluxDB · 7 derniers jours · FC · VFC · pas · énergie · sommeil · <b>données illustratives</b></span><span data-lang="en">Example: <b>a health wearables cohort</b> · InfluxDB · last 7 days · HR · HRV · steps · energy · sleep · <b>illustrative data</b></span></span></div>
       <div class="wd-tabs reveal">
         <button class="wd-tab active" data-tab="patient">👤 <span data-lang="fr">Vue patient</span><span data-lang="en">Patient view</span></button>

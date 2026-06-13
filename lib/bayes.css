@@ -57,8 +57,11 @@
   .slide.show .reveal:nth-child(6){transition-delay:.30s;}
 
   /* ===== TYPOGRAPHY ===== */
-  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-orange); margin:0 0 22px; display:flex; align-items:center; gap:10px;}
-  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--accent-orange); box-shadow:0 0 0 3px rgba(255,132,0,.18);}
+  /* outlined neutral pill — mirrors the website's .section-pill (border + muted text, no colour accent) */
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(0,0,0,.62); margin:0 0 22px; display:inline-flex; align-items:center; gap:9px; border:1px solid rgba(0,0,0,.16); border-radius:100px; padding:6px 14px;}
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 3px rgba(31,122,63,.15);}
+  .dark .eyebrow, [data-dark] .eyebrow{color:rgba(255,255,255,.74); border-color:rgba(255,255,255,.22);}
+  .dark .eyebrow::before, [data-dark] .eyebrow::before{background:#34b36a; box-shadow:0 0 0 3px rgba(52,179,106,.18);}
   h1.big{font-size:clamp(38px,5.2vw,68px); line-height:1.05; letter-spacing:-.03em; font-weight:800; margin:0 0 20px; max-width:18ch;}
   h2.title{font-size:clamp(30px,3.6vw,46px); line-height:1.1; letter-spacing:-.025em; font-weight:800; margin:0 0 16px; max-width:20ch;}
   em.hl{font-style:normal; background:linear-gradient(180deg,transparent 58%,var(--gold-bg) 58%); padding:0 3px;}
@@ -82,7 +85,8 @@
   .cards.c3{grid-template-columns:repeat(3,1fr);}
   .cards.c2{grid-template-columns:repeat(2,1fr);}
   .card{background:var(--card); border:1px solid var(--border-soft); border-radius:var(--radius); padding:22px 22px; box-shadow:var(--shadow);}
-  .card .kicker{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--accent-orange); margin-bottom:10px; text-transform:uppercase;}
+  .card .kicker{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; color:rgba(0,0,0,.5); margin-bottom:10px; text-transform:uppercase;}
+  .dark .card .kicker, [data-dark] .card .kicker{color:rgba(255,255,255,.6);}
   .card h3{font-size:19px; font-weight:700; margin:0 0 8px; letter-spacing:-.01em;}
   .card p{font-size:14.5px; color:var(--ink-soft); margin:0; line-height:1.5;}
   .card .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;}
@@ -134,7 +138,6 @@
       linear-gradient(180deg, #09090b 0%, #0f0f13 50%, #16130c 100%);
     color:#fff;
   }
-  .arch-slide .eyebrow{color:var(--accent-orange);}
   .arch{position:relative; display:flex; flex-direction:column; gap:13px; margin-top:26px; padding-left:60px;}
   /* the upward construction axis: a line that brightens toward the top + arrowhead */
   .arch::before{content:""; position:absolute; left:21px; top:16px; bottom:34px; width:2px;
@@ -271,7 +274,6 @@
 
   /* ===== COVER / CLOSING ===== */
   .cover{align-items:flex-start;}
-  .cover .eyebrow{color:var(--accent-orange);}
   .cover-mark{display:inline-flex; align-items:center; gap:14px; margin-bottom:40px;}
   .cover-mark svg{width:40px; height:40px; color:var(--border-soft);}
   .cover-mark .wm{font-weight:800; letter-spacing:.02em; font-size:15px; color:#fff;}
@@ -453,7 +455,6 @@
   .believe-box{position:relative; overflow:hidden; border-radius:24px; padding:clamp(36px,4.5vw,68px); min-height:min(60vh,540px); background:radial-gradient(58% 70% at 72% 44%, rgba(40,72,140,.16) 0%, transparent 60%), radial-gradient(120% 120% at 72% 30%, #0a1426 0%, #060b18 45%, #02040b 100%); box-shadow:0 30px 80px rgba(0,0,0,.3); color:#fff;}
   .believe-box .hero-txt, .believe-box .hero-planet{position:relative; z-index:1;}
   .believe-box h1{color:#fff;}
-  .believe-box .eyebrow{color:var(--accent-orange);}
   .believe-box .lead{color:rgba(255,255,255,.82);}
   .believe-box .hero-planet img{filter:drop-shadow(0 0 32px rgba(120,170,255,.18));}
   @keyframes floaty{0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)}}

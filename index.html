@@ -75,23 +75,23 @@
     <svg class="bl-chev" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
   <div class="browse-panel" id="browsePanel" role="list">
-    <a class="uc-row" href="demos/bayes/" role="listitem">
+    <a class="uc-row" href="presentations/bayes/" role="listitem">
       <span class="uc-txt"><span class="uc-t">Bayes Platform</span><span class="uc-d"><span data-lang="fr">Présentation générale de la plateforme</span><span data-lang="en">General platform overview</span></span></span>
       <span class="uc-arrow">→</span>
     </a>
-    <a class="uc-row" href="demos/togo/" role="listitem">
+    <a class="uc-row" href="presentations/togo/" role="listitem">
       <span class="uc-txt"><span class="uc-t">Togo</span><span class="uc-d"><span data-lang="fr">Service public augmenté par l'IA</span><span data-lang="en">AI-augmented public services</span></span></span>
       <span class="uc-arrow">→</span>
     </a>
-    <a class="uc-row" href="demos/benin/" role="listitem">
+    <a class="uc-row" href="presentations/benin/" role="listitem">
       <span class="uc-txt"><span class="uc-t">Bénin</span><span class="uc-d"><span data-lang="fr">Plateforme agentique nationale</span><span data-lang="en">National agentic platform</span></span></span>
       <span class="uc-arrow">→</span>
     </a>
-    <a class="uc-row" href="demos/congo/" role="listitem">
+    <a class="uc-row" href="presentations/congo/" role="listitem">
       <span class="uc-txt"><span class="uc-t">Congo</span><span class="uc-d"><span data-lang="fr">Le DPI du gouvernement agentique</span><span data-lang="en">The DPI of the agentic government</span></span></span>
       <span class="uc-arrow">→</span>
     </a>
-    <a class="uc-row" href="demos/employment/" role="listitem">
+    <a class="uc-row" href="presentations/employment/" role="listitem">
       <span class="uc-txt"><span class="uc-t">MCP</span><span class="uc-d"><span data-lang="fr">Brancher l'IA sur vos systèmes — emploi, santé, aides</span><span data-lang="en">Plug AI into your systems — employment, health, benefits</span></span></span>
       <span class="uc-arrow">→</span>
     </a>
@@ -138,14 +138,14 @@
     orbit.appendChild(ring);
   });
 
-  // access gate → demos/<slug>/  (security-by-obscurity; the repo is public anyway)
+  // access gate → presentations/<slug>/  (security-by-obscurity; the repo is public anyway)
   function slugify(v) { return (v || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
   document.getElementById("gate").addEventListener("submit", function (e) {
     e.preventDefault();
     var slug = slugify(input.value), l = html.getAttribute("data-lang");
     if (!slug) { hint.textContent = l === "en" ? "Enter your demo code." : "Entrez le code de votre démo."; return; }
     hint.textContent = l === "en" ? "Opening…" : "Ouverture…";
-    window.location.href = "demos/" + slug + "/";
+    window.location.href = "presentations/" + slug + "/";
   });
 
   // browse the library — reveal the list of use cases

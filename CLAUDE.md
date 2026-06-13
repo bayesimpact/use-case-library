@@ -9,7 +9,7 @@ fully before you start.
 The golden rule: **a teammate points you at a brief and gets a beautiful, on-brand, working demo
 without touching code.** You do the work. Don't hand them a template to fill in.
 
-The second rule: **maximalist scaffold, minimalist result.** `demos/_template/` includes *every*
+The second rule: **maximalist scaffold, minimalist result.** `presentations/_template/` includes *every*
 canonical slide. A new deck **keeps the few that fit, deletes the rest, customises the generic ones,
 and adds bespoke slides freely** — without it ever becoming a *usine à gaz*. Lean to fewer slides.
 
@@ -109,10 +109,10 @@ layer, `.arch-layer.socle`, is the lit cream centerpiece with the `#bi-mark` wat
 
 ```
 use-cases/
-├── index.html         splash gate — visitor types a code → /demos/<slug>/
+├── index.html         splash gate — visitor types a code → /presentations/<slug>/
 ├── lib/  bayes.css · bayes.js · bayes-slides.js   (shared — rarely edited)
 ├── assets/  logos/ · planet.webp · partners/      (shared brand assets)
-├── demos/
+├── presentations/
 │   ├── _template/index.html   ← copy this to start (the maximalist scaffold)
 │   └── <slug>/index.html      ← one folder per demo / deck
 ├── CLAUDE.md   (this file)   └── README.md
@@ -120,7 +120,7 @@ use-cases/
 
 Two content types share the system: **website-linkable demo pages** (a focused interactive
 showcase) and **partner decks** (intro → vision → use cases → demos → platform → team → thanks).
-`demos/bayes/` is the **master presentation**: the maximalist, fully-built Bayes deck (every
+`presentations/bayes/` is the **master presentation**: the maximalist, fully-built Bayes deck (every
 argument, both demos, every use-case family). It doubles as the cold-share deck when there's no
 specific engagement yet, and is the **source you personalise down** for each partner (see §5).
 
@@ -179,7 +179,7 @@ it.** A deck runs ~8–14 slides, one idea each.
    Our signature; keep it second. Living Earth + an **orbiting dots cloud** (the brand dots/data
    motif, JS-built, *not* a starfield), *quiet* glow. Harmonious on mobile too.
 3. **Context** (`data-shared="context"`, *optional*) — partner · country · date + the meeting/project
-   theme. Position 3 in a partner deck; **delete it** from a cold/generic deck (the `demos/bayes/` one
+   theme. Position 3 in a partner deck; **delete it** from a cold/generic deck (the `presentations/bayes/` one
    has no context slide).
 4. **Who we are** (`data-shared="about"`) — mission + credibility + funder logos.
 5. **Arguments & use cases** — *the bespoke middle.* Problem, the offer (3 pillars in `.cards.c3`),
@@ -190,12 +190,12 @@ it.** A deck runs ~8–14 slides, one idea each.
 8. **Team / sponsors / how we work** (bespoke) — the partnership.
 9. **Thank-you** (`data-shared="closing"`).
 
-`demos/_template/index.html` is exactly this, maximalist (every shared slide present). Start there
+`presentations/_template/index.html` is exactly this, maximalist (every shared slide present). Start there
 and delete down.
 
 ### Personalising the master deck for a partner
 
-`demos/bayes/` is the **master presentation** — maximalist on purpose. A partner declension is made by
+`presentations/bayes/` is the **master presentation** — maximalist on purpose. A partner declension is made by
 **subtracting and swapping**, not starting from scratch. Three buckets:
 
 - **Keep as-is (Bayes-canonical — don't touch the copy):** Cover (swap only the title / partner name),
@@ -272,8 +272,8 @@ third only if the brief asks.)
 ## 9 · How to make a variant
 
 1. **Read the brief.** Audience, message, the 1–2 use cases to demo, the org, domain facts.
-2. `cp -r demos/_template demos/<slug>` (slug = kebab-case).
-3. **Edit only `demos/<slug>/index.html`.** Set `<title>` + the `<body>` `data-label-*`. Rewrite the
+2. `cp -r presentations/_template presentations/<slug>` (slug = kebab-case).
+3. **Edit only `presentations/<slug>/index.html`.** Set `<title>` + the `<body>` `data-label-*`. Rewrite the
    cover, the use-case middle, and the two demo JSONs. **Delete the shared placeholders you don't
    need; customise the ones you keep** (§4). Keep every string FR+EN; keep the orange rule (§2).
 4. **Verify** (§8): desktop + mobile + both demos + the FR/EN dropdown + PDF. Console clean.
@@ -299,9 +299,9 @@ third only if the brief asks.)
 
 ## 11 · Publish
 
-Commit the new `demos/<slug>/` and push. It goes live at:
+Commit the new `presentations/<slug>/` and push. It goes live at:
 ```
-https://bayesimpact.github.io/use-cases/demos/<slug>/
+https://bayesimpact.github.io/use-cases/presentations/<slug>/
 ```
 Give the teammate that URL **and** the splash access code (the slug). The splash at `/` is a soft
 gate (the repo is public — security-by-obscurity only). Mark genuinely confidential pitches as such.
@@ -309,7 +309,7 @@ gate (the repo is public — security-by-obscurity only). Mark genuinely confide
 ---
 
 ### TL;DR
-Copy `demos/_template/`, **delete the shared slides you don't need**, customise the ones you keep
+Copy `presentations/_template/`, **delete the shared slides you don't need**, customise the ones you keep
 (cover + context via opts), rewrite the use-case middle + the two demo JSONs. Keep every string **FR+EN**, keep the
 **gold-marker emphasis (orange is only punctuation)**, keep the earth hero. Verify **desktop +
 mobile + PDF**, push, share the URL. Sound like Bayes. Be honest about what's a demo.

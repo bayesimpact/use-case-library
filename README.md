@@ -37,7 +37,7 @@ Google.org and the Gates Foundation.
 ## What's inside
 
 - A **generic Bayes Platform overview** — the cold-share introduction to the platform:
-  [→ open](https://bayesimpact.github.io/use-cases/demos/bayes/)
+  [→ open](https://bayesimpact.github.io/use-cases/presentations/bayes/)
 - **Partner use cases** — contexts such as government digital public infrastructure, health, and
   employment, each as an interactive mockup or presentation. These sit behind the splash gate at the
   site root (enter the use case's short code); confidential pitches are marked as such.
@@ -64,8 +64,8 @@ Designed to be done **by prompting Claude** with your content (a brief, meeting 
 Claude follows [`CLAUDE.md`](CLAUDE.md) — the full playbook. The manual path:
 
 ```bash
-cp -r demos/_template demos/<slug>     # slug = kebab-case, e.g. demos/charite-health
-# edit demos/<slug>/index.html  → title, slides, and the two interactive JSON blocks (keep FR+EN)
+cp -r presentations/_template presentations/<slug>     # slug = kebab-case, e.g. presentations/charite-health
+# edit presentations/<slug>/index.html  → title, slides, and the two interactive JSON blocks (keep FR+EN)
 ```
 
 Preview locally with any static server:
@@ -73,19 +73,19 @@ Preview locally with any static server:
 ```bash
 python3 -m http.server 8016
 # → http://localhost:8016/                 splash gate
-# → http://localhost:8016/demos/<slug>/    your use case
+# → http://localhost:8016/presentations/<slug>/    your use case
 ```
 
 Commit and push — it goes live at
-`https://bayesimpact.github.io/use-cases/demos/<slug>/`.
+`https://bayesimpact.github.io/use-cases/presentations/<slug>/`.
 
 ## Layout
 
 ```
-index.html      splash gate (enter a short code → /demos/<slug>/)
+index.html      splash gate (enter a short code → /presentations/<slug>/)
 lib/            bayes.css · bayes.js · bayes-slides.js   — the shared engine (rarely edited)
 assets/         logos · planet · partner logos
-demos/          _template/  +  one folder per use case
+presentations/          _template/  +  one folder per use case
 CLAUDE.md       the playbook (design system, voice, shared slides, engines, requirements)
 ```
 
