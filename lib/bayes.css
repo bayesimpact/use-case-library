@@ -440,6 +440,9 @@
   .hero-txt h1{font-size:clamp(30px,4vw,52px); line-height:1.08; letter-spacing:-.03em; font-weight:800; margin:0 0 18px; max-width:17ch;}
   .hero-txt .lead{font-size:clamp(16px,1.6vw,20px); color:var(--ink-soft);}
   .hero-planet{display:flex; justify-content:center; align-items:center;}
+  /* planet rises up from the bottom as the slide enters (so the spin reads as motion) */
+  .earth .hero-planet{transform:translateY(74px); opacity:0; transition:transform 1.15s cubic-bezier(.2,.75,.2,1), opacity .9s ease;}
+  .earth.show .hero-planet{transform:translateY(0); opacity:1;}
   .hero-planet img{width:100%; height:auto; display:block; animation:spin 140s linear infinite;}
   .planet-wrap{position:relative; width:min(420px,40vw); animation:floaty 9s ease-in-out infinite;}
   .planet-orbit{position:absolute; inset:-24%; pointer-events:none;}
@@ -738,6 +741,8 @@
     .deck { display:block !important; height:auto !important; overflow:visible !important; scroll-snap-type:none !important; }
     .nav, .dots, .hint, .demo-controls, .wa-input { display:none !important; }
     .reveal { opacity:1 !important; transform:none !important; }
+    .earth .hero-planet { opacity:1 !important; transform:none !important; }
+    #uc-francetravail .ftb-body > div { opacity:1 !important; transform:none !important; animation:none !important; }
     .slide {
       width:1280px !important; height:800px !important; min-height:0 !important;
       margin:0 !important; padding:60px 72px !important; box-shadow:none !important;

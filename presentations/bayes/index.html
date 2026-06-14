@@ -71,6 +71,21 @@
   .ma-sub.off{ opacity:.65; border-style:dashed; background:var(--cream); }
   .ma-sub.off .s{ color:var(--muted); }
   .ma-sub.new{ border-style:dashed; color:var(--muted); display:flex; align-items:center; justify-content:center; font-weight:600; font-size:12.5px; box-shadow:none; background:none; }
+  /* merged platform-OS slide (foundations stack + orchestration) */
+  .osx{ display:flex; flex-direction:column; }
+  .osx-lab{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .osx-agents{ display:flex; gap:8px; }
+  .osx-abox{ flex:1 1 0; background:var(--card); border:1px solid var(--border-soft); border-radius:10px; padding:9px 8px; box-shadow:var(--shadow); text-align:center; font-size:11px; font-weight:600; color:var(--ink-soft); line-height:1.25; }
+  .osx-up{ text-align:center; color:var(--accent-orange); font-weight:800; font-size:13px; letter-spacing:8px; padding:5px 0 4px; }
+  .osx-platform{ background:linear-gradient(180deg,#fff,rgba(255,132,0,.07)); border:2px solid var(--accent-orange); border-radius:13px; padding:11px 13px; box-shadow:0 0 0 3px rgba(255,132,0,.1), var(--shadow); }
+  .osx-chips{ display:flex; gap:6px; flex-wrap:wrap; }
+  .osx-chip{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:600; padding:4px 8px; border-radius:7px; background:var(--cream); border:1px solid var(--border-soft); color:var(--ink-soft); }
+  .osx-chip.d{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2); color:#fff; }
+  .osx-model{ display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:9px; padding-top:9px; border-top:1px solid var(--border-soft); }
+  .osx-model .ml{ font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .osx-pill{ text-align:center; padding:5px 0; }
+  .osx-pill span{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; color:#fff; background:var(--ink); border-radius:999px; padding:5px 12px; }
+  .osx-found{ background:var(--ink); color:#fff; border-radius:13px; padding:11px 13px; }
   @media (max-width:1100px){ .ma-subs{ grid-template-columns:1fr 1fr; } }
 
   /* ── team ── */
@@ -85,7 +100,7 @@
   .tm-role{ font-size:11.5px; font-weight:700; color:var(--ink-soft); margin-top:4px; letter-spacing:.01em; }
   .tm-bio{ font-size:11.5px; color:var(--muted); line-height:1.4; margin-top:6px; }
   /* the rest of the team (compact: small avatar + name + role) */
-  .team-rest{ display:grid; grid-template-columns:repeat(5,1fr); gap:22px 18px; margin-top:26px; }
+  .team-rest{ display:grid; grid-template-columns:repeat(5,1fr); gap:22px 18px; margin-top:38px; padding-top:30px; border-top:1px solid var(--border-soft); }
   .trc{ display:flex; align-items:center; gap:10px; }
   .trc .av{ width:40px; height:40px; flex:0 0 auto; }
   .trc .av-ph{ font-size:12px; }
@@ -136,6 +151,14 @@
   .ftb-logo .ft1{ color:#d8362d; } .ftb-logo .ft2{ color:#0b1f8f; }
   .ftb-app-sub{ font-size:12px; color:var(--muted); }
   .ftb-body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:13px; }
+  /* messages appear one after another as the slide enters (like the live demos) */
+  #uc-francetravail .ftb-body > div{ opacity:0; transform:translateY(9px); }
+  #uc-francetravail.show .ftb-body > div{ animation:ftbIn .5s ease forwards; }
+  #uc-francetravail.show .ftb-body > div:nth-child(1){ animation-delay:.3s; }
+  #uc-francetravail.show .ftb-body > div:nth-child(2){ animation-delay:.95s; }
+  #uc-francetravail.show .ftb-body > div:nth-child(3){ animation-delay:1.7s; }
+  #uc-francetravail.show .ftb-body > div:nth-child(4){ animation-delay:2.35s; }
+  @keyframes ftbIn{ to{ opacity:1; transform:none; } }
   .ftb-q{ align-self:flex-end; max-width:74%; background:var(--ink); color:#fff; border-radius:15px 15px 5px 15px; padding:9px 14px; font-size:14px; line-height:1.4; }
   .ftb-a{ align-self:flex-start; max-width:88%; }
   .ftb-tools{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:8px; }
@@ -153,16 +176,19 @@
   .uc-note .ucn b{ color:var(--ink); }
   .uc-note .ucn .k{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-blue); display:block; margin-bottom:4px; }
 
-  /* ── cover: brand title, richer visual background, true-colour logo watermark ── */
-  #cover{ background:
+  /* ── cover + closing: brand title, richer visual background, true-colour logo watermark ── */
+  #cover, #thanks{ background:
       radial-gradient(58% 76% at 86% 6%, rgba(16,103,254,.18) 0%, transparent 56%),
       radial-gradient(70% 92% at 2% 104%, rgba(255,132,0,.16) 0%, transparent 56%),
       linear-gradient(162deg, #0b0b10 0%, #100f15 52%, #18120a 100%); }
-  #cover::after{ content:''; position:absolute; right:-70px; bottom:-90px; width:520px; height:520px;
+  #cover::after, #thanks::after{ content:''; position:absolute; right:-70px; bottom:-90px; width:520px; height:520px;
     background:url(../../assets/logos/bi-icon-colors.svg) no-repeat center/contain; opacity:.16; pointer-events:none; z-index:0; }
-  #cover .slide-inner{ position:relative; z-index:1; }
+  #cover .slide-inner, #thanks .slide-inner{ position:relative; z-index:1; }
   #cover .sub{ font-weight:500; color:rgba(255,255,255,.82); max-width:30ch; margin-top:18px; }
   #cover .chip .dot-ok{ background:rgba(255,255,255,.45); }
+  #thanks .tagline{ max-width:24ch; }
+  #thanks .thanks-contact{ margin-top:22px; }
+  #thanks .thanks-contact a{ display:inline-block; color:#fff; font-weight:600; text-decoration:none; border:1px solid rgba(255,255,255,.24); background:rgba(255,255,255,.08); border-radius:11px; padding:11px 18px; font-size:15px; }
 
   /* ── "introducing" statement slide ── */
   .intro-state h1{ font-size:clamp(40px,6.6vw,88px); line-height:1; letter-spacing:-.035em; font-weight:800; margin:0; color:#fff; max-width:16ch; }
@@ -219,22 +245,18 @@
   .wd-right .cap{ font-size:11.5px; color:var(--muted); line-height:1.5; }
   .wd-right .cap b{ color:var(--ink); }
   .wd-right .cap a{ color:var(--accent-blue); font-weight:600; text-decoration:none; white-space:nowrap; }
-  /* the anti-demo: a generic assistant getting it wrong (mirrors the deck's demo mocks) */
-  .nope{ border:1px solid #e4cfca; border-radius:13px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
-  .nope-bar{ display:flex; align-items:center; gap:8px; padding:9px 13px; background:linear-gradient(180deg,#fff,#fbf1ef); border-bottom:1px solid #efdcd7; }
-  .nope-bar .app{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:12px; color:var(--ink); }
-  .nope-bar .app b{ width:18px; height:18px; border-radius:5px; background:#e6e1d6; display:grid; place-items:center; font-size:11px; }
-  .nope-bar .flag{ margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#b3261e; background:rgba(179,38,30,.09); border:1px solid rgba(179,38,30,.25); border-radius:6px; padding:3px 8px; }
-  .nope-body{ padding:13px; display:flex; flex-direction:column; gap:9px; }
-  .nope-q{ align-self:flex-end; background:var(--accent-blue); color:#fff; border-radius:12px 12px 3px 12px; padding:8px 12px; font-size:12.5px; max-width:86%; }
-  .nope-a{ align-self:flex-start; background:var(--bg); border:1px solid var(--border-soft); border-radius:12px 12px 12px 3px; padding:10px 12px; font-size:12.5px; line-height:1.45; max-width:94%; }
-  .nope-stereo{ display:flex; gap:8px; margin-top:8px; }
-  .nope-stereo div{ flex:1; background:#fff; border:1px solid var(--border-soft); border-radius:8px; padding:7px 9px; font-size:11px; color:var(--ink); }
-  .nope-stereo b{ display:block; font-size:9px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:3px; font-weight:700; }
-  .nope-issues{ display:flex; gap:6px; flex-wrap:wrap; padding:0 13px 12px; }
-  .nope-issues span{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; color:#b3261e; background:rgba(179,38,30,.07); border:1px solid rgba(179,38,30,.2); border-radius:6px; padding:3px 8px; }
-  .nope-src{ font-size:10px; color:rgba(0,0,0,.45); padding:9px 13px; border-top:1px solid var(--border-soft); background:var(--cream); }
-  .nope-src a{ color:var(--accent-blue); font-weight:600; text-decoration:none; white-space:nowrap; }
+  /* the cautionary tale: a press-article snapshot of the real bad-buzz incident */
+  .bz{ border:1px solid var(--border-soft); border-radius:13px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+  .bz-bar{ display:flex; align-items:center; gap:7px; padding:8px 12px; background:var(--cream); border-bottom:1px solid var(--border-soft); }
+  .bz-bar i{ width:9px; height:9px; border-radius:50%; background:var(--border-soft); display:block; flex:0 0 auto; }
+  .bz-url{ flex:1 1 auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); background:var(--card); border:1px solid var(--border-soft); border-radius:6px; padding:4px 9px; margin-left:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bz-hero{ position:relative; height:122px; background:linear-gradient(135deg,#26272f 0%,#3a2b2b 100%); display:flex; align-items:center; justify-content:center; }
+  .bz-hero svg{ width:50px; height:50px; opacity:.7; }
+  .bz-tag{ position:absolute; left:12px; bottom:10px; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:rgba(179,38,30,.92); border-radius:6px; padding:3px 8px; }
+  .bz-body{ padding:13px 15px; }
+  .bz-source{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+  .bz-head{ font-weight:800; font-size:16.5px; line-height:1.24; color:var(--ink); margin-top:7px; letter-spacing:-.01em; }
+  .bz-dek{ font-size:11.5px; color:var(--muted); line-height:1.5; margin-top:8px; }
   /* ── use-case slides: each case study gets its own tint + faint partner watermark ── */
   .slide.usecase .slide-inner{ position:relative; z-index:1; }
   /* The case-study section is one coherent "showcase" surface — a bright neutral base
@@ -457,27 +479,20 @@
           </div>
         </div>
         <div class="wd-right">
-          <p class="uc-tag" style="margin:0 0 2px"><span data-lang="fr">À éviter · l'assistant générique</span><span data-lang="en">What not to do · the generic assistant</span></p>
-          <div class="nope">
-            <div class="nope-bar"><span class="app"><b>🤖</b> <span data-lang="fr">Assistant générique</span><span data-lang="en">Generic assistant</span></span><span class="flag">⚠ <span data-lang="fr">sans garde-fous</span><span data-lang="en">no guardrails</span></span></div>
-            <div class="nope-body">
-              <div class="nope-q"><span data-lang="fr">Quels métiers me conseillez-vous ?</span><span data-lang="en">What careers would you suggest for me?</span></div>
-              <div class="nope-a">
-                <span data-lang="fr">Voici mes recommandations :</span><span data-lang="en">Here are my recommendations:</span>
-                <div class="nope-stereo">
-                  <div><b><span data-lang="fr">Pour une femme</span><span data-lang="en">For a woman</span></b><span data-lang="fr">hôtellerie, secrétariat, soin</span><span data-lang="en">hospitality, secretarial, care</span></div>
-                  <div><b><span data-lang="fr">Pour un homme</span><span data-lang="en">For a man</span></b><span data-lang="fr">ingénierie, technique, IT</span><span data-lang="en">engineering, trades, IT</span></div>
-                </div>
-              </div>
+          <p class="uc-tag" style="margin:0 0 2px"><span data-lang="fr">À éviter · le contre-exemple</span><span data-lang="en">What not to do · the cautionary tale</span></p>
+          <div class="bz">
+            <div class="bz-bar"><i></i><i></i><i></i><span class="bz-url">presse · oecd.ai/incidents · 2024</span></div>
+            <div class="bz-hero" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><circle cx="9" cy="13" r="1.2" fill="rgba(255,255,255,.85)" stroke="none"/><circle cx="15" cy="13" r="1.2" fill="rgba(255,255,255,.85)" stroke="none"/><path d="M12 4.5v3.5M8.5 19v1.6M15.5 19v1.6"/></svg>
+              <span class="bz-tag">⚠ AI incident · 2024</span>
             </div>
-            <div class="nope-issues">
-              <span>✗ <span data-lang="fr">biais de genre</span><span data-lang="en">gender bias</span></span>
-              <span>✗ <span data-lang="fr">aucun protocole</span><span data-lang="en">no protocol</span></span>
-              <span>✗ <span data-lang="fr">non sourcé</span><span data-lang="en">unsourced</span></span>
+            <div class="bz-body">
+              <div class="bz-source">Der Standard · Süddeutsche Zeitung · OECD.AI</div>
+              <div class="bz-head"><span data-lang="fr">Un chatbot public pour l'emploi reproduit des stéréotypes de genre.</span><span data-lang="en">A public employment chatbot reproduces gender stereotypes.</span></div>
+              <div class="bz-dek"><span data-lang="fr">L'assistant « Berufsinfomat » de l'agence autrichienne (AMS), bâti sur un chatbot grand public, orientait les femmes vers l'hôtellerie et les hommes vers la tech. Tollé public, correctifs en urgence.</span><span data-lang="en">Austria's AMS "Berufsinfomat" assistant, built on a consumer chatbot, steered women toward hospitality and men toward tech. Public outcry, emergency fixes.</span></div>
             </div>
-            <div class="nope-src"><span data-lang="fr">Incident réel : chatbot emploi AMS (Autriche), 2024 · </span><span data-lang="en">Real incident: AMS employment chatbot (Austria), 2024 · </span><a href="https://oecd.ai/en/incidents/2024-01-04-47fe" target="_blank" rel="noopener">oecd.ai ↗</a></div>
           </div>
-          <p class="cap"><span data-lang="fr"><b>Le piège du « fait maison ».</b> Les quatre briques ci-contre sont précisément ce qui l'évite.</span><span data-lang="en"><b>The "DIY" trap.</b> The four bricks at left are exactly what prevents this.</span></p>
+          <p class="cap"><span data-lang="fr"><b>Le piège du « fait maison ».</b> Les quatre briques ci-contre sont précisément ce qui l'évite. </span><span data-lang="en"><b>The "DIY" trap.</b> The four bricks at left are exactly what prevents this. </span><a href="https://oecd.ai/en/incidents/2024-01-04-47fe" target="_blank" rel="noopener">oecd.ai ↗</a></p>
         </div>
       </div>
     </div>
@@ -498,33 +513,61 @@
   <div data-shared="platform-privacy"></div>
 
 
-  <!-- 6 · PLATFORM as the OS on your secured foundations -->
-  <div data-shared="platform-compliance"></div>
-
-
-  <!-- META-AGENT — a platform, not a collection of prototypes -->
-  <section class="slide" id="meta-agent">
+  <!-- 6 · PLATFORM OS — your foundations + agent orchestration (merges infra + meta-agent) -->
+  <section class="slide" id="platform-os">
     <div class="slide-inner">
-      <p class="eyebrow reveal"><span data-lang="fr">Une plateforme, pas des prototypes</span><span data-lang="en">A platform, not a pile of prototypes</span></p>
-      <h2 class="title reveal" style="max-width:26ch"><span data-lang="fr">Un méta-agent qui <em class="hl">route vers le bon sous-agent</em>.</span><span data-lang="en">One meta-agent that <em class="hl">routes to the right sub-agent</em>.</span></h2>
-      <div class="reveal" style="margin-top:14px;max-width:900px;">
-        <span class="ma-req">«&nbsp;<span data-lang="fr">Je veux inscrire mon enfant à la crèche.</span><span data-lang="en">I'd like to enrol my child in daycare.</span>&nbsp;»</span>
-        <div class="ma-fan">↓</div>
-        <div class="ma-router">
-          <div class="k"><span data-lang="fr">Méta-agent · niveau organisation</span><span data-lang="en">Meta-agent · organization level</span></div>
-          <div class="t"><span data-lang="fr">Identifie le besoin et l'éligibilité, puis route vers le bon sous-agent spécialisé.</span><span data-lang="en">Identifies the need and the entitlements, then routes to the right specialized sub-agent.</span></div>
+      <p class="eyebrow reveal"><span data-lang="fr">L'architecture</span><span data-lang="en">The architecture</span></p>
+      <h2 class="title reveal" style="max-width:30ch"><span data-lang="fr">Une plateforme, <em class="hl">pas une collection de prototypes</em>.</span><span data-lang="en">A platform, <em class="hl">not a pile of prototypes</em>.</span></h2>
+      <p class="lead reveal" style="margin-top:4px; max-width:72ch"><span data-lang="fr">Vos fondations — vos systèmes et vos données. La Bayes Platform les valorise pour déployer autant de services IA que nécessaire pour vos bénéficiaires. À l'échelle, jamais une donnée qui sort.</span><span data-lang="en">Your foundations — your systems and your data. The Bayes Platform turns them into as many AI services as you need for your beneficiaries. At scale, with data that never leaves.</span></p>
+      <div class="split reveal" style="margin-top:14px; grid-template-columns:1fr 1fr; gap:28px; align-items:start">
+        <!-- LEFT: foundations stack (bottom-up) -->
+        <div class="osx">
+          <div class="osx-lab"><span data-lang="fr">③ Autant d'agents que nécessaire</span><span data-lang="en">③ As many agents as you need</span></div>
+          <div class="osx-agents">
+            <span class="osx-abox"><span data-lang="fr">Copilote clinicien</span><span data-lang="en">Clinician copilot</span></span>
+            <span class="osx-abox"><span data-lang="fr">Assistant citoyen</span><span data-lang="en">Citizen assistant</span></span>
+            <span class="osx-abox"><span data-lang="fr">Cas d'usage métier</span><span data-lang="en">Business use cases</span></span>
+          </div>
+          <div class="osx-up">↑↑↑</div>
+          <div class="osx-platform">
+            <div class="osx-lab" style="color:var(--accent-orange)"><span data-lang="fr">② Bayes Platform · l'OS agentique</span><span data-lang="en">② Bayes Platform · the agentic OS</span></div>
+            <div class="osx-chips">
+              <span class="osx-chip"><span data-lang="fr">Orchestration multi-agents</span><span data-lang="en">Multi-agent orchestration</span></span>
+              <span class="osx-chip"><span data-lang="fr">Ancrage &amp; protocoles</span><span data-lang="en">Grounding &amp; protocols</span></span>
+              <span class="osx-chip"><span data-lang="fr">Garde-fous</span><span data-lang="en">Guardrails</span></span>
+              <span class="osx-chip">No-code</span>
+            </div>
+            <div class="osx-model"><span class="ml"><span data-lang="fr">Tous les modèles</span><span data-lang="en">Any model</span></span><span class="osx-chip">Frontier · cloud</span><span class="osx-chip">Gemma · Mistral · Qwen</span></div>
+          </div>
+          <div class="osx-pill"><span><span data-lang="fr">posée sur vos fondations · la donnée ne sort jamais</span><span data-lang="en">sits on your foundations · data never leaves</span></span></div>
+          <div class="osx-found">
+            <div class="osx-lab" style="color:rgba(255,255,255,.6)"><span data-lang="fr">① Vos fondations · vos systèmes &amp; données</span><span data-lang="en">① Your foundations · your systems &amp; data</span></div>
+            <div class="osx-chips">
+              <span class="osx-chip d"><span data-lang="fr">Ministères</span><span data-lang="en">Ministries</span></span>
+              <span class="osx-chip d">DPI / EHR</span>
+              <span class="osx-chip d">Back-offices</span>
+              <span class="osx-chip d"><span data-lang="fr">Hébergé chez vous</span><span data-lang="en">Hosted in-house</span></span>
+            </div>
+          </div>
         </div>
-        <div class="ma-fan">↓&nbsp;&nbsp;↓&nbsp;&nbsp;↓</div>
-        <div class="ma-subs">
-          <div class="ma-sub"><div class="n"><span data-lang="fr">Éligibilité &amp; aides</span><span data-lang="en">Eligibility &amp; benefits</span></div><div class="s">✓ <span data-lang="fr">testé · déployé · monitoré</span><span data-lang="en">tested · deployed · monitored</span></div></div>
-          <div class="ma-sub"><div class="n"><span data-lang="fr">Pièces justificatives</span><span data-lang="en">Required documents</span></div><div class="s">✓ <span data-lang="fr">testé · déployé · monitoré</span><span data-lang="en">tested · deployed · monitored</span></div></div>
-          <div class="ma-sub"><div class="n"><span data-lang="fr">Prise de rendez-vous</span><span data-lang="en">Appointment booking</span></div><div class="s">✓ <span data-lang="fr">testé · déployé · monitoré</span><span data-lang="en">tested · deployed · monitored</span></div></div>
-          <div class="ma-sub"><div class="n"><span data-lang="fr">Suivi du dossier</span><span data-lang="en">Case follow-up</span></div><div class="s">✓ <span data-lang="fr">testé · déployé · monitoré</span><span data-lang="en">tested · deployed · monitored</span></div></div>
-          <div class="ma-sub off"><div class="n"><span data-lang="fr">Renouvellement de passeport</span><span data-lang="en">Passport renewal</span></div><div class="s"><span data-lang="fr">pas encore implémenté</span><span data-lang="en">not implemented yet</span></div></div>
-          <div class="ma-sub new"><span data-lang="fr">+ nouveau cas d'usage</span><span data-lang="en">+ new use case</span></div>
+        <!-- RIGHT: orchestration demo -->
+        <div>
+          <div class="osx-lab"><span data-lang="fr">L'orchestration, en action</span><span data-lang="en">Orchestration, in action</span></div>
+          <span class="ma-req">«&nbsp;<span data-lang="fr">Je veux inscrire mon enfant à la crèche.</span><span data-lang="en">I'd like to enrol my child in daycare.</span>&nbsp;»</span>
+          <div class="ma-fan">↓</div>
+          <div class="ma-router">
+            <div class="k"><span data-lang="fr">Méta-agent · niveau organisation</span><span data-lang="en">Meta-agent · organization level</span></div>
+            <div class="t"><span data-lang="fr">Identifie le besoin, puis route vers le bon sous-agent spécialisé.</span><span data-lang="en">Identifies the need, then routes to the right specialized sub-agent.</span></div>
+          </div>
+          <div class="ma-fan">↓&nbsp;&nbsp;↓&nbsp;&nbsp;↓</div>
+          <div class="ma-subs" style="grid-template-columns:1fr 1fr">
+            <div class="ma-sub"><div class="n"><span data-lang="fr">Éligibilité &amp; aides</span><span data-lang="en">Eligibility &amp; benefits</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
+            <div class="ma-sub"><div class="n"><span data-lang="fr">Pièces justificatives</span><span data-lang="en">Required documents</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
+            <div class="ma-sub"><div class="n"><span data-lang="fr">Prise de rendez-vous</span><span data-lang="en">Appointment booking</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
+            <div class="ma-sub new"><span data-lang="fr">+ nouveau cas d'usage</span><span data-lang="en">+ new use case</span></div>
+          </div>
         </div>
       </div>
-      <p class="footnote reveal" style="margin-top:14px"><span data-lang="fr">Chaque sous-agent est <b>testé, déployé et monitoré indépendamment</b> (fiabilité maximale), et l'agent <b>sait quand il n'a pas l'outil</b>. Commencez simple, enrichissez le périmètre.</span><span data-lang="en">Each sub-agent is <b>tested, deployed and monitored independently</b> (for maximum reliability), and the agent <b>knows when it lacks the tool</b>. Start simple, grow the scope.</span></p>
     </div>
   </section>
 
@@ -901,9 +944,9 @@
         </div>
       </div>
       <div class="team-rest reveal">
-        <div class="trc"><span class="av av-ph">AA</span><div><div class="trc-n">Augustin Ador</div><div class="trc-r"><span data-lang="fr">Lead Forward Deployed Engineer · ex-Dataiku</span><span data-lang="en">Lead Forward Deployed Engineer · ex-Dataiku</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/carine.jpg" alt="Carine Sit" /><div><div class="trc-n">Carine Sit</div><div class="trc-r"><span data-lang="fr">Directrice des programmes</span><span data-lang="en">Programs Director</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/vincent.jpg" alt="Vincent Vercamer" /><div><div class="trc-n">Vincent Vercamer, PhD</div><div class="trc-r"><span data-lang="fr">Directeur Santé · ex-Délégation au Numérique en Santé</span><span data-lang="en">Health Director · ex-Digital Health Delegation</span></div></div></div>
+        <div class="trc"><span class="av av-ph">AA</span><div><div class="trc-n">Augustin Ador</div><div class="trc-r"><span data-lang="fr">Lead Forward Deployed Engineer · ex-Dataiku</span><span data-lang="en">Lead Forward Deployed Engineer · ex-Dataiku</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/alexis.jpg" alt="Alexis Jamet" /><div><div class="trc-n">Alexis Jamet</div><div class="trc-r"><span data-lang="fr">Software Engineer</span><span data-lang="en">Software Engineer</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/anna.jpg" alt="Anna Bauer" /><div><div class="trc-n">Anna Bauer</div><div class="trc-r"><span data-lang="fr">Directrice marketing</span><span data-lang="en">Marketing Director</span></div></div></div>
         <div class="trc"><img class="av" src="../../assets/team/noe.jpg" alt="Noé Bosc-Haddad" /><div><div class="trc-n">Noé Bosc-Haddad</div><div class="trc-r">Data Scientist</div></div></div>
