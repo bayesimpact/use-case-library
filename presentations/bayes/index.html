@@ -37,6 +37,11 @@
   .impact-n{ font-size:34px; font-weight:800; letter-spacing:-.02em; color:var(--ink); line-height:1; flex:0 0 auto; }
   .impact-k{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,0,0,.5); }
   .impact-d{ font-size:12.5px; color:var(--ink-soft); line-height:1.4; margin-top:3px; }
+  /* our-model slide */
+  .mdl-lab{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .mdl-pt{ font-size:13px; line-height:1.5; color:var(--muted); padding:11px 0; border-top:1px solid var(--border-soft); }
+  .mdl-pt:first-of-type{ border-top:none; padding-top:0; }
+  .mdl-pt b{ color:var(--ink); }
   /* Impulse press / highlight box (engagement slide) */
   .eimp{ display:flex; align-items:center; gap:22px; margin-top:18px; background:var(--card); border:1px solid var(--border-soft); border-left:4px solid var(--accent-orange); border-radius:14px; padding:15px 20px; box-shadow:var(--shadow); }
   .eimp-press{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:7px; padding-right:20px; border-right:1px solid var(--border-soft); }
@@ -232,12 +237,16 @@
   .nope-src a{ color:var(--accent-blue); font-weight:600; text-decoration:none; white-space:nowrap; }
   /* ── use-case slides: each case study gets its own tint + faint partner watermark ── */
   .slide.usecase .slide-inner{ position:relative; z-index:1; }
-  .slide.usecase{ background:var(--bg); }
-  #uc-francetravail{ background:radial-gradient(60% 78% at 94% -8%, rgba(16,103,254,.11) 0%, transparent 56%), radial-gradient(46% 54% at -4% 104%, rgba(16,103,254,.05) 0%, transparent 60%), var(--bg); }
-  #demo-copilot{ background:radial-gradient(60% 78% at 94% -8%, rgba(178,122,42,.13) 0%, transparent 56%), var(--bg); }
-  #uc-health{ background:radial-gradient(60% 78% at 94% -8%, rgba(39,142,96,.12) 0%, transparent 56%), radial-gradient(46% 54% at -4% 104%, rgba(39,142,96,.05) 0%, transparent 60%), var(--bg); }
-  #demo-analytics{ background:radial-gradient(60% 78% at 94% -8%, rgba(255,132,0,.11) 0%, transparent 56%), var(--bg); }
-  .slide.usecase.focus{ background:radial-gradient(58% 78% at 88% 2%, rgba(43,104,64,.10) 0%, transparent 52%), radial-gradient(48% 60% at 4% 98%, rgba(240,196,25,.07) 0%, transparent 55%), var(--bg); }
+  /* The case-study section is one coherent "showcase" surface — a bright neutral base
+     distinct from the Bayes beige, so returning to beige (model/philosophy) is a sharp
+     transition. Slides differ only by their vertical accent (--uc). */
+  .slide.usecase, .slide.usecase.focus{ --uc:16,103,254;
+    background:radial-gradient(58% 74% at 93% -8%, rgba(var(--uc),.14) 0%, transparent 56%),
+      radial-gradient(42% 50% at -4% 106%, rgba(var(--uc),.06) 0%, transparent 60%),
+      linear-gradient(180deg, #FBFBFC 0%, #F4F5F8 60%); }
+  #uc-francetravail{ --uc:16,103,254; }   /* social & employment */
+  #uc-health, #demo-analytics{ --uc:39,142,96; }   /* health */
+  #demo-copilot, #uc-togo, #uc-togo-overview{ --uc:200,138,40; }   /* government */
   .uc-watermark{ position:absolute; right:-70px; bottom:-90px; z-index:0; pointer-events:none; opacity:.04; }
   .uc-watermark svg{ display:block; width:420px; height:auto; }
   /* faint partner-logo watermark (the "picture" that differentiates each case study) */
@@ -337,8 +346,10 @@
 
 <main class="deck" id="deck">
 
+
   <!-- 1 · COVER — Bayes Impact title card (the brand) -->
   <div data-shared="cover">
+
     <script type="application/json">
     { "eyebrow": { "fr": "", "en": "" },
       "title":   { "fr": "Bayes Impact", "en": "Bayes Impact" },
@@ -350,6 +361,7 @@
 
   <!-- 2 · EARTH — the mission -->
   <div data-shared="earth"></div>
+
 
   <!-- 3 · HISTORY — what we've built since 2014 -->
   <section class="slide" id="history">
@@ -374,6 +386,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- 5 · INTRODUCING THE BAYES PLATFORM (statement) -->
   <section class="slide dark intro-state" id="introducing" data-dark>
@@ -412,6 +425,7 @@
     </div>
     <div class="cover-foot"><span>bayesimpact.org</span><span class="cf-r">Bayes Platform</span></div>
   </section>
+
 
   <!-- WHY NOT A GENERIC AGENT BUILDER — the public-service differentiators -->
   <section class="slide" id="why-different">
@@ -469,8 +483,24 @@
     </div>
   </section>
 
+
+  <!-- 8–13 · PLATFORM SHOWCASE (how it works · why you can trust it) -->
+  <div data-shared="platform-grounding"></div>
+
+  <div data-shared="platform-sources"></div>
+
+  <div data-shared="platform-studio"></div>
+
+  <div data-shared="platform-evaluation"></div>
+
+  <div data-shared="platform-observability"></div>
+
+  <div data-shared="platform-privacy"></div>
+
+
   <!-- 6 · PLATFORM as the OS on your secured foundations -->
   <div data-shared="platform-compliance"></div>
+
 
   <!-- META-AGENT — a platform, not a collection of prototypes -->
   <section class="slide" id="meta-agent">
@@ -498,11 +528,6 @@
     </div>
   </section>
 
-  <!-- 8–13 · PLATFORM SHOWCASE (how it works · why you can trust it) -->
-  <div data-shared="platform-grounding"></div>
-  <div data-shared="platform-sources"></div>
-  <div data-shared="platform-studio"></div>
-  <div data-shared="platform-privacy"></div>
 
   <!-- SECTION DIVIDER — use cases in action -->
   <section class="slide secdiv dark" id="sec-usecases" data-dark>
@@ -512,6 +537,7 @@
       <p class="sub reveal"><span data-lang="fr">Des agents en production, sur le terrain : emploi, santé, justice, services publics. Tous bâtis sur la même plateforme, déployés sur l'infrastructure de chaque organisation.</span><span data-lang="en">Agents in production, in the field: employment, healthcare, justice, public services. All built on the same platform, deployed on each organization's infrastructure.</span></p>
     </div>
   </section>
+
 
   <!-- 7 · USE CASE — France Travail (CoachFT) -->
   <section class="slide usecase" id="uc-francetravail">
@@ -550,37 +576,6 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE MCP DEMO — a grounded back-office copilot (tool-calling + cited answers) -->
-  <section class="slide usecase" id="demo-copilot" data-demo="copilot">
-    <div class="slide-inner">
-      <div class="demo-head reveal"><h2><span data-lang="fr">Un copilote ancré dans vos systèmes</span><span data-lang="en">A copilot grounded in your systems</span></h2><span class="dh-sub"><span data-lang="fr">Via MCP, l'agent interroge vos back-offices en bac à sable et répond en langage clair, sources à l'appui.</span><span data-lang="en">Through MCP, the agent queries your back-offices in a sandbox and answers in plain language, with sources.</span></span></div>
-      <div class="copilot reveal">
-        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote · accès MCP en bac à sable</span><span data-lang="en">Copilot · sandboxed MCP access</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
-        <div class="cp-body"></div>
-      </div>
-      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
-      <div class="pipeline reveal">
-        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Documents</span><span data-lang="en">1 · Documents</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
-        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span data-lang="fr">Type</span><span data-lang="en">Type</span><b><span data-lang="fr">Décision</span><span data-lang="en">Ruling</span></b></div><div class="extract-row"><span>Source</span><b><span data-lang="fr">Cour d'appel</span><span data-lang="en">Court</span></b></div><div class="extract-row"><span><span data-lang="fr">Année</span><span data-lang="en">Year</span></span><b>2021</b></div><div class="extract-row"><span><span data-lang="fr">Texte</span><span data-lang="en">Text</span></span><b>OCR ✓</b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
-        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
-        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Arrêt</span><span data-lang="en">Ruling</span></td><td>2021</td></tr><tr><td>087</td><td><span data-lang="fr">Jugt</span><span data-lang="en">Judgt</span></td><td>2019</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
-      </div>
-    </div>
-    <script type="application/json" class="demo-data">
-    {"meta":{"who":{"fr":"Agent","en":"Officer"},"search":{"fr":"Recherche · base documentaire","en":"Search · document base"},"name":{"fr":"Copilote","en":"Copilot"}},
-     "fr":[
-      {"q":"Jurisprudence sur la rupture abusive d'un contrat ?","arg":"rupture abusive · depuis 2015","res":"3 décisions","a":"Trois décisions depuis 2015 : la rupture est abusive sans préavis raisonnable.","s":["Cour d'appel · 2021 · n°142","Tribunal · 2019 · n°087"]},
-      {"q":"Délais légaux de la garde à vue ?","arg":"garde à vue · délais","res":"2 textes","a":"48 heures, prolongeable une fois sur autorisation du procureur.","s":["Cour suprême · 2020 · n°208"]}
-     ],
-     "en":[
-      {"q":"Case law on wrongful contract termination?","arg":"wrongful termination · since 2015","res":"3 rulings","a":"Three rulings since 2015: termination is wrongful absent reasonable notice.","s":["Court of appeal · 2021 · no.142","Court · 2019 · no.087"]},
-      {"q":"Legal time limits for police custody?","arg":"custody · limits","res":"2 statutes","a":"48 hours, extendable once with the prosecutor's authorization.","s":["Supreme court · 2020 · no.208"]}
-     ]}
-    </script>
-  </section>
-  <div data-shared="platform-observability"></div>
-  <div data-shared="platform-evaluation"></div>
 
   <!-- 14 · USE CASE — Healthcare (Impulse cohort) -->
   <section class="slide usecase" id="uc-health">
@@ -618,6 +613,7 @@
     </div>
   </section>
 
+
   <!-- USE CASE — analytics agent (structures data, charts on the fly) -->
   <section class="slide usecase" id="demo-analytics">
     <div class="slide-inner">
@@ -636,19 +632,49 @@
     </div>
   </section>
 
+
+  <!-- GOVERNMENTS VERTICAL — Togo overview (AI agents as Digital Public Infrastructure) -->
+  <section class="slide usecase" id="uc-togo-overview">
+    <div class="uc-pw" aria-hidden="true"><img src="../../assets/partners/togo.webp" alt="" /></div>
+    <div class="slide-inner">
+      <p class="uc-tag reveal"><span data-lang="fr">Gouvernements · Togo</span><span data-lang="en">Governments · Togo</span></p>
+      <h2 class="title reveal" style="max-width:30ch"><span data-lang="fr">Un socle unique : le <em class="hl">DPI du gouvernement agentique</em>.</span><span data-lang="en">One foundation: the <em class="hl">DPI of the agentic government</em>.</span></h2>
+      <p class="lead reveal" style="margin-top:4px; max-width:68ch"><span data-lang="fr">Au lieu de digitaliser service par service pendant vingt ans, les pays émergents bâtissent leur infrastructure publique numérique directement sur des agents IA. Comme le mobile a fait sauter l'étape de la banque, l'IA fait sauter celle de l'e-gouvernement hérité.</span><span data-lang="en">Instead of digitizing service by service for twenty years, emerging countries build their digital public infrastructure directly on AI agents. As mobile let them leapfrog banking, AI lets them leapfrog legacy e-government.</span></p>
+      <div class="cards c3 reveal" style="margin-top:18px">
+        <div class="card">
+          <div class="kicker"><span data-lang="fr">Accès citoyen</span><span data-lang="en">Citizen access</span></div>
+          <h3><span data-lang="fr">Le service public en un coup de fil</span><span data-lang="en">Public services, a phone call away</span></h3>
+          <p><span data-lang="fr">Toutes les démarches dans une conversation — WhatsApp, langues locales, messages vocaux.</span><span data-lang="en">Every procedure in a conversation — WhatsApp, local languages, voice notes.</span></p>
+        </div>
+        <div class="card">
+          <div class="kicker"><span data-lang="fr">Back-office</span><span data-lang="en">Back-office</span></div>
+          <h3><span data-lang="fr">Des archives papier exploitables</span><span data-lang="en">Paper archives, made usable</span></h3>
+          <p><span data-lang="fr">Justice, état civil : des millions de documents numérisés et structurés pour l'IA.</span><span data-lang="en">Justice, civil registry: millions of documents digitized and structured for AI.</span></p>
+        </div>
+        <div class="card">
+          <div class="kicker"><span data-lang="fr">Inter-ministériel</span><span data-lang="en">Cross-government</span></div>
+          <h3><span data-lang="fr">Un socle, chaque ministère</span><span data-lang="en">One foundation, every ministry</span></h3>
+          <p><span data-lang="fr">Un méta-agent oriente vers la bonne administration. Souverain, open-source, données dans le pays.</span><span data-lang="en">A meta-agent routes to the right administration. Sovereign, open-source, data stays in-country.</span></p>
+        </div>
+      </div>
+      <div class="pscope reveal" style="margin-top:16px"><img src="../../assets/partners/togo.webp" alt="Togo" /><div><b>9M+</b> <span data-lang="fr">citoyens · un modèle répliqué en Afrique de l'Ouest (Congo, Bénin)</span><span data-lang="en">citizens · a model replicated across West Africa (Congo, Benin)</span></div></div>
+    </div>
+  </section>
+
+
   <!-- 15 · USE CASE — Togo (public services on WhatsApp) -->
   <section class="slide usecase focus" id="uc-togo" data-demo="chat">
     <div class="uc-watermark" aria-hidden="true"><svg viewBox="0 0 415 409"><use href="#bi-mark"/></svg></div>
     <div class="slide-inner">
       <div class="demo-head reveal">
         <div>
-          <p class="uc-tag" style="margin-bottom:8px"><span data-lang="fr">Cas d'usage · Togo</span><span data-lang="en">Use case · Togo</span></p>
-          <h2 style="margin:0"><span data-lang="fr">Au Togo, le service public <em class="hl">tient dans une conversation</em>.</span><span data-lang="en">In Togo, a public service <em class="hl">fits in a conversation</em>.</span></h2>
-          <div class="pscope reveal" style="margin-top:8px"><img src="../../assets/partners/togo.webp" alt="Government of Togo" /><div><b>9M</b> <span data-lang="fr">citoyens dans le périmètre · avec l'Agence Togo Digital</span><span data-lang="en">citizens in scope · with Agence Togo Digital</span></div></div>
+          <p class="uc-tag" style="margin-bottom:8px"><span data-lang="fr">Gouvernements · Togo</span><span data-lang="en">Governments · Togo</span></p>
+          <h2 style="margin:0; max-width:34ch"><span data-lang="fr">Togo : <em class="hl">tout un État</em>, digitalisé par l'IA agentique.</span><span data-lang="en">Togo: <em class="hl">an entire state</em>, digitized with agentic AI.</span></h2>
+          <div class="pscope reveal" style="margin-top:8px"><img src="../../assets/partners/togo.webp" alt="Government of Togo" /><div><b>9M</b> <span data-lang="fr">citoyens · avec l'Agence Togo Digital</span><span data-lang="en">citizens · with Agence Togo Digital</span></div></div>
         </div>
         <div class="demo-controls"><button class="dc-btn dc-toggle">⏸</button><button class="dc-btn ghost dc-replay">↻</button></div>
       </div>
-      <div class="demo-stage" style="margin-top:6px">
+      <div class="demo-stage" style="margin-top:2px">
         <div class="reveal">
           <div class="srs">
             <div class="srs-top">
@@ -744,6 +770,39 @@
     </script>
   </section>
 
+
+  <!-- INTERACTIVE MCP DEMO — a grounded back-office copilot (tool-calling + cited answers) -->
+  <section class="slide usecase" id="demo-copilot" data-demo="copilot">
+    <div class="slide-inner">
+      <p class="uc-tag reveal"><span data-lang="fr">Gouvernements · Togo</span><span data-lang="en">Governments · Togo</span></p>
+      <div class="demo-head reveal"><h2><span data-lang="fr">Togo : <em class="hl">numériser les archives de la justice</em>.</span><span data-lang="en">Togo: <em class="hl">digitizing the justice archives</em>.</span></h2><span class="dh-sub"><span data-lang="fr">La Bayes Platform traite en toute sécurité des millions de documents papier d'archives juridiques pour les rendre exploitables par des agents IA — au service des magistrats comme des citoyens.</span><span data-lang="en">The Bayes Platform securely processes millions of pages of paper legal archives to make them usable by AI agents — serving magistrates and citizens alike.</span></span></div>
+      <div class="copilot reveal">
+        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote · accès MCP en bac à sable</span><span data-lang="en">Copilot · sandboxed MCP access</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
+        <div class="cp-body"></div>
+      </div>
+      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
+      <div class="pipeline reveal">
+        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Documents</span><span data-lang="en">1 · Documents</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span data-lang="fr">Type</span><span data-lang="en">Type</span><b><span data-lang="fr">Décision</span><span data-lang="en">Ruling</span></b></div><div class="extract-row"><span>Source</span><b><span data-lang="fr">Cour d'appel</span><span data-lang="en">Court</span></b></div><div class="extract-row"><span><span data-lang="fr">Année</span><span data-lang="en">Year</span></span><b>2021</b></div><div class="extract-row"><span><span data-lang="fr">Texte</span><span data-lang="en">Text</span></span><b>« Attendu que… »</b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Arrêt</span><span data-lang="en">Ruling</span></td><td>2021</td></tr><tr><td>087</td><td><span data-lang="fr">Jugt</span><span data-lang="en">Judgt</span></td><td>2019</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Agent","en":"Officer"},"search":{"fr":"Recherche · base documentaire","en":"Search · document base"},"name":{"fr":"Copilote","en":"Copilot"}},
+     "fr":[
+      {"q":"Jurisprudence sur la rupture abusive d'un contrat ?","arg":"rupture abusive · depuis 2015","res":"3 décisions","a":"Trois décisions depuis 2015 : la rupture est abusive sans préavis raisonnable.","s":["Cour d'appel · 2021 · n°142","Tribunal · 2019 · n°087"]},
+      {"q":"Délais légaux de la garde à vue ?","arg":"garde à vue · délais","res":"2 textes","a":"48 heures, prolongeable une fois sur autorisation du procureur.","s":["Cour suprême · 2020 · n°208"]}
+     ],
+     "en":[
+      {"q":"Case law on wrongful contract termination?","arg":"wrongful termination · since 2015","res":"3 rulings","a":"Three rulings since 2015: termination is wrongful absent reasonable notice.","s":["Court of appeal · 2021 · no.142","Court · 2019 · no.087"]},
+      {"q":"Legal time limits for police custody?","arg":"custody · limits","res":"2 statutes","a":"48 hours, extendable once with the prosecutor's authorization.","s":["Supreme court · 2020 · no.208"]}
+     ]}
+    </script>
+  </section>
+
+
   <!-- 16 · OPEN-SOURCE PHILOSOPHY -->
   <section class="slide" id="philosophy">
     <div class="slide-inner">
@@ -772,56 +831,40 @@
     </div>
   </section>
 
-  <!-- 17 · NOT A CONTRACTOR — a partner building a commons -->
-  <section class="slide" id="partnership">
-    <div class="slide-inner">
-      <p class="eyebrow reveal"><span data-lang="fr">Comment nous travaillons</span><span data-lang="en">How we work</span></p>
-      <h2 class="title reveal"><span data-lang="fr">Un partenaire, <em class="hl">pas un prestataire</em>.</span><span data-lang="en">A partner, <em class="hl">not a contractor</em>.</span></h2>
-      <p class="lead reveal" style="margin-top:4px; max-width:60ch"><span data-lang="fr">Un prestataire gagne à vous rendre dépendant. À but non lucratif, nous gagnons quand l'impact se diffuse. D'où des incitations inversées.</span><span data-lang="en">A contractor profits from keeping you dependent. As a nonprofit, we win when impact spreads. Hence the opposite incentives.</span></p>
-      <div class="cards c3 reveal">
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Sans verrou</span><span data-lang="en">No lock-in</span></div>
-          <h3><span data-lang="fr">Le code est à vous</span><span data-lang="en">The code is yours</span></h3>
-          <p><span data-lang="fr">Open-source sous <b>licence MIT</b>. Déployez, modifiez, reprenez la main quand vous voulez.</span><span data-lang="en">Open-source under the <b>MIT license</b>. Deploy, modify, take over whenever you want.</span></p>
-        </div>
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">L'impact, pas la facture</span><span data-lang="en">Impact, not billings</span></div>
-          <h3><span data-lang="fr">Nos intérêts sont les vôtres</span><span data-lang="en">Our interests are yours</span></h3>
-          <p><span data-lang="fr">Nous optimisons la <b>portée et les résultats</b>, jamais votre dépendance ni des heures facturées.</span><span data-lang="en">We optimize for <b>reach and outcomes</b>, never your dependency or billable hours.</span></p>
-        </div>
-        <div class="card feat">
-          <div class="kicker"><span data-lang="fr">Un commun numérique</span><span data-lang="en">A digital commons</span></div>
-          <h3><span data-lang="fr">Chaque cas d'usage profite au suivant</span><span data-lang="en">Every use case helps the next</span></h3>
-          <p><span data-lang="fr">Nous répliquons chaque cas d'usage dans une <b>bibliothèque ouverte</b>, partagée avec des organisations similaires partout dans le monde. Démocratiser l'IA de pointe, pour l'intérêt général.</span><span data-lang="en">We replicate every use case into an <b>open library</b>, shared with similar organizations worldwide. Democratizing state-of-the-art AI, for the public good.</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 18 · TWO MODES OF ENGAGEMENT -->
-  <section class="slide" id="engagement">
+  <!-- 17 · OUR MODEL — a partner, not a vendor (merges how-we-work + two-modes) -->
+  <section class="slide" id="model">
     <div class="slide-inner">
-      <p class="eyebrow reveal"><span data-lang="fr">Comment démarrer</span><span data-lang="en">How to start</span></p>
-      <h2 class="title reveal" style="max-width:26ch"><span data-lang="fr">Deux façons de <em class="hl">travailler ensemble</em>.</span><span data-lang="en">Two ways to <em class="hl">work together</em>.</span></h2>
-      <p class="lead reveal" style="margin-top:4px; max-width:62ch"><span data-lang="fr">Selon votre maturité, deux portes d'entrée. Les deux mènent à la production, sur une plateforme que vous possédez.</span><span data-lang="en">Two entry points, depending on your maturity. Both lead to production, on a platform you own.</span></p>
-      <div class="cards c2 reveal" style="margin-top:16px">
-        <div class="card">
-          <div class="kicker"><span data-lang="fr">Mode 1 · Cas d'usage ciblés</span><span data-lang="en">Mode 1 · Targeted use cases</span></div>
-          <h3><span data-lang="fr">Vous avez des cas d'usage en tête</span><span data-lang="en">You have use cases in mind</span></h3>
-          <p><span data-lang="fr">Nous les industrialisons ensemble, de l'idée à la production. Ou nous <b>répliquons depuis notre bibliothèque</b> des cas déjà éprouvés chez des partenaires similaires.</span><span data-lang="en">We productionize them together, from idea to production. Or we <b>replicate from our library</b> cases already proven with similar partners.</span></p>
+      <p class="eyebrow reveal"><span data-lang="fr">Notre modèle</span><span data-lang="en">Our model</span></p>
+      <h2 class="title reveal" style="max-width:24ch"><span data-lang="fr">Un partenaire, <em class="hl">pas un prestataire</em>.</span><span data-lang="en">A partner, <em class="hl">not a contractor</em>.</span></h2>
+      <p class="lead reveal" style="margin-top:4px; max-width:64ch"><span data-lang="fr">À but non lucratif, nous gagnons quand l'impact se diffuse, jamais de votre dépendance. Tout est open-source (MIT), sur une plateforme que vous possédez.</span><span data-lang="en">As a nonprofit, we win when impact spreads, never from your dependency. Everything is open-source (MIT), on a platform you own.</span></p>
+      <div class="split reveal" style="margin-top:16px; grid-template-columns:1fr 1.1fr; gap:30px; align-items:start">
+        <div>
+          <div class="mdl-lab"><span data-lang="fr">Le partenariat</span><span data-lang="en">The partnership</span></div>
+          <div class="mdl-pt"><b><span data-lang="fr">Sans verrou.</span><span data-lang="en">No lock-in.</span></b> <span data-lang="fr">Le code est à vous, sous licence MIT : déployez, modifiez, reprenez la main quand vous voulez.</span><span data-lang="en">The code is yours, MIT-licensed: deploy, modify, take over whenever you want.</span></div>
+          <div class="mdl-pt"><b><span data-lang="fr">L'impact, pas la facture.</span><span data-lang="en">Impact, not billings.</span></b> <span data-lang="fr">Nous optimisons la portée et les résultats, jamais des heures facturées.</span><span data-lang="en">We optimize for reach and outcomes, never billable hours.</span></div>
+          <div class="mdl-pt"><b><span data-lang="fr">Un commun numérique.</span><span data-lang="en">A digital commons.</span></b> <span data-lang="fr">Chaque cas d'usage rejoint une bibliothèque ouverte, partagée avec des organisations similaires partout dans le monde.</span><span data-lang="en">Every use case joins an open library, shared with similar organizations worldwide.</span></div>
         </div>
-        <div class="card feat">
-          <div class="kicker"><span data-lang="fr">Mode 2 · Programme d'accompagnement</span><span data-lang="en">Mode 2 · Accompaniment program</span></div>
-          <h3><span data-lang="fr">Mobiliser l'intelligence collective du terrain</span><span data-lang="en">Mobilize the field's collective intelligence</span></h3>
-          <p><span data-lang="fr">Vos <b>experts métier</b>, formés et accompagnés, créent leurs propres cas d'usage sur la plateforme. La conduite du changement est facilitée ; et comme tout est bâti sur une base <b>pré-validée avec l'institution</b>, le chemin vers la production <b>avec la DSI</b> est balisé.</span><span data-lang="en">Your <b>domain experts</b>, trained and supported, build their own use cases on the platform. Change management gets easier; and because everything sits on a base <b>pre-validated with the institution</b>, the path to production <b>with IT</b> is paved.</span></p>
-          <div class="bpmn" style="margin-top:10px">
-            <span class="bpmn-node"><span data-lang="fr">Sélection</span><span data-lang="en">Selection</span></span><span class="bpmn-c">›</span>
-            <span class="bpmn-node"><span data-lang="fr">Expérimentation</span><span data-lang="en">Experimentation</span></span><span class="bpmn-c">›</span>
-            <span class="bpmn-node"><span data-lang="fr">Mise en production</span><span data-lang="en">Production</span></span>
+        <div>
+          <div class="mdl-lab"><span data-lang="fr">Deux portes d'entrée</span><span data-lang="en">Two ways to start</span></div>
+          <div class="cards c2" style="gap:12px; margin-top:0">
+            <div class="card">
+              <div class="kicker"><span data-lang="fr">Mode 1 · Cas d'usage ciblés</span><span data-lang="en">Mode 1 · Targeted use cases</span></div>
+              <p style="margin-top:6px"><span data-lang="fr">Nous industrialisons vos cas d'usage, de l'idée à la production — ou les <b>répliquons depuis notre bibliothèque</b>.</span><span data-lang="en">We productionize your use cases, from idea to production — or <b>replicate them from our library</b>.</span></p>
+            </div>
+            <div class="card feat">
+              <div class="kicker"><span data-lang="fr">Mode 2 · Programme Impulse</span><span data-lang="en">Mode 2 · Impulse program</span></div>
+              <p style="margin-top:6px"><span data-lang="fr">Vos <b>experts métier</b>, formés, créent leurs cas d'usage sur une base <b>pré-validée</b> ; le chemin vers la prod avec la DSI est balisé.</span><span data-lang="en">Your <b>domain experts</b>, trained, build use cases on a <b>pre-validated</b> base; the path to prod with IT is paved.</span></p>
+              <div class="bpmn" style="margin-top:8px">
+                <span class="bpmn-node"><span data-lang="fr">Sélection</span><span data-lang="en">Selection</span></span><span class="bpmn-c">›</span>
+                <span class="bpmn-node"><span data-lang="fr">Expérimentation</span><span data-lang="en">Experimentation</span></span><span class="bpmn-c">›</span>
+                <span class="bpmn-node"><span data-lang="fr">Production</span><span data-lang="en">Production</span></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <a class="eimp reveal" href="https://www.lesechos.fr/start-up/deals/bayes-impact-recoit-5-millions-de-googleorg-pour-mettre-lia-au-service-de-lap-hp-2202453" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+      <a class="eimp reveal" href="https://www.lesechos.fr/start-up/deals/bayes-impact-recoit-5-millions-de-googleorg-pour-mettre-lia-au-service-de-lap-hp-2202453" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;margin-top:16px">
         <div class="eimp-press"><span class="pk">Les Echos · 2025</span><img src="../../assets/partners/lesechos.webp" alt="Les Echos" /></div>
         <div class="eimp-body">
           <span data-lang="fr">«&nbsp;<b>Bayes Impact reçoit 5 M$ de Google.org pour mettre l'IA au service de l'AP-HP.</b>&nbsp;» Le socle de notre programme <b>Impulse Healthcare</b>.</span><span data-lang="en">"<b>Bayes Impact receives $5M from Google.org to bring AI to the AP-HP.</b>" The backbone of our <b>Impulse Healthcare</b> program.</span>
@@ -830,6 +873,7 @@
       </a>
     </div>
   </section>
+
 
   <!-- 4 · TEAM -->
   <section class="slide" id="team">
@@ -871,6 +915,7 @@
     </div>
   </section>
 
+
   <!-- 5 · REFERENCES -->
   <section class="slide" id="references">
     <div class="slide-inner">
@@ -901,6 +946,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- 19 · CLOSING -->
   <div data-shared="closing"></div>
