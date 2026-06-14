@@ -250,13 +250,7 @@
   .bz-bar{ display:flex; align-items:center; gap:7px; padding:8px 12px; background:var(--cream); border-bottom:1px solid var(--border-soft); }
   .bz-bar i{ width:9px; height:9px; border-radius:50%; background:var(--border-soft); display:block; flex:0 0 auto; }
   .bz-url{ flex:1 1 auto; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); background:var(--card); border:1px solid var(--border-soft); border-radius:6px; padding:4px 9px; margin-left:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .bz-hero{ position:relative; height:122px; background:linear-gradient(135deg,#26272f 0%,#3a2b2b 100%); display:flex; align-items:center; justify-content:center; }
-  .bz-hero svg{ width:50px; height:50px; opacity:.7; }
-  .bz-tag{ position:absolute; left:12px; bottom:10px; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:rgba(179,38,30,.92); border-radius:6px; padding:3px 8px; }
-  .bz-body{ padding:13px 15px; }
-  .bz-source{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
-  .bz-head{ font-weight:800; font-size:16.5px; line-height:1.24; color:var(--ink); margin-top:7px; letter-spacing:-.01em; }
-  .bz-dek{ font-size:11.5px; color:var(--muted); line-height:1.5; margin-top:8px; }
+  .bz-shot{ display:block; width:100%; height:auto; }
   /* ── use-case slides: each case study gets its own tint + faint partner watermark ── */
   .slide.usecase .slide-inner{ position:relative; z-index:1; }
   /* The case-study section is one coherent "showcase" surface — a bright neutral base
@@ -481,16 +475,8 @@
         <div class="wd-right">
           <p class="uc-tag" style="margin:0 0 2px"><span data-lang="fr">À éviter · le contre-exemple</span><span data-lang="en">What not to do · the cautionary tale</span></p>
           <div class="bz">
-            <div class="bz-bar"><i></i><i></i><i></i><span class="bz-url">presse · oecd.ai/incidents · 2024</span></div>
-            <div class="bz-hero" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><circle cx="9" cy="13" r="1.2" fill="rgba(255,255,255,.85)" stroke="none"/><circle cx="15" cy="13" r="1.2" fill="rgba(255,255,255,.85)" stroke="none"/><path d="M12 4.5v3.5M8.5 19v1.6M15.5 19v1.6"/></svg>
-              <span class="bz-tag">⚠ AI incident · 2024</span>
-            </div>
-            <div class="bz-body">
-              <div class="bz-source">Der Standard · Süddeutsche Zeitung · OECD.AI</div>
-              <div class="bz-head"><span data-lang="fr">Un chatbot public pour l'emploi reproduit des stéréotypes de genre.</span><span data-lang="en">A public employment chatbot reproduces gender stereotypes.</span></div>
-              <div class="bz-dek"><span data-lang="fr">L'assistant « Berufsinfomat » de l'agence autrichienne (AMS), bâti sur un chatbot grand public, orientait les femmes vers l'hôtellerie et les hommes vers la tech. Tollé public, correctifs en urgence.</span><span data-lang="en">Austria's AMS "Berufsinfomat" assistant, built on a consumer chatbot, steered women toward hospitality and men toward tech. Public outcry, emergency fixes.</span></div>
-            </div>
+            <div class="bz-bar"><i></i><i></i><i></i><span class="bz-url">oecd.ai/en/incidents/2024-01-04-47fe</span></div>
+            <img class="bz-shot" src="../../assets/incidents/ams-oecd.webp" alt="OECD.AI — Austrian Employment Chatbot Reproduces Gender Bias" />
           </div>
           <p class="cap"><span data-lang="fr"><b>Le piège du « fait maison ».</b> Les quatre briques ci-contre sont précisément ce qui l'évite. </span><span data-lang="en"><b>The "DIY" trap.</b> The four bricks at left are exactly what prevents this. </span><a href="https://oecd.ai/en/incidents/2024-01-04-47fe" target="_blank" rel="noopener">oecd.ai ↗</a></p>
         </div>
@@ -501,6 +487,36 @@
 
   <!-- 8–13 · PLATFORM SHOWCASE (how it works · why you can trust it) -->
   <div data-shared="platform-grounding"></div>
+
+  <!-- BRICK 1 demo — a copilot grounded in your protocols (rich health MCP demo, live) -->
+  <section class="slide" id="demo-grounding" data-demo="copilot">
+    <div class="slide-inner">
+      <div class="demo-head reveal"><h2><span data-lang="fr">Ancré dans <em class="hl">vos protocoles</em>, pas le web ouvert.</span><span data-lang="en">Grounded in <em class="hl">your protocols</em>, not the open web.</span></h2><span class="dh-sub"><span data-lang="fr">Via MCP, l'agent interroge vos systèmes en bac à sable et répond en langage clair, sources à l'appui. Exemple : un copilote clinicien sur les protocoles hospitaliers.</span><span data-lang="en">Through MCP, the agent queries your systems in a sandbox and answers in plain language, with sources. Example: a clinician copilot over hospital protocols.</span></span></div>
+      <div class="copilot reveal">
+        <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Copilote clinicien · accès MCP en bac à sable</span><span data-lang="en">Clinician copilot · sandboxed MCP access</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
+        <div class="cp-body"></div>
+      </div>
+      <div class="pipe-cap reveal"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg><span data-lang="fr">La donnée derrière le copilote</span><span data-lang="en">The data behind the copilot</span></div>
+      <div class="pipeline reveal">
+        <div class="pl-stage"><div class="pl-label"><span data-lang="fr">1 · Documents cliniques</span><span data-lang="en">1 · Clinical documents</span></div><div class="scan-stack"><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div><div class="scan-pg"><i></i><i></i><i style="width:72%"></i><i></i></div></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage agent"><div class="pl-label"><span data-lang="fr">2 · Agent Bayes</span><span data-lang="en">2 · Bayes agent</span></div><div class="extract"><div class="extract-row"><span data-lang="fr">Type</span><span data-lang="en">Type</span><b><span data-lang="fr">Protocole</span><span data-lang="en">Protocol</span></b></div><div class="extract-row"><span>Source</span><b><span data-lang="fr">Hôpital</span><span data-lang="en">Hospital</span></b></div><div class="extract-row"><span><span data-lang="fr">Version</span><span data-lang="en">Version</span></span><b>2025</b></div><div class="extract-row"><span><span data-lang="fr">Texte</span><span data-lang="en">Text</span></span><b>« Avant 3 mois… »</b></div></div><div class="extract-tags"><span data-lang="fr">extraction</span><span data-lang="en">extraction</span><span>·</span><span data-lang="fr">classification</span><span data-lang="en">classification</span></div></div>
+        <div class="pl-arrow"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="var(--accent-orange)" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div class="pl-stage db"><div class="pl-label"><span data-lang="fr">3 · Base structurée</span><span data-lang="en">3 · Structured DB</span></div><table><tr><th>Réf.</th><th>Type</th><th><span data-lang="fr">Année</span><span data-lang="en">Year</span></th></tr><tr><td>142</td><td><span data-lang="fr">Protocole</span><span data-lang="en">Protocol</span></td><td>2025</td></tr><tr><td>087</td><td><span data-lang="fr">Circulaire</span><span data-lang="en">Circular</span></td><td>2024</td></tr></table><div class="db-q">▲ <span data-lang="fr">interrogée par le copilote</span><span data-lang="en">queried by the copilot</span></div></div>
+      </div>
+    </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Clinicien","en":"Clinician"},"search":{"fr":"Recherche · protocoles hospitaliers","en":"Search · hospital protocols"},"name":{"fr":"Copilote","en":"Copilot"}},
+     "fr":[
+      {"q":"Conduite à tenir devant une fièvre chez un nourrisson de moins de 3 mois ?","arg":"fièvre · nourrisson < 3 mois","res":"2 protocoles","a":"Avant 3 mois, toute fièvre impose une consultation en urgence, conformément au protocole en vigueur.","s":["Protocole hospitalier · 2025 · n°142","Circulaire interne · 2024 · n°087"]},
+      {"q":"Quel est le seuil de transfusion recommandé en post-opératoire ?","arg":"transfusion · seuil · post-op","res":"1 protocole","a":"Seuil de 7 g/dL en l'absence de comorbidité cardiaque, selon le protocole interne.","s":["Protocole hospitalier · 2025 · n°204"]}
+     ],
+     "en":[
+      {"q":"What to do about a fever in an infant under 3 months?","arg":"fever · infant < 3 months","res":"2 protocols","a":"Under 3 months, any fever requires urgent review, per the protocol in force.","s":["Hospital protocol · 2025 · no.142","Internal circular · 2024 · no.087"]},
+      {"q":"What is the recommended post-op transfusion threshold?","arg":"transfusion · threshold · post-op","res":"1 protocol","a":"A 7 g/dL threshold absent cardiac comorbidity, per the internal protocol.","s":["Hospital protocol · 2025 · no.204"]}
+     ]}
+    </script>
+  </section>
 
   <div data-shared="platform-sources"></div>
 
@@ -514,7 +530,7 @@
 
 
   <!-- 6 · PLATFORM OS — your foundations + agent orchestration (merges infra + meta-agent) -->
-  <section class="slide" id="platform-os">
+  <section class="slide" id="platform-os" data-demo="copilot">
     <div class="slide-inner">
       <p class="eyebrow reveal"><span data-lang="fr">L'architecture</span><span data-lang="en">The architecture</span></p>
       <h2 class="title reveal" style="max-width:30ch"><span data-lang="fr">Une plateforme, <em class="hl">pas une collection de prototypes</em>.</span><span data-lang="en">A platform, <em class="hl">not a pile of prototypes</em>.</span></h2>
@@ -550,25 +566,27 @@
             </div>
           </div>
         </div>
-        <!-- RIGHT: orchestration demo -->
+        <!-- RIGHT: orchestration as a live conversational demo (one entry point, routing in the background) -->
         <div>
-          <div class="osx-lab"><span data-lang="fr">L'orchestration, en action</span><span data-lang="en">Orchestration, in action</span></div>
-          <span class="ma-req">«&nbsp;<span data-lang="fr">Je veux inscrire mon enfant à la crèche.</span><span data-lang="en">I'd like to enrol my child in daycare.</span>&nbsp;»</span>
-          <div class="ma-fan">↓</div>
-          <div class="ma-router">
-            <div class="k"><span data-lang="fr">Méta-agent · niveau organisation</span><span data-lang="en">Meta-agent · organization level</span></div>
-            <div class="t"><span data-lang="fr">Identifie le besoin, puis route vers le bon sous-agent spécialisé.</span><span data-lang="en">Identifies the need, then routes to the right specialized sub-agent.</span></div>
-          </div>
-          <div class="ma-fan">↓&nbsp;&nbsp;↓&nbsp;&nbsp;↓</div>
-          <div class="ma-subs" style="grid-template-columns:1fr 1fr">
-            <div class="ma-sub"><div class="n"><span data-lang="fr">Éligibilité &amp; aides</span><span data-lang="en">Eligibility &amp; benefits</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
-            <div class="ma-sub"><div class="n"><span data-lang="fr">Pièces justificatives</span><span data-lang="en">Required documents</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
-            <div class="ma-sub"><div class="n"><span data-lang="fr">Prise de rendez-vous</span><span data-lang="en">Appointment booking</span></div><div class="s">✓ <span data-lang="fr">déployé · monitoré</span><span data-lang="en">deployed · monitored</span></div></div>
-            <div class="ma-sub new"><span data-lang="fr">+ nouveau cas d'usage</span><span data-lang="en">+ new use case</span></div>
+          <div class="osx-lab"><span data-lang="fr">L'orchestration, en action · un seul point d'entrée</span><span data-lang="en">Orchestration, in action · one entry point</span></div>
+          <div class="copilot reveal">
+            <div class="cp-bar"><span class="cp-dot r"></span><span class="cp-dot y"></span><span class="cp-dot g"></span><span class="cp-title"><span data-lang="fr">Assistant citoyen · point d'entrée unique</span><span data-lang="en">Citizen assistant · single entry point</span></span><span class="cp-live"><span class="cp-live-dot"></span><span data-lang="fr">en direct</span><span data-lang="en">live</span></span><span class="cp-badge">MCP</span></div>
+            <div class="cp-body"></div>
           </div>
         </div>
       </div>
     </div>
+    <script type="application/json" class="demo-data">
+    {"meta":{"who":{"fr":"Citoyen","en":"Citizen"},"search":{"fr":"Méta-agent · routage","en":"Meta-agent · routing"},"name":{"fr":"Assistant citoyen","en":"Citizen assistant"}},
+     "fr":[
+      {"q":"Je veux inscrire mon enfant à la crèche.","arg":"besoin → éligibilité · pièces · RDV","res":"3 sous-agents","a":"Vous êtes éligible. Pièces à fournir : livret de famille et justificatif de domicile. Créneau réservé : 14 mars, crèche Les Lilas.","s":["Éligibilité & aides","Pièces justificatives","Prise de rendez-vous"]},
+      {"q":"Et pour renouveler mon passeport ?","arg":"besoin → titres d'identité","res":"1 sous-agent","a":"Je vous oriente vers le service des titres : pré-demande en ligne, puis rendez-vous en mairie. Le même point d'entrée pour toutes vos démarches.","s":["Titres d'identité","Prise de rendez-vous"]}
+     ],
+     "en":[
+      {"q":"I'd like to enrol my child in daycare.","arg":"need → eligibility · documents · booking","res":"3 sub-agents","a":"You're eligible. Documents needed: family record book and proof of address. Slot reserved: March 14, Les Lilas daycare.","s":["Eligibility & benefits","Required documents","Appointment booking"]},
+      {"q":"And to renew my passport?","arg":"need → identity documents","res":"1 sub-agent","a":"I'm routing you to the ID-documents service: online pre-application, then an appointment at city hall. The same entry point for every procedure.","s":["Identity documents","Appointment booking"]}
+     ]}
+    </script>
   </section>
 
 
